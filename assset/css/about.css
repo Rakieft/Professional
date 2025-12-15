@@ -67,6 +67,28 @@ body {
   color: #555;
 }
 
+.about-company {
+  padding: 90px 12%;
+  background: #ffffff;
+  text-align: center;
+}
+
+.about-company h2 {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.about-company p {
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #555;
+}
+
+
 /* STORY */
 .about-story {
   display: grid;
@@ -74,6 +96,12 @@ body {
   gap: 60px;
   padding: 80px 10%;
   align-items: center;
+}
+
+.story-content h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
 .story-content h2 {
@@ -145,6 +173,57 @@ body {
   color: #2f80ed;
   margin-bottom: 15px;
 }
+
+/*skill */
+
+.skills {
+  padding: 80px 10%;
+  background: #fff;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.skills h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.skills-left ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-left li {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.skill-bar {
+  margin-bottom: 25px;
+}
+
+.skill-bar span {
+  font-weight: 600;
+}
+
+.bar {
+  background: #eee;
+  height: 15px;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.bar div {
+  height: 100%;
+  background: linear-gradient(to right, #0775f4, #270b0b);;
+  border-radius: 5px;
+}
+
 
 /* CTA */
 .about-cta {
