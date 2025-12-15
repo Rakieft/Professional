@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Portfolio WebFy | Projets web réalisés en Haïti</title>
+
+  <meta name="description" content="Découvrez le portfolio WebFy : sites web et applications réalisés pour des entreprises haïtiennes. Des projets modernes, performants et professionnels.">
+
+  <meta name="keywords" content="portfolio développeur web Haïti, projets web Haïti, sites web réalisés Haïti, création site web Haïti">
+  <meta name="author" content="WebFy">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portfolio WebFy – Projets web professionnels en Haïti">
+  <meta property="og:description" content="Sites web et applications conçus par WebFy pour des entreprises haïtiennes.">
+  <meta property="og:image" content="image/portfolio-cover.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="assset/css/portfolio.css" />
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="navbar">
+  <div class="logo">
+    <img src="image/logo.png" alt="Logo WebFy">
+    <!-- <h1>WebFy</h1> -->
+  </div>
+
+  <nav id="nav-menu" class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="about.html">À propos</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="menu-toggle" id="menu-toggle">☰</div>
+</header>
+<!-- HERO -->
+<section class="portfolio-hero">
+  <h1>Nos Réalisations</h1>
+  <p>Des projets conçus pour aider les entreprises à grandir grâce au digital.</p>
+</section>
+
+<!-- FILTERS -->
+<section class="portfolio-filters">
+  <button data-filter="all" class="active">Tous</button>
+  <button data-filter="site">Sites Web</button>
+  <button data-filter="app">Applications Web</button>
+</section>
+
+<!-- PORTFOLIO GRID -->
+<section class="portfolio-grid">
+
+  <article class="portfolio-card" data-type="site">
+    <img src="image/portfolio1.png" alt="Projet Site Web">
+    <h3>Innonutech 🖥️</h3>
+    <span>Site Web</span>
+    <button class="btn-view"
+      data-title="Site vitrine PME"
+      data-desc="Création d’un site professionnel responsive avec SEO local."
+      data-tech="HTML, CSS, JavaScript"
+      data-year="2024">
+      Description
+    </button>
+  </article>
+
+  
+
+  <article class="portfolio-card" data-type="site">
+    <img src="image/portfolio2.png" alt="Projet Académique">
+    <h3>Recyclonet ♻️</h3>
+    <span>Site Web</span>
+    <button class="btn-view"
+      data-title="Projet académique"
+      data-desc="Projet réalisé dans un cadre académique avec bonnes pratiques web."
+      data-tech="HTML, CSS, JS"
+      data-year="2023">
+      Description
+    </button>
+  </article>
+
+  <article class="portfolio-card" data-type="app">
+    <img src="image/portfolio3.png" alt="Application Web">
+    <h3>Meal finder & Groceries 🛒</h3>
+    <span>Application Web</span>
+    <button class="btn-view"
+      data-title="Application de réservation"
+      data-desc="Application web permettant la prise de rendez-vous en ligne."
+      data-tech="JavaScript, API, LocalStorage, HTML, CSS"
+      data-year="2025">
+      Description
+    </button>
+  </article>
+
+</section>
+
+<!-- CONFIDENTIALITY SECTION -->
+<section class="portfolio-note">
+  <h2>Confidentialité des projets</h2>
+  <p>
+    Certains de nos clients choisissent de ne pas rendre leurs projets publics
+    pour des raisons de confidentialité ou de stratégie commerciale.
+    <br><br>
+    Les projets présentés ici représentent une partie de notre savoir-faire.
+    D’autres réalisations peuvent être présentées sur demande.
+  </p>
+</section>
+
+<!-- CTA -->
+<section class="portfolio-cta">
+  <h2>Vous avez un projet similaire ?</h2>
+  <a href="tarifs.html" class="btn-pricing">Demander un devis</a>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="project-modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-desc"></p>
+    <p><strong>Technologies :</strong> <span id="modal-tech"></span></p>
+    <p><strong>Année :</strong> <span id="modal-year"></span></p>
+    <a href="tarifs.html" class="btn-primary">Demander un devis</a>
+  </div>
+</div>
+
+<!-- <footer class="footer">
+  <p>WebFy</p>
+</footer> -->
+
+<script src="js/portfolio.js"></script>
+</body>
+</html>

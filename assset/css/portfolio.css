@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+/* ================= HEADER ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 60px;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #2f80ed;
+}
+
+/* MENU TOGGLE (MOBILE) */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.portfolio-hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(to right, #eef6ff, #ffffff);
+}
+
+.portfolio-filters {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.portfolio-filters button {
+  margin: 5px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #e0e0e0;
+}
+
+.portfolio-filters button:hover {
+  background: #1c65cb;
+}
+
+.portfolio-filters button.active {
+  background: #0077ff;
+  color: white;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.portfolio-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  padding: 15px;
+  text-align: center;
+}
+
+.portfolio-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.btn-view {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  background: #0077ff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-view:hover {
+  background: #1c65cb;
+}
+
+.portfolio-note {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.portfolio-cta {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8f9fc;
+  color: black;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 25px; /* empêche le chevauchement */
+  padding: 12px 26px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  background: #0077ff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1c65cb;
+}
+
+.btn-pricing {
+  display: inline-block;
+  padding: 12px 26px;
+  background: #2f80ed;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-pricing:hover {
+  background: #1c65cb;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+
+  /* MENU MOBILE */
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    padding: 20px 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  }
+
+  .nav-links a {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* HERO MOBILE */
+  .hero-content {
+    padding: 90px 20px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 38px;
+  }
+
+  .hero-content p {
+    font-size: 17px;
+  }
+
+  .ratings {
+    justify-content: center;
+  }
+}
+
