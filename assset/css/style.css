@@ -341,3 +341,42 @@ body {
     justify-content: center;
   }
 }
+
+
+
+
+/* CONTAINER */
+.legal-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* TITLES */
+.legal-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.legal-container h2 {
+  margin-top: 40px;
+  color: #333;
+}
+
+/* TEXT */
+.legal-container p {
+  margin: 10px 0;
+}
+
+/* LINKS */
+.legal-container a {
+  color: #2f80ed;
+  text-decoration: none;
+}
+
+.legal-container a:hover {
+  text-decoration: underline;
+}
