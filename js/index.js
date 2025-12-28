@@ -1,14 +1,23 @@
-/* =========================
-   MENU TOGGLE (MOBILE)
-========================= */
-const menuToggle = document.getElementById("menu-toggle");
-const navMenu = document.getElementById("nav-menu");
+// MENU TOGGLE
+const toggle = document.getElementById("menu-toggle");
+const mobileMenu = document.getElementById("mobile-menu");
 
-if (menuToggle && navMenu) {
-  menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });
-}
+toggle.addEventListener("click", () => {
+  toggle.classList.toggle("active");
+  mobileMenu.classList.toggle("active");
+});
+
+// SHRINK HEADER ON SCROLL
+const header = document.getElementById("site-header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 80) {
+    header.classList.add("shrink");
+  } else {
+    header.classList.remove("shrink");
+  }
+});
+
 
 /* =========================
    HERO SLIDER AUTOMATIQUE

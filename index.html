@@ -33,23 +33,65 @@
 <body>
 
 <!-- HEADER -->
-<header class="navbar">
-  <div class="logo">
-    <img src="image/logo.png" alt="Logo WebFy">
-    <!-- <h1>WebFy</h1> -->
+<header class="site-header" id="site-header">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>📧 contact@webfy.ht</span>
+    <span>📞 +509 4479-5902</span>
   </div>
 
-  <nav id="nav-menu" class="nav-links">
-    <a href="index.html">Accueil</a>
-    <a href="about.html">À propos</a>
+  <!-- MAIN NAV -->
+  <div class="nav-main">
+    <div class="logo">
+      <img src="image/logo.png" alt="WebFy">
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="about.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="tarifs.html#quote-section" class="btn-quote desktop-only">
+      Demander un devis
+    </a>
+
+    <!-- MENU TOGGLE -->
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-header">
+    <img src="image/logo.png" alt="WebFy">
+    <p>Solutions digitales pour votre croissance</p>
+  </div>
+
+  <nav class="mobile-nav">
     <a href="services.html">Services</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="tarifs.html">Tarifs</a>
+    <a href="about.html">À propos</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <div class="menu-toggle" id="menu-toggle">☰</div>
-</header>
+  <a href="tarifs.html#quote-section" class="btn-quote mobile-btn">
+    Demander un devis
+  </a>
+
+  <!-- <div class="mobile-footer">
+    <small>© WebFy – Agence digitale</small>
+  </div> -->
+</div>
 
 <!-- HERO SLIDER -->
 <section class="hero">
@@ -69,6 +111,17 @@
     <p>Enrichissons l’accès aux entreprises pour créer l’avenir qu’elles méritent.</p>
   </div>
 </section>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  <div class="announcement-track">
+    <span>🎉 <strong>OFFRE DE LANCEMENT</strong> : -20% pour les 10 prochains clients</span>
+    <span>💻 Sites web & applications modernes pour entreprises haïtiennes</span>
+    <span>⚡ Rapide • Sécurisé • Performant • Support local</span>
+    <span>📩 Contactez WebFy dès aujourd’hui</span>
+  </div>
+</div>
+
 
 <!-- SERVICES -->
 <section class="services">
