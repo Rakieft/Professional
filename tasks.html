@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taches | WebFy Staff</title>
+  <meta name="description" content="Gestion des taches WebFy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/staff.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/logo.png" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Operations center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks" class="active">Taches</a>
+        <a href="#coming-soon">Leads</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Acces rapide</span>
+        <h3>Retour au site public</h3>
+        <a href="/" class="btn-ghost">Voir le site</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Task workspace</p>
+          <h1>Taches</h1>
+          <span>Le coeur de production quotidien pour transformer les projets en actions concretes par role.</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/projects" class="btn-primary">Voir les projets</a>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card emphasis">
+          <span class="label">Noyau metier</span>
+          <strong>Le module central</strong>
+          <p>Chaque role travaille ici sur de vraies actions reliees aux projets et a la production.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Utilite</span>
+          <strong>Priorites visibles</strong>
+          <p>Qui fait quoi, pour quel projet, et pour quelle echeance.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Suite logique</span>
+          <strong>Vues par role</strong>
+          <p>Ce module sera ensuite filtre selon designer, dev, content, sales et support.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid module-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Nouvelle tache</span>
+              <h2>Ajouter une action</h2>
+            </div>
+          </div>
+
+          <form id="task-form" class="staff-form">
+            <div class="form-row">
+              <label for="task-title">Titre</label>
+              <input id="task-title" name="title" type="text" required>
+            </div>
+            <div class="form-row">
+              <label for="task-project">Projet</label>
+              <select id="task-project" name="projectId"></select>
+            </div>
+            <div class="form-row">
+              <label for="task-assignee">Responsable</label>
+              <select id="task-assignee" name="assigneeUserId"></select>
+            </div>
+            <div class="form-row">
+              <label for="task-status">Statut</label>
+              <select id="task-status" name="status">
+                <option value="todo">A faire</option>
+                <option value="in_progress">En cours</option>
+                <option value="review">Validation</option>
+                <option value="done">Termine</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="task-priority">Priorite</label>
+              <select id="task-priority" name="priority">
+                <option value="low">Basse</option>
+                <option value="medium">Moyenne</option>
+                <option value="high">Haute</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="task-due">Echeance</label>
+              <input id="task-due" name="dueDate" type="date">
+            </div>
+            <div class="form-row full">
+              <label for="task-description">Description</label>
+              <textarea id="task-description" name="description" rows="4"></textarea>
+            </div>
+            <p class="module-feedback" id="task-feedback">Ajoutez une tache rattachee a un projet pour structurer la production.</p>
+            <button type="submit" class="btn-primary full-width">Creer la tache</button>
+          </form>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Execution</span>
+              <h2>Taches enregistrees</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="task-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/tasks.js"></script>
+</body>
+</html>

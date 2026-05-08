@@ -1,190 +1,197 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Portfolio WebFy | Projets web réalisés en Haïti</title>
-
-  <meta name="description" content="Découvrez le portfolio WebFy : sites web et applications réalisés pour des entreprises haïtiennes. Des projets modernes, performants et professionnels.">
-
-  <meta name="keywords" content="portfolio développeur web Haïti, projets web Haïti, sites web réalisés Haïti, création site web Haïti">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio WebFy | Sélection de projets</title>
+  <meta name="description" content="Découvrez une sélection de projets WebFy en création web, interfaces et expériences digitales.">
+  <meta name="keywords" content="portfolio webfy, projets web, design web, site internet haiti">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Portfolio WebFy – Projets web professionnels en Haïti">
-  <meta property="og:description" content="Sites web et applications conçus par WebFy pour des entreprises haïtiennes.">
-  <meta property="og:image" content="image/portfolio-cover.jpg">
+  <meta property="og:title" content="Portfolio WebFy | Travaux récents">
+  <meta property="og:description" content="Des projets qui montrent une direction plus claire, plus moderne et plus professionnelle.">
+  <meta property="og:image" content="image/portfolio1.png">
   <meta property="og:type" content="website">
-
-  <link rel="stylesheet" href="assset/css/portfolio.css" />
-  <!--favicon-->
-    <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
-
-    <link rel="apple-touch-icon" href="assset/favicon/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/pages.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
 </head>
-
 <body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <span>📧 contact@webfy.ht</span>
-    <span>📞 +509 4479-5902</span>
-  </div>
-
-  <!-- MAIN NAV -->
-  <div class="nav-main">
-    <div class="logo">
-      <img src="image/logo.png" alt="WebFy">
+  <header class="site-header" id="site-header">
+    <div class="top-bar">
+      <span>Projets web, interfaces et exécution digitale</span>
+      <span>contact@webfy.ht</span>
+      <span>+509 4479-5902</span>
     </div>
+    <div class="nav-main">
+      <a class="logo" href="index.html"><img src="image/logo.png" alt="WebFy"></a>
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="about.html">À propos</a>
+        <a href="/login">Connexion</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/login" class="btn-ghost desktop-only">Connexion staff</a>
+        <a href="contact.html" class="btn-quote desktop-only">Demander un devis</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <nav class="nav-links">
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-header">
+      <img src="image/logo.png" alt="WebFy">
+      <p>Une sélection plus nette et plus crédible des travaux réalisés.</p>
+    </div>
+    <nav class="mobile-nav">
       <a href="index.html">Accueil</a>
       <a href="services.html">Services</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="tarifs.html">Tarifs</a>
       <a href="about.html">À propos</a>
+      <a href="/login">Connexion</a>
       <a href="contact.html">Contact</a>
     </nav>
-
-    <a href="tarifs.html#quote-section" class="btn-quote desktop-only">
-      Demander un devis
-    </a>
-
-    <!-- MENU TOGGLE -->
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="mobile-cta">
+      <a href="/login" class="btn-ghost">Connexion staff</a>
+      <a href="contact.html" class="btn-quote">Demander un devis</a>
     </div>
   </div>
-</header>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <div class="mobile-header">
-    <img src="image/logo.png" alt="WebFy">
-    <p>Solutions digitales pour votre croissance</p>
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-copy" data-reveal>
+        <span class="section-tag invert">Portfolio</span>
+        <h1>Des projets qui rendent une marque plus crédible.</h1>
+        <p>Cette sélection montre notre direction: des interfaces plus lisibles, des expériences plus propres et une présentation plus sérieuse.</p>
+      </div>
+      <div class="page-hero-panel" data-reveal>
+        <span class="stat-kicker">Sélection</span>
+        <strong>3 projets visibles</strong>
+        <p>D'autres réalisations peuvent être présentées sur demande selon la confidentialité des clients.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-intro" data-reveal>
+        <span class="section-tag">Filtres</span>
+        <h2>Voir rapidement le type de projet qui vous intéresse.</h2>
+      </div>
+      <div class="filter-row" data-reveal>
+        <button data-filter="all" class="active">Tous</button>
+        <button data-filter="site">Sites web</button>
+        <button data-filter="app">Applications</button>
+      </div>
+
+      <div class="project-grid" data-reveal>
+        <article class="project-card" data-type="site">
+          <img src="image/portfolio1.png" alt="Projet Innonutech">
+          <div class="project-copy">
+            <span class="project-type">Site web</span>
+            <h3>Innonutech</h3>
+            <p>Présentation de produits électroniques dans une interface plus claire et plus rassurante.</p>
+            <div class="project-actions">
+              <button class="btn-secondary btn-view" data-title="Innonutech" data-desc="Site vitrine orienté présentation produit, lisibilité de l'offre et confiance visiteur." data-tech="HTML, CSS, JavaScript" data-year="2024">Détails</button>
+              <a href="https://rakieft.github.io/PcX/index.html" class="btn-ghost dark">Ouvrir</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-type="site">
+          <img src="image/portfolio2.png" alt="Projet Recyclonet">
+          <div class="project-copy">
+            <span class="project-type">Site web</span>
+            <h3>Recyclonet</h3>
+            <p>Projet orienté service avec une présentation plus simple du parcours de prise de rendez-vous.</p>
+            <div class="project-actions">
+              <button class="btn-secondary btn-view" data-title="Recyclonet" data-desc="Interface de service avec un axe plus pratique et plus accessible pour la demande utilisateur." data-tech="HTML, CSS, JavaScript" data-year="2024">Détails</button>
+              <a href="https://rakieft.github.io/recycle/" class="btn-ghost dark">Ouvrir</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-type="app">
+          <img src="image/portfolio3.png" alt="Projet Meal Finder and Groceries">
+          <div class="project-copy">
+            <span class="project-type">Application web</span>
+            <h3>Meal Finder and Groceries</h3>
+            <p>Exploration produit et usage interactif dans une expérience plus dynamique côté utilisateur.</p>
+            <div class="project-actions">
+              <button class="btn-secondary btn-view" data-title="Meal Finder and Groceries" data-desc="Application web basée sur l'interaction, la recherche et une logique plus orientée usage." data-tech="JavaScript, API, LocalStorage, HTML, CSS" data-year="2025">Détails</button>
+              <a href="https://mealfinder-grocery.netlify.app/" class="btn-ghost dark">Ouvrir</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section tinted">
+      <div class="note-card" data-reveal>
+        <span class="section-tag">Confidentialité</span>
+        <h2>Tous les projets ne sont pas publics, et c'est normal.</h2>
+        <p>Certains clients choisissent de garder leurs réalisations privées. Nous montrons donc une sélection utile, sans surcharger la page avec des éléments faibles ou incomplets.</p>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-card" data-reveal>
+        <span class="section-tag">Votre projet</span>
+        <h2>Vous voulez une présence digitale du même niveau?</h2>
+        <p>Parlons de votre besoin et construisons une version plus professionnelle de votre marque.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn-quote">Démarrer le projet</a>
+          <a href="tarifs.html" class="btn-ghost dark">Voir les tarifs</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="project-modal">
+    <div class="modal-content">
+      <button class="close" aria-label="Fermer">&times;</button>
+      <span class="section-tag">Projet</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+      <div class="modal-meta">
+        <p><strong>Technologies:</strong> <span id="modal-tech"></span></p>
+        <p><strong>Année:</strong> <span id="modal-year"></span></p>
+      </div>
+      <a href="contact.html" class="btn-quote">Demander un projet similaire</a>
+    </div>
   </div>
 
-  <nav class="mobile-nav">
-    <a href="index.html">Accueil</a>
-    <a href="services.html">Services</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="about.html">À propos</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>WebFy</h3>
+        <p>Une sélection volontairement plus simple, plus propre et plus convaincante.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: contact@webfy.ht</p>
+        <p>Tél: +509 4479-5902</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="services.html">Services</a>
+        <a href="/login">Connexion staff</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>WebFy Studio - Portfolio sélectionné avec intention.</p>
+    </div>
+  </footer>
 
-  <a href="tarifs.html#quote-section" class="btn-quote mobile-btn">
-    Demander un devis
-  </a>
-
-  <!-- <div class="mobile-footer">
-    <small>© WebFy – Agence digitale</small>
-  </div> -->
-</div>
-
-
-<!-- HERO -->
-<section class="portfolio-hero">
-  <h1>Nos Réalisations</h1>
-  <p>Des projets conçus pour aider les entreprises à grandir grâce au digital.</p>
-</section>
-
-<!-- FILTERS -->
-<section class="portfolio-filters">
-  <button data-filter="all" class="active">Tous</button>
-  <button data-filter="site">Sites Web</button>
-  <button data-filter="app">Applications Web</button>
-</section>
-
-<!-- PORTFOLIO GRID -->
-<section class="portfolio-grid">
-
-  <article class="portfolio-card" data-type="site">
-    <img src="image/portfolio1.png" alt="Projet Site Web">
-    <h3>Innonutech 🖥️</h3>
-    <span>Site Web</span>
-    <button class="btn-view"
-      data-title="Site vitrine PME"
-      data-desc="Création d’un site professionnel responsive avec SEO local."
-      data-tech="HTML, CSS, JavaScript"
-      data-year="2024">
-      Description
-    </button>
-  </article>
-
-  
-
-  <article class="portfolio-card" data-type="site">
-    <img src="image/portfolio2.png" alt="Projet Académique">
-    <h3>Recyclonet ♻️</h3>
-    <span>Site Web</span>
-    <button class="btn-view"
-      data-title="Projet académique"
-      data-desc="Projet réalisé dans un cadre académique avec bonnes pratiques web."
-      data-tech="HTML, CSS, JS"
-      data-year="2023">
-      Description
-    </button>
-  </article>
-
-  <article class="portfolio-card" data-type="app">
-    <img src="image/portfolio3.png" alt="Application Web">
-    <h3>Meal finder & Groceries 🛒</h3>
-    <span>Application Web</span>
-    <button class="btn-view"
-      data-title="Application de réservation"
-      data-desc="Application web permettant la prise de rendez-vous en ligne."
-      data-tech="JavaScript, API, LocalStorage, HTML, CSS"
-      data-year="2025">
-      Description
-    </button>
-  </article>
-
-</section>
-
-<!-- CONFIDENTIALITY SECTION -->
-<section class="portfolio-note">
-  <h2>Confidentialité des projets</h2>
-  <p>
-    Certains de nos clients choisissent de ne pas rendre leurs projets publics
-    pour des raisons de confidentialité ou de stratégie commerciale.
-    <br><br>
-    Les projets présentés ici représentent une partie de notre savoir-faire.
-    D’autres réalisations peuvent être présentées sur demande.
-  </p>
-</section>
-
-<!-- CTA -->
-<section class="portfolio-cta">
-  <h2>Vous avez un projet similaire ?</h2>
-  <a href="tarifs.html" class="btn-pricing">Demander un devis</a>
-</section>
-
-<!-- MODAL -->
-<div class="modal" id="project-modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modal-title"></h2>
-    <p id="modal-desc"></p>
-    <p><strong>Technologies :</strong> <span id="modal-tech"></span></p>
-    <p><strong>Année :</strong> <span id="modal-year"></span></p>
-    <a href="tarifs.html" class="btn-primary">Demander un devis</a>
-  </div>
-</div>
-
-<!-- <footer class="footer">
-  <p>WebFy</p>
-</footer> -->
-
-<script src="js/portfolio.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/portfolio.js"></script>
 </body>
 </html>

@@ -1,254 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>WebFy | Création de sites web et applications en Haïti</title>
-
-  <meta name="description" content="WebFy crée des sites web modernes, des applications performantes et des solutions digitales sur mesure pour les entreprises haïtiennes. Support local et résultats mesurables.">
-
-  <meta name="keywords" content="création site web Haïti, développeur web Haïti, application web Haïti, agence web Haïti, SEO Haïti">
+  <title>WebFy | Agence digitale premium en Haiti</title>
+  <meta name="description" content="WebFy accompagne les marques ambitieuses avec la creation de sites web, la gestion des reseaux sociaux, le contenu digital et le branding professionnel.">
+  <meta name="keywords" content="agence digitale Haiti, creation site web, gestion reseaux sociaux, branding, logo, contenu digital">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="WebFy – Solutions Web pour les entreprises haïtiennes">
-  <meta property="og:description" content="Création de sites web modernes, applications professionnelles et SEO en Haïti.">
+  <meta property="og:title" content="WebFy | Studio digital pour marques ambitieuses">
+  <meta property="og:description" content="Sites web, social media, contenu, branding et dashboard staff dans une experience digitale elegante et moderne.">
   <meta property="og:image" content="image/hero1.jpg">
   <meta property="og:type" content="website">
-
-  <!-- CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assset/css/style.css">
-    <!--favicon-->
-    <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
-
-    <link rel="apple-touch-icon" href="assset/favicon/apple-touch-icon.png">
-    
-
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assset/favicon/apple-touch-icon.png">
 </head>
-
-
 <body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <span>📧 contact@webfy.ht</span>
-    <span>📞 +509 4479-5902</span>
-  </div>
-
-  <!-- MAIN NAV -->
-  <div class="nav-main">
-    <div class="logo">
-      <img src="image/logo.png" alt="WebFy">
+  <header class="site-header" id="site-header">
+    <div class="top-bar">
+      <span>Agence web, contenu et branding pour entreprises ambitieuses</span>
+      <span>contact@webfy.ht</span>
+      <span>+509 4479-5902</span>
     </div>
 
-    <nav class="nav-links">
+    <div class="nav-main">
+      <a class="logo" href="index.html" aria-label="WebFy">
+        <img src="image/logo.png" alt="WebFy">
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="about.html">A propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="/login">Connexion</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="/login" class="btn-ghost desktop-only">Connexion staff</a>
+        <a href="contact.html" class="btn-quote desktop-only">Demander un devis</a>
+      </div>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-header">
+      <img src="image/logo.png" alt="WebFy">
+      <p>Studio digital pour croissance, image de marque et execution rapide.</p>
+    </div>
+
+    <nav class="mobile-nav">
       <a href="index.html">Accueil</a>
       <a href="services.html">Services</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="tarifs.html">Tarifs</a>
-      <a href="about.html">À propos</a>
+      <a href="about.html">A propos</a>
+      <a href="/login">Connexion</a>
       <a href="contact.html">Contact</a>
     </nav>
 
-    <a href="tarifs.html#quote-section" class="btn-quote desktop-only">
-      Demander un devis
-    </a>
-
-    <!-- MENU TOGGLE -->
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-</header>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <div class="mobile-header">
-    <img src="image/logo.png" alt="WebFy">
-    <p>Solutions digitales pour votre croissance</p>
-  </div>
-
-  <nav class="mobile-nav">
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="about.html">À propos</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <a href="tarifs.html#quote-section" class="btn-quote mobile-btn">
-    Demander un devis
-  </a>
-
-  <!-- <div class="mobile-footer">
-    <small>© WebFy – Agence digitale</small>
-  </div> -->
-</div>
-
-<!-- HERO SLIDER -->
-<section class="hero">
-  <div class="hero-slide active" style="background-image: url('image/hero1.jpg');"></div>
-  <div class="hero-slide" style="background-image: url('image/hero2.jpg');"></div>
-  <div class="hero-slide" style="background-image: url('image/hero3.jpg');"></div>
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <div class="ratings">
-      ⭐⭐⭐⭐⭐
-      <span>Web • App • Performance</span>
-    </div>
-
-    <h1>WebFy</h1>
-    <p>Enrichissons l’accès aux entreprises pour créer l’avenir qu’elles méritent.</p>
-  </div>
-</section>
-
-<!-- ANNOUNCEMENT BAR -->
-<div class="announcement-bar">
-  <div class="announcement-track">
-    <span>🎉 <strong>OFFRE DE LANCEMENT</strong> : -20% pour les 10 prochains clients</span>
-    <span>💻 Sites web & applications modernes pour entreprises haïtiennes</span>
-    <span>⚡ Rapide • Sécurisé • Performant • Support local</span>
-    <span>📩 Contactez WebFy dès aujourd’hui</span>
-  </div>
-</div>
-
-
-<!-- SERVICES -->
-<section class="services">
-  <h2>Nos Services</h2>
-
-  <div class="services-container">
-    <div class="service-card">
-      <h3>Conception de sites web</h3>
-      <p>Sites vitrines et sites professionnels responsive, rapides et sécurisés.</p>
-    </div>
-
-    <div class="service-card">
-      <h3>Applications Web</h3>
-      <p>Applications métiers et outils sur mesure pour automatiser vos processus.</p>
-    </div>
-
-    <div class="service-card">
-      <h3>SEO & Marketing local</h3>
-      <p>Optimisation pour moteurs de recherche et visibilité locale.</p>
-    </div>
-
-    <div class="service-card">
-      <h3>Maintenance & Support</h3>
-      <p>Mises à jour, sauvegardes, support et hébergement géré.</p>
-    </div>
-  </div>
-</section>
-
-<!-- POURQUOI NOUS -->
-<section class="choose-us">
-  <h2>Pourquoi choisir WebFy ?</h2>
-
-  <div class="choose-container">
-    <div class="choose-item">
-      <h3>✔ Solutions sur mesure</h3>
-      <p>Des outils adaptés à vos besoins réels et à votre budget.</p>
-    </div>
-
-    <div class="choose-item">
-      <h3>✔ Support local</h3>
-      <p>Accompagnement en français et créole.</p>
-    </div>
-
-    <div class="choose-item">
-      <h3>✔ Résultats mesurables</h3>
-      <p>Visibilité et performance suivies.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section class="portfolio">
-  <h2>Projets récents</h2>
-
-  <div class="portfolio-grid">
-    <article class="portfolio-card">
-      <img src="image/portfolio1.png" alt="Site vitrine PME">
-      <h3>Innonutech 🖥️</h3>
-      <p>Découvrez les produits électroniques.</p>
-      <a href="https://rakieft.github.io/PcX/index.html" class="btn-secondary">Voir le projet</a>
-    </article>
-
-    <article class="portfolio-card">
-      <img src="image/portfolio2.png" alt="Application de réservation">
-      <h3>Recyclonet ♻️</h3>
-      <p>Prise de rendez-vous en ligne</p>
-      <a href="https://rakieft.github.io/recycle/" class="btn-secondary">Voir le projet</a>
-    </article>
-
-    <article class="portfolio-card">
-      <img src="image/portfolio3.png" alt="Boutique en ligne">
-      <h3>Meal finder & Groceries 🛒</h3>
-      <p>Gestion simple des produits </p>
-      <a href="https://mealfinder-grocery.netlify.app/" class="btn-secondary">Voir le projet</a>
-    </article>
-  </div>
-
-  <a href="portfolio.html" class="btn-secondary">Voir tout le portfolio</a>
-</section>
-
-<!-- TÉMOIGNAGES -->
-<section class="testimonials">
-  <h2>Ce que disent nos clients</h2>
-
-  <div class="testi-container">
-    <div class="testi-card">
-      <p>“WebFy a transformé notre présence en ligne.”</p>
-      <h4>INNONUTECH</h4>
-    </div>
-
-    <div class="testi-card">
-      <p>“Communication claire et support local.”</p>
-      <h4>Recyclonet</h4>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-col">
-      <h3>WebFy</h3>
-      <p>Création de sites web et applications pour entreprises haïtiennes.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>Email: kieftraphter.joly1@gmail.com</p>
-      <p>Tél: +509 4479-5902</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Liens</h4>
-      <a href="services.html">Services</a><br>
-      <a href="portfolio.html">Portfolio</a><br>
-      <!--  -->
-      <a href="mentions-legales.html">Mentions légales</a>
+    <div class="mobile-cta">
+      <a href="/login" class="btn-ghost">Connexion staff</a>
+      <a href="contact.html" class="btn-quote">Demander un devis</a>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <p>WebFy</p>
-  </div>
-</footer>
+  <main>
+    <section class="hero">
+      <div class="hero-backdrop">
+        <div class="hero-slide active" style="background-image: url('image/hero1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('image/hero2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('image/hero3.jpg');"></div>
+      </div>
+      <div class="hero-overlay"></div>
 
-<!-- JS -->
-<script src="js/index.js"></script>
+      <div class="hero-content">
+        <div class="hero-copy" data-reveal>
+          <div class="eyebrow">WebFy Studio</div>
+          <h1>Une presence digitale elegante pour vendre, convaincre et grandir.</h1>
+          <p>
+            Nous concevons des sites web modernes, gerons vos reseaux sociaux,
+            produisons du contenu impactant et construisons une image de marque
+            claire pour donner a votre startup une allure vraiment professionnelle.
+          </p>
 
+          <div class="hero-actions">
+            <a href="contact.html" class="btn-quote">Lancer votre projet</a>
+            <a href="/login" class="btn-ghost">Connexion staff</a>
+          </div>
+
+          <div class="trust-row">
+            <div>
+              <strong>4 services centraux</strong>
+              <span>Web, social media, contenu et branding</span>
+            </div>
+            <div>
+              <strong>Support local</strong>
+              <span>Accompagnement en francais et creole</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel" data-reveal>
+          <div class="panel-badge">Dashboard interne</div>
+          <h2>Un seul espace pour suivre les projets, l'equipe et le contenu.</h2>
+
+          <div class="mini-grid">
+            <article class="mini-card">
+              <span class="mini-label">Projets actifs</span>
+              <strong>12</strong>
+              <small>Sites, branding et social media</small>
+            </article>
+            <article class="mini-card">
+              <span class="mini-label">Taches du jour</span>
+              <strong>28</strong>
+              <small>Production, design, publication</small>
+            </article>
+            <article class="mini-card">
+              <span class="mini-label">Contenu programme</span>
+              <strong>34 posts</strong>
+              <small>7 prochains jours</small>
+            </article>
+            <article class="mini-card accent">
+              <span class="mini-label">Niveau d'organisation</span>
+              <strong>Premium</strong>
+              <small>Visibilite claire pour le staff</small>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="logo-strip">
+      <div class="logo-strip-inner">
+        <span>Sites web premium</span>
+        <span>Gestion des reseaux sociaux</span>
+        <span>Creation de contenu</span>
+        <span>Conception de logo</span>
+        <span>Branding digital</span>
+        <span>Support de croissance</span>
+      </div>
+    </section>
+
+    <section class="services" data-reveal>
+      <div class="section-intro">
+        <span class="section-tag">Services</span>
+        <h2>Une offre plus complete qu'une simple creation de site.</h2>
+        <p>Votre startup peut presenter, vendre, publier et s'organiser depuis une base digitale beaucoup plus solide.</p>
+      </div>
+
+      <div class="services-container">
+        <article class="service-card">
+          <span class="service-index">01</span>
+          <h3>Creation de sites web</h3>
+          <p>Des sites vitrines et pages commerciales rapides, credibles et orientes conversion.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-index">02</span>
+          <h3>Gestion reseaux sociaux</h3>
+          <p>Planning editorial, publication, coherence de marque et rythme de communication.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-index">03</span>
+          <h3>Creation de contenu</h3>
+          <p>Visuels, textes marketing, reels, campagnes et contenus adaptes a votre audience.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-index">04</span>
+          <h3>Conception de logo</h3>
+          <p>Une identite visuelle plus nette, memorisable et exploitable sur tous vos supports.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-index">05</span>
+          <h3>Dashboard staff</h3>
+          <p>Un espace interne pour centraliser les projets, l'equipe, le contenu et les priorites.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-index">06</span>
+          <h3>Maintenance continue</h3>
+          <p>Mises a jour, corrections, suivi des demandes et accompagnement apres livraison.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="positioning">
+      <div class="positioning-copy" data-reveal>
+        <span class="section-tag">Positionnement</span>
+        <h2>Une image de marque plus serieuse, sans perdre l'energie d'une startup.</h2>
+        <p>
+          Le site donne maintenant une impression plus haut de gamme: meilleure
+          structure visuelle, meilleure promesse commerciale et un lien direct
+          vers un espace staff moderne qui montre que l'entreprise est organisee.
+        </p>
+        <ul class="feature-list">
+          <li>Presentation plus premium et plus claire des services</li>
+          <li>Meilleure credibilite pour les prospects</li>
+          <li>Espace equipe pour centraliser l'operation</li>
+        </ul>
+      </div>
+
+      <div class="positioning-card" data-reveal>
+        <div class="metric-block">
+          <span>Delai de mise en route</span>
+          <strong>Rapide</strong>
+        </div>
+        <div class="metric-block">
+          <span>Style</span>
+          <strong>Moderne et premium</strong>
+        </div>
+        <div class="metric-block">
+          <span>Utilite interne</span>
+          <strong>Dashboard staff</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" data-reveal>
+      <div class="section-intro">
+        <span class="section-tag">Selection</span>
+        <h2>Quelques travaux qui renforcent deja la confiance.</h2>
+      </div>
+
+      <div class="portfolio-grid">
+        <article class="portfolio-card">
+          <img src="image/portfolio1.png" alt="Projet Innonutech">
+          <div class="portfolio-copy">
+            <h3>Innonutech</h3>
+            <p>Presentation de produits electroniques avec un parcours plus clair.</p>
+            <a href="https://rakieft.github.io/PcX/index.html" class="btn-secondary">Voir le projet</a>
+          </div>
+        </article>
+
+        <article class="portfolio-card">
+          <img src="image/portfolio2.png" alt="Projet Recyclonet">
+          <div class="portfolio-copy">
+            <h3>Recyclonet</h3>
+            <p>Reservation en ligne et meilleure lisibilite de l'offre.</p>
+            <a href="https://rakieft.github.io/recycle/" class="btn-secondary">Voir le projet</a>
+          </div>
+        </article>
+
+        <article class="portfolio-card">
+          <img src="image/portfolio3.png" alt="Projet Meal Finder and Groceries">
+          <div class="portfolio-copy">
+            <h3>Meal Finder and Groceries</h3>
+            <p>Exploration produit avec une interface plus orientee usage.</p>
+            <a href="https://mealfinder-grocery.netlify.app/" class="btn-secondary">Voir le projet</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-preview" data-reveal>
+      <div class="section-intro compact">
+        <span class="section-tag">Staff Space</span>
+        <h2>Le nouveau coeur operationnel de l'equipe.</h2>
+        <p>Une page staff dediee permet de visualiser les projets, la charge, les publications et les livrables.</p>
+      </div>
+
+      <div class="dashboard-mockup">
+        <div class="dash-column">
+          <div class="dash-card tall">
+            <div class="dash-head">
+              <h3>Pipeline projets</h3>
+              <span>Cette semaine</span>
+            </div>
+            <div class="pipeline-row">
+              <label>Brief</label>
+              <div><span style="width: 72%"></span></div>
+            </div>
+            <div class="pipeline-row">
+              <label>Design</label>
+              <div><span style="width: 58%"></span></div>
+            </div>
+            <div class="pipeline-row">
+              <label>Developpement</label>
+              <div><span style="width: 81%"></span></div>
+            </div>
+            <div class="pipeline-row">
+              <label>Livraison</label>
+              <div><span style="width: 43%"></span></div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-head">
+              <h3>Equipe</h3>
+              <span>Disponible</span>
+            </div>
+            <p>Design, contenu, developpement et support visibles en un coup d'oeil.</p>
+          </div>
+        </div>
+
+        <div class="dash-column">
+          <div class="dash-card">
+            <div class="dash-head">
+              <h3>Calendrier social</h3>
+              <span>7 jours</span>
+            </div>
+            <ul class="calendar-list">
+              <li>Lundi - Reel branding</li>
+              <li>Mardi - Post client</li>
+              <li>Jeudi - Story promo</li>
+            </ul>
+          </div>
+
+          <div class="dash-card accent-card">
+            <div class="dash-head">
+              <h3>Acces rapide</h3>
+              <span>Staff</span>
+            </div>
+            <a href="/login" class="btn-quote full">Connexion staff</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" data-reveal>
+      <div class="cta-card">
+        <span class="section-tag">Pret a avancer</span>
+        <h2>Donnez a votre startup une image qui inspire confiance des le premier regard.</h2>
+        <p>WebFy peut maintenant se presenter comme une structure plus serieuse, plus moderne et mieux organisee pour travailler avec des clients premium.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn-quote">Parler de votre projet</a>
+          <a href="/login" class="btn-ghost">Connexion staff</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>WebFy</h3>
+        <p>Creation web, branding, contenu et organisation digitale pour entreprises qui veulent monter en niveau.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: contact@webfy.ht</p>
+        <p>Tel: +509 4479-5902</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="/login">Connexion staff</a>
+        <a href="mentions-legales.html">Mentions legales</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>WebFy Studio - Presence digitale, contenu et execution.</p>
+    </div>
+  </footer>
+
+  <script src="js/index.js"></script>
 </body>
 </html>

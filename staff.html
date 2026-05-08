@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebFy Staff | Dashboard equipe</title>
+  <meta name="description" content="Dashboard staff WebFy pour suivre les projets, les equipes, les contenus sociaux et les taches operationnelles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/staff.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/logo.png" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Operations center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="#overview" class="active">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="#content">Contenu</a>
+        <a href="#crm">Leads</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Acces rapide</span>
+        <h3>Retour au site public</h3>
+        <a href="index.html" class="btn-ghost">Voir le site</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Command center</p>
+          <h1>Espace staff WebFy</h1>
+          <span>Une vue plus premium de l'activite, des projets, du contenu et de la coordination de l'equipe.</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/clients" class="btn-ghost dark">Voir les clients</a>
+          <a href="/projects" class="btn-primary">Nouveau projet</a>
+        </div>
+      </header>
+
+      <section class="stats-grid" id="overview">
+        <article class="stat-card emphasis">
+          <span class="label">Chiffre cle</span>
+          <strong id="metric-projects">-- projets actifs</strong>
+          <p id="metric-projects-copy">Suivis entre web, branding, design social et production de contenu.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">A faire aujourd'hui</span>
+          <strong id="metric-tasks">-- taches</strong>
+          <p>Priorites du jour pour garder le rythme de livraison.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Posts programmes</span>
+          <strong id="metric-content">-- contenus</strong>
+          <p>Le calendrier social est visible sur 7 jours.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Leads ouverts</span>
+          <strong id="metric-leads">-- leads</strong>
+          <p id="dashboard-source">Connexion des donnees en cours.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Pilotage</span>
+              <h2>Ce que l'equipe doit voir en premier</h2>
+            </div>
+            <span class="badge">Vision staff</span>
+          </div>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <strong>Priorites du jour</strong>
+              <p>Clients actifs, projets ouverts, contenu a produire et leads a traiter depuis une seule surface.</p>
+            </div>
+            <div class="activity-item">
+              <strong>Coordination</strong>
+              <p>Les modules deviennent des postes de travail concrets pour Operations, Design, Dev, Sales et Support.</p>
+            </div>
+            <div class="activity-item">
+              <strong>Productivite</strong>
+              <p>Le prochain coeur metier sera le module Taches afin de relier les roles a de vraies actions quotidiennes.</p>
+            </div>
+            <div class="activity-item">
+              <strong>Niveau produit</strong>
+              <p>Le dashboard est maintenant pense comme un vrai outil interne, pas comme une simple maquette marketing.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Acces rapide</span>
+              <h2>Zones prioritaires</h2>
+            </div>
+          </div>
+          <div class="stack-list">
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Clients</strong>
+                <span class="status-chip">actif</span>
+              </div>
+              <p>Centraliser les comptes, contacts et statuts commerciaux.</p>
+            </article>
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Projets</strong>
+                <span class="status-chip">actif</span>
+              </div>
+              <p>Structurer les missions avec responsable, service, budget et echeance.</p>
+            </article>
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Taches</strong>
+                <span class="status-chip">suivant</span>
+              </div>
+              <p>Le prochain module central pour transformer le dashboard en outil de travail quotidien.</p>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel wide" id="projects">
+          <div class="panel-head">
+            <div>
+              <span class="label">Pipeline projets</span>
+              <h2>Etat des missions en cours</h2>
+            </div>
+            <span class="badge" id="dashboard-badge">Semaine active</span>
+          </div>
+
+          <div class="project-table" id="project-table">
+            <div class="project-row header-row">
+              <span>Projet</span>
+              <span>Service</span>
+              <span>Responsable</span>
+              <span>Statut</span>
+            </div>
+            <div class="project-row">
+              <span>Refonte WebFy</span>
+              <span>Web design</span>
+              <span>Design team</span>
+              <span class="status live">En cours</span>
+            </div>
+            <div class="project-row">
+              <span>Campagne lancement</span>
+              <span>Social media</span>
+              <span>Content lead</span>
+              <span class="status review">Validation</span>
+            </div>
+            <div class="project-row">
+              <span>Pack logo client</span>
+              <span>Branding</span>
+              <span>Creative team</span>
+              <span class="status done">Livre</span>
+            </div>
+            <div class="project-row">
+              <span>Mini CRM interne</span>
+              <span>Productivite</span>
+              <span>Dev team</span>
+              <span class="status live">En cours</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" id="team">
+          <div class="panel-head">
+            <div>
+              <span class="label">Charge equipe</span>
+              <h2>Capacite par pole</h2>
+            </div>
+          </div>
+
+          <div class="capacity">
+            <div class="capacity-item">
+              <div class="capacity-meta">
+                <strong>Design</strong>
+                <span>76%</span>
+              </div>
+              <div class="bar"><span style="width: 76%"></span></div>
+            </div>
+            <div class="capacity-item">
+              <div class="capacity-meta">
+                <strong>Developpement</strong>
+                <span>64%</span>
+              </div>
+              <div class="bar"><span style="width: 64%"></span></div>
+            </div>
+            <div class="capacity-item">
+              <div class="capacity-meta">
+                <strong>Contenu</strong>
+                <span>82%</span>
+              </div>
+              <div class="bar"><span style="width: 82%"></span></div>
+            </div>
+            <div class="capacity-item">
+              <div class="capacity-meta">
+                <strong>Support</strong>
+                <span>41%</span>
+              </div>
+              <div class="bar"><span style="width: 41%"></span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" id="content">
+          <div class="panel-head">
+            <div>
+              <span class="label">Planning contenu</span>
+              <h2>Calendrier social</h2>
+            </div>
+          </div>
+
+          <ul class="schedule-list" id="schedule-list">
+            <li><strong>Lundi</strong><span>Reel branding - Instagram</span></li>
+            <li><strong>Mardi</strong><span>Post portfolio - Facebook</span></li>
+            <li><strong>Mercredi</strong><span>Story backstage - Instagram</span></li>
+            <li><strong>Jeudi</strong><span>Carrousel services - LinkedIn</span></li>
+            <li><strong>Vendredi</strong><span>Promo offre lancement</span></li>
+          </ul>
+        </article>
+
+        <article class="panel" id="crm">
+          <div class="panel-head">
+            <div>
+              <span class="label">CRM rapide</span>
+              <h2>Nouveaux leads</h2>
+            </div>
+          </div>
+
+          <div class="lead-list" id="lead-list">
+            <div class="lead-card">
+              <strong>Startup e-commerce</strong>
+              <span>Besoin: site + branding</span>
+            </div>
+            <div class="lead-card">
+              <strong>Restaurant local</strong>
+              <span>Besoin: contenu social</span>
+            </div>
+            <div class="lead-card">
+              <strong>Clinique privee</strong>
+              <span>Besoin: refonte digitale</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel wide activity-panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Activite recente</span>
+              <h2>Ce qui bouge aujourd'hui</h2>
+            </div>
+          </div>
+
+          <div class="activity-feed" id="activity-feed">
+            <div class="activity-item">
+              <strong>09:15</strong>
+              <p>Validation du hero redesign pour la vitrine WebFy.</p>
+            </div>
+            <div class="activity-item">
+              <strong>10:30</strong>
+              <p>Trois posts ont ete ajoutes au calendrier social media.</p>
+            </div>
+            <div class="activity-item">
+              <strong>13:00</strong>
+              <p>Le pôle design prepare une proposition de logo client.</p>
+            </div>
+            <div class="activity-item">
+              <strong>15:45</strong>
+              <p>La livraison du projet branding passe en validation finale.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/staff.js"></script>
+</body>
+</html>

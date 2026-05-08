@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion staff | WebFy</title>
+  <meta name="description" content="Connexion securisee pour l'equipe WebFy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/pages.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="top-bar">
+      <span>Connexion staff securisee</span>
+      <span>contact@webfy.ht</span>
+      <span>+509 4479-5902</span>
+    </div>
+    <div class="nav-main">
+      <a class="logo" href="/"><img src="image/logo.png" alt="WebFy"></a>
+      <nav class="nav-links">
+        <a href="/">Accueil</a>
+        <a href="/services">Services</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/contact" class="btn-quote desktop-only">Parler du projet</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-header">
+      <img src="image/logo.png" alt="WebFy">
+      <p>Acces reserve au staff WebFy.</p>
+    </div>
+    <nav class="mobile-nav">
+      <a href="/">Accueil</a>
+      <a href="/services">Services</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="contact-layout">
+      <div class="contact-side" data-reveal>
+        <div class="list-card">
+          <span class="section-tag">Connexion</span>
+          <h2>Acces interne uniquement.</h2>
+          <p>Le dashboard staff n'est plus accessible au public. Seule l'equipe connectee peut ouvrir l'espace de gestion.</p>
+        </div>
+      </div>
+
+      <form id="login-form" class="form-card" data-reveal>
+        <span class="section-tag">Staff login</span>
+        <h2>Se connecter</h2>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="admin@webfy.ht" required>
+          </div>
+          <div class="form-group full">
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="password" placeholder="Votre mot de passe" required>
+          </div>
+        </div>
+        <p class="form-note" id="login-feedback">Entrez vos identifiants staff pour continuer.</p>
+        <button type="submit" class="btn-submit">Connexion</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/index.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

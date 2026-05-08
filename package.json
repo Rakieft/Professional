@@ -1,0 +1,24 @@
+{
+  "name": "webfy-platform",
+  "version": "1.0.0",
+  "description": "WebFy marketing website and staff platform with MySQL-backed API.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "db:schema": "node server/scripts/run-sql.js database/schema.sql",
+    "db:seed": "node server/scripts/run-sql.js database/seed.sql",
+    "admin:sync": "node server/scripts/sync-admin.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

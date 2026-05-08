@@ -3,203 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Contact WebFy | Développeur web & applications en Haïti</title>
-
-  <meta name="description" content="Contactez WebFy pour la création de votre site web ou application en Haïti. Devis gratuit et réponse sous 48 heures.">
-
-  <meta name="keywords" content="contact développeur web Haïti, agence web Haïti, devis site web Haïti, création site web Haïti">
+  <title>Contact WebFy | Demande de projet</title>
+  <meta name="description" content="Parlez de votre projet à WebFy et recevez une réponse rapide pour votre site, contenu, branding ou organisation digitale.">
+  <meta name="keywords" content="contact webfy, devis site web, branding, social media haiti">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Contact WebFy – Création de sites web en Haïti">
-  <meta property="og:description" content="Besoin d’un site web ou d’une application ? Contactez WebFy et recevez un devis gratuit sous 48h.">
-  <meta property="og:image" content="image/contact-cover.jpg">
+  <meta property="og:title" content="Contact WebFy | Parlons de votre projet">
+  <meta property="og:description" content="Un formulaire plus simple, une prise de contact plus claire et une meilleure expérience pour vos prospects.">
+  <meta property="og:image" content="image/hero3.jpg">
   <meta property="og:type" content="website">
-
-  <link rel="stylesheet" href="assset/css/contact.css">
-  <!--favicon-->
-    <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
-
-    <link rel="apple-touch-icon" href="assset/favicon/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/pages.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
 </head>
-
 <body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <span>📧 contact@webfy.ht</span>
-    <span>📞 +509 4479-5902</span>
-  </div>
-
-  <!-- MAIN NAV -->
-  <div class="nav-main">
-    <div class="logo">
-      <img src="image/logo.png" alt="WebFy">
+  <header class="site-header" id="site-header">
+    <div class="top-bar">
+      <span>Parlons de votre besoin avec une approche simple et sérieuse</span>
+      <span>contact@webfy.ht</span>
+      <span>+509 4479-5902</span>
     </div>
+    <div class="nav-main">
+      <a class="logo" href="index.html"><img src="image/logo.png" alt="WebFy"></a>
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="about.html">À propos</a>
+        <a href="/login">Connexion</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/login" class="btn-ghost desktop-only">Connexion staff</a>
+        <a href="tarifs.html" class="btn-quote desktop-only">Voir les tarifs</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <nav class="nav-links">
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-header">
+      <img src="image/logo.png" alt="WebFy">
+      <p>Un contact plus direct, sans surcharge inutile.</p>
+    </div>
+    <nav class="mobile-nav">
       <a href="index.html">Accueil</a>
       <a href="services.html">Services</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="tarifs.html">Tarifs</a>
       <a href="about.html">À propos</a>
+      <a href="/login">Connexion</a>
       <a href="contact.html">Contact</a>
     </nav>
-
-    <a href="tarifs.html#quote-section" class="btn-quote desktop-only">
-      Demander un devis
-    </a>
-
-    <!-- MENU TOGGLE -->
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-</header>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <div class="mobile-header">
-    <img src="image/logo.png" alt="WebFy">
-    <p>Solutions digitales pour votre croissance</p>
-  </div>
-
-  <nav class="mobile-nav">
-    <a href="index.html">Accueil</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="about.html">À propos</a>
-    
-  </nav>
-
-  <a href="tarifs.html#quote-section" class="btn-quote mobile-btn">
-    Demander un devis
-  </a>
-
-  <!-- <div class="mobile-footer">
-    <small>© WebFy – Agence digitale</small>
-  </div> -->
-</div>
-
-<!-- HERO -->
-<section class="contact-hero">
-  <h1>Contactez <span style="color: blue;">WebFy</span></h1>
-  <p>Parlons de votre projet et trouvons la meilleure solution pour votre entreprise.</p>
-</section>
-
-<!-- CONTACT SECTION -->
-<section class="contact-section">
-
-  <!-- LEFT -->
-  <div class="contact-info">
-    <h2>Nos coordonnées</h2>
-    <p>📍 Haïti (travail à distance possible)</p>
-    <p>📧 kieftraphter.joly1@gmail.com</p>
-    <p>📞 +509 4479-5902</p>
-    <p>⏱️ Réponse sous 24 à 48 heures</p>
-
-    <!-- MAP -->
-    <div class="map-container">
-      <iframe 
-        src="https://www.google.com/maps?q=haiti&output=embed"
-        loading="lazy">
-      </iframe>
+    <div class="mobile-cta">
+      <a href="/login" class="btn-ghost">Connexion staff</a>
+      <a href="tarifs.html" class="btn-quote">Voir les tarifs</a>
     </div>
   </div>
 
-  <!-- RIGHT -->
-  <form id="quote-form">
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-copy" data-reveal>
+        <span class="section-tag invert">Contact</span>
+        <h1>Décrivez votre projet et avançons avec une base plus pro.</h1>
+        <p>Site web, refonte, branding, social media ou dashboard interne: dites-nous ce que vous voulez construire.</p>
+      </div>
+      <div class="page-hero-panel" data-reveal>
+        <span class="stat-kicker">Réponse</span>
+        <strong>Sous 24 à 48 heures</strong>
+        <p>Un échange simple, sans formulaire trop lourd ni friction inutile.</p>
+      </div>
+    </section>
 
-    <div class="form-group">
-      <input type="text" name="name" placeholder="Nom complet *" required>
+    <section class="contact-layout">
+      <div class="contact-side" data-reveal>
+        <div class="list-card">
+          <span class="section-tag">Coordonnées</span>
+          <h2>Restons simples.</h2>
+          <ul class="feature-list">
+            <li>Haïti, avec collaboration à distance possible</li>
+            <li>contact@webfy.ht</li>
+            <li>+509 4479-5902</li>
+            <li>Réponse rapide et accompagnement clair</li>
+          </ul>
+        </div>
+        <div class="list-card">
+          <span class="section-tag">Bon à savoir</span>
+          <h3>Ce qu'il est utile d'envoyer</h3>
+          <ul class="feature-list">
+            <li>Le type de service souhaité</li>
+            <li>Vos objectifs ou le problème à résoudre</li>
+            <li>Un budget indicatif si vous en avez un</li>
+            <li>Le délai souhaité pour démarrer</li>
+          </ul>
+        </div>
+      </div>
+
+      <form id="quote-form" class="form-card" data-reveal>
+        <span class="section-tag">Formulaire</span>
+        <h2>Parlez-nous du projet</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Nom complet</label>
+            <input id="name" type="text" name="name" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="vous@entreprise.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input id="phone" type="tel" name="phone" placeholder="+509 ...">
+          </div>
+          <div class="form-group">
+            <label for="project_type">Type de projet</label>
+            <select id="project_type" name="project_type" required>
+              <option value="">Choisir</option>
+              <option>Site vitrine</option>
+              <option>Refonte de site</option>
+              <option>Application web</option>
+              <option>Gestion réseaux sociaux</option>
+              <option>Branding / logo</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="6" placeholder="Décrivez le besoin, l'objectif et le résultat attendu." required></textarea>
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="consent" required>
+          <label for="consent">Je confirme envoyer cette demande de contact à WebFy.</label>
+        </div>
+        <button type="submit" class="btn-submit">Envoyer la demande</button>
+        <p class="form-note">Vous recevrez une réponse dans les prochaines <strong>48 heures</strong>.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>WebFy</h3>
+        <p>Une prise de contact plus propre, plus claire et plus crédible pour vos prospects.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: contact@webfy.ht</p>
+        <p>Tél: +509 4479-5902</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="services.html">Services</a>
+        <a href="/login">Connexion staff</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
     </div>
-
-    <div class="form-group">
-      <input type="email" name="email" placeholder="Email *" required>
+    <div class="footer-bottom">
+      <p>WebFy Studio - Contact simple, réponse rapide.</p>
     </div>
+  </footer>
 
-    <div class="form-group">
-      <input type="tel" name="phone" placeholder="Téléphone">
-    </div>
-
-    <!-- <div class="form-group">
-      <input type="text" name="website" placeholder="Adresse du site (si existant)">
-    </div> -->
-
-    <div class="form-group">
-      <select name="project_type" required>
-        <option value="">Type de projet *</option>
-        <option>Site vitrine</option>
-        <option>Site professionnel</option>
-        <option>Application web</option>
-        <option>Refonte de site</option>
-        <option>Autre</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <textarea name="description" rows="5" placeholder="Description de votre demande *" required></textarea>
-    </div>
-
-    <div class="form-check">
-      <input type="checkbox" id="consent" required>
-      <label for="consent">
-        Je confirme être conscient de ma prise de contact avec vous.
-      </label>
-    </div>
-
-    <button type="submit" class="btn-submit">Envoyer la demande</button>
-
-    <p class="form-note">
-      Vous recevrez une réponse dans les prochaines <strong>48 heures</strong>.
-    </p>
-
-  </form>
-
-</section>
-
-<!-- FOOTER (identique à index.html) -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-col">
-      <h3>WebFy</h3>
-      <p>Nous créons des sites web et applications pour les entreprises haïtiennes.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>Email : kieftraphter.joly1@gmail.com</p>
-      <p>Tél : +509 4479-5902</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Liens</h4>
-      <a href="services.html">Services</a><br>
-      <a href="portfolio.html">Portfolio</a><br>
-      <!--  -->
-      <a href="mentions-legales.html">Mentions légales</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>WebFy</p>
-  </div>
-</footer>
-
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script src="js/contact.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/contact.js"></script>
 </body>
 </html>

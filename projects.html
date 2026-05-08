@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets | WebFy Staff</title>
+  <meta name="description" content="Gestion des projets WebFy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/staff.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/logo.png" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Operations center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects" class="active">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="#coming-soon">Leads</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Acces rapide</span>
+        <h3>Retour au site public</h3>
+        <a href="/" class="btn-ghost">Voir le site</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Project workspace</p>
+          <h1>Projets</h1>
+          <span>Suivez les missions actives avec plus de lisibilite sur le service, le responsable, la priorite, le budget et les echeances.</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/clients" class="btn-primary">Voir les clients</a>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card emphasis">
+          <span class="label">Pilotage</span>
+          <strong>Un pipeline plus net</strong>
+          <p>Chaque mission devient une ligne de production claire pour Operations, Design, Dev et Support.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Structure</span>
+          <strong>Client + service + owner</strong>
+          <p>Une base projet propre pour faire evoluer ensuite les taches et permissions.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Etape suivante</span>
+          <strong>Module Taches</strong>
+          <p>Le prochain ajout reliera chaque projet a des actions concretes pour chaque role.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid module-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Nouveau projet</span>
+              <h2>Ajouter une mission</h2>
+            </div>
+          </div>
+
+          <form id="project-form" class="staff-form">
+            <div class="form-row">
+              <label for="project-name">Nom du projet</label>
+              <input id="project-name" name="name" type="text" required>
+            </div>
+            <div class="form-row">
+              <label for="project-client">Client</label>
+              <select id="project-client" name="clientId"></select>
+            </div>
+            <div class="form-row">
+              <label for="project-service">Service</label>
+              <select id="project-service" name="primaryServiceId"></select>
+            </div>
+            <div class="form-row">
+              <label for="project-owner">Responsable</label>
+              <select id="project-owner" name="ownerUserId"></select>
+            </div>
+            <div class="form-row">
+              <label for="project-status">Statut</label>
+              <select id="project-status" name="status">
+                <option value="planned">Planifie</option>
+                <option value="in_progress">En cours</option>
+                <option value="review">Validation</option>
+                <option value="completed">Termine</option>
+                <option value="archived">Archive</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="project-priority">Priorite</label>
+              <select id="project-priority" name="priority">
+                <option value="low">Basse</option>
+                <option value="medium">Moyenne</option>
+                <option value="high">Haute</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="project-budget">Budget</label>
+              <input id="project-budget" name="budget" type="number" step="0.01">
+            </div>
+            <div class="form-row">
+              <label for="project-start">Debut</label>
+              <input id="project-start" name="startDate" type="date">
+            </div>
+            <div class="form-row">
+              <label for="project-due">Echeance</label>
+              <input id="project-due" name="dueDate" type="date">
+            </div>
+            <div class="form-row full">
+              <label for="project-description">Description</label>
+              <textarea id="project-description" name="description" rows="4"></textarea>
+            </div>
+            <p class="module-feedback" id="project-feedback">Creez un projet rattache a un client et un service.</p>
+            <button type="submit" class="btn-primary full-width">Creer le projet</button>
+          </form>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Pipeline projets</span>
+              <h2>Projets enregistres</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="project-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/projects.js"></script>
+</body>
+</html>

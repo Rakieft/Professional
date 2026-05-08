@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clients | WebFy Staff</title>
+  <meta name="description" content="Gestion des clients WebFy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/staff.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/logo.png" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Operations center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients" class="active">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="#coming-soon">Leads</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Acces rapide</span>
+        <h3>Retour au site public</h3>
+        <a href="/" class="btn-ghost">Voir le site</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Client workspace</p>
+          <h1>Clients</h1>
+          <span>Centralisez les entreprises, les points de contact et le statut de chaque relation client dans une interface plus haut de gamme.</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/projects" class="btn-primary">Voir les projets</a>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card emphasis">
+          <span class="label">Base relationnelle</span>
+          <strong>Un point d'entree plus clair</strong>
+          <p>Chaque client devient une fiche exploitable pour les ventes, la production et le suivi.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Ce module sert a</span>
+          <strong>Structurer la relation</strong>
+          <p>Nom, contact, statut et notes dans une base plus serieuse.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Equipe concernee</span>
+          <strong>Sales + PM + Ops</strong>
+          <p>Le module sert aux relances, a la coordination et a la preparation des projets.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid module-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Nouveau client</span>
+              <h2>Ajouter une fiche client</h2>
+            </div>
+          </div>
+
+          <form id="client-form" class="staff-form">
+            <div class="form-row">
+              <label for="client-name">Nom entreprise</label>
+              <input id="client-name" name="name" type="text" required>
+            </div>
+            <div class="form-row">
+              <label for="client-type">Type</label>
+              <input id="client-type" name="companyType" type="text" placeholder="Startup, PME, Clinique...">
+            </div>
+            <div class="form-row">
+              <label for="client-contact">Contact</label>
+              <input id="client-contact" name="contactName" type="text">
+            </div>
+            <div class="form-row">
+              <label for="client-email">Email</label>
+              <input id="client-email" name="email" type="email">
+            </div>
+            <div class="form-row">
+              <label for="client-phone">Telephone</label>
+              <input id="client-phone" name="phone" type="text">
+            </div>
+            <div class="form-row">
+              <label for="client-status">Statut</label>
+              <select id="client-status" name="status">
+                <option value="lead">Lead</option>
+                <option value="active">Actif</option>
+                <option value="paused">Pause</option>
+                <option value="archived">Archive</option>
+              </select>
+            </div>
+            <div class="form-row full">
+              <label for="client-notes">Notes</label>
+              <textarea id="client-notes" name="notes" rows="4"></textarea>
+            </div>
+            <p class="module-feedback" id="client-feedback">Ajoutez une entreprise pour commencer.</p>
+            <button type="submit" class="btn-primary full-width">Creer le client</button>
+          </form>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Base clients</span>
+              <h2>Clients enregistres</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="client-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/clients.js"></script>
+</body>
+</html>

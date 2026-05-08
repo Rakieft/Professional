@@ -3,305 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>À propos de WebFy | Développeur web & applications en Haïti</title>
-
-  <meta name="description" content="Découvrez l’histoire de WebFy, développeur web en Haïti spécialisé dans la création de sites web modernes et d’applications professionnelles.">
-
-  <meta name="keywords" content="développeur web Haïti, agence web Haïti, création site web Haïti, WebFy">
+  <title>À propos de WebFy | Vision, parcours et méthode</title>
+  <meta name="description" content="Découvrez l'histoire de WebFy, sa vision, son approche de travail et les compétences qui soutiennent ses projets digitaux.">
+  <meta name="keywords" content="a propos webfy, agence digitale haiti, fondateur webfy, vision digitale">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="À propos de WebFy – Développeur web en Haïti">
-  <meta property="og:description" content="L’histoire et la vision de WebFy, spécialiste en création de sites web et applications pour entreprises haïtiennes.">
-  <meta property="og:image" content="image/about-cover.jpg">
+  <meta property="og:title" content="À propos de WebFy | Une vision claire du digital">
+  <meta property="og:description" content="Une approche plus sérieuse, plus humaine et plus structurée du web, du contenu et du branding.">
+  <meta property="og:image" content="image/me.png">
   <meta property="og:type" content="website">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="assset/css/about.css">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!--favicon-->
-    <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
-
-    <link rel="apple-touch-icon" href="assset/favicon/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/pages.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
 </head>
-
 <body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <span>📧 contact@webfy.ht</span>
-    <span>📞 +509 4479-5902</span>
-  </div>
-
-  <!-- MAIN NAV -->
-  <div class="nav-main">
-    <div class="logo">
-      <img src="image/logo.png" alt="WebFy">
+  <header class="site-header" id="site-header">
+    <div class="top-bar">
+      <span>WebFy, une vision de croissance digitale claire et humaine</span>
+      <span>contact@webfy.ht</span>
+      <span>+509 4479-5902</span>
     </div>
+    <div class="nav-main">
+      <a class="logo" href="index.html"><img src="image/logo.png" alt="WebFy"></a>
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="about.html" class="active">À propos</a>
+        <a href="/login">Connexion</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/login" class="btn-ghost desktop-only">Connexion staff</a>
+        <a href="contact.html" class="btn-quote desktop-only">Demander un devis</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <nav class="nav-links">
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-header">
+      <img src="image/logo.png" alt="WebFy">
+      <p>Une présentation plus nette de la vision et du parcours derrière la marque.</p>
+    </div>
+    <nav class="mobile-nav">
       <a href="index.html">Accueil</a>
       <a href="services.html">Services</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="tarifs.html">Tarifs</a>
       <a href="about.html">À propos</a>
+      <a href="/login">Connexion</a>
       <a href="contact.html">Contact</a>
     </nav>
-
-    <a href="tarifs.html#quote-section" class="btn-quote desktop-only">
-      Demander un devis
-    </a>
-
-    <!-- MENU TOGGLE -->
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="mobile-cta">
+      <a href="/login" class="btn-ghost">Connexion staff</a>
+      <a href="contact.html" class="btn-quote">Demander un devis</a>
     </div>
   </div>
-</header>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <div class="mobile-header">
-    <img src="image/logo.png" alt="WebFy">
-    <p>Solutions digitales pour votre croissance</p>
-  </div>
-
-  <nav class="mobile-nav">
-    <a href="index.html">Accueil</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <a href="tarifs.html#quote-section" class="btn-quote mobile-btn">
-    Demander un devis
-  </a>
-
-  <!-- <div class="mobile-footer">
-    <small>© WebFy – Agence digitale</small>
-  </div> -->
-</div>
-<!-- HERO -->
-<section class="about-hero">
-  <h1>À propos de <span style="color: blue;">WebFy</span></h1>
-  <p>Une passion pour le web, au service des entreprises haïtiennes</p>
-</section>
-
-<!-- STORY -->
- <section class="about-company">
-  <h2>Notre histoire</h2>
-  <p>
-    WebFy est née d’une vision simple mais ambitieuse : permettre aux entreprises
-    haïtiennes d’accéder à des solutions digitales modernes, performantes et
-    accessibles.
-  </p>
-  <p>
-    Dans un contexte où la transformation numérique devient indispensable,
-    WebFy accompagne les entrepreneurs, PME et organisations dans la création
-    de sites web et d’applications capables de renforcer leur visibilité,
-    leur crédibilité et leur croissance.
-  </p>
-  <p>
-    Chaque projet WebFy repose sur trois piliers : qualité, performance
-    et accompagnement humain. Notre objectif n’est pas seulement de créer
-    des sites, mais de construire de véritables outils de développement
-    pour nos clients.
-  </p>
-</section>
-
-<section class="about-story">
-
-  <div class="story-content">
-    <h2>Mon parcours</h2>
-
-    <p class="founder-name"><strong>Kieft Raphter Joly</strong> — Fondateur & CEO de WebFy</p>
-
-    <p>
-      Ma passion pour le développement web est née très tôt, portée par une curiosité constante
-      pour la technologie et le numérique. Très vite, j’ai compris que créer des sites et des
-      applications n’était pas seulement un métier pour moi, mais une véritable vocation.
-    </p>
-
-    <p>
-      J’ai alors fait le choix de réorienter mon parcours afin de me consacrer pleinement
-      au développement web. Chaque projet réalisé m’a permis de renforcer mes compétences
-      techniques tout en prenant du plaisir à concevoir des solutions utiles et performantes.
-    </p>
-
-    <p>
-      Après plusieurs expériences réussies en tant que développeur web <strong>full-stack</strong>,
-      j’ai fondé <strong>WebFy</strong> avec une mission claire : accompagner les entreprises,
-      en particulier en Haïti, dans leur transformation digitale grâce à des solutions modernes,
-      accessibles et sur mesure.
-    </p>
-  </div>
-
-  <div class="story-image">
-    <img src="image/me.png" alt="Fondateur WebFy">
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="about-stats">
-  <div class="stat-card">
-    <i class="fa-solid fa-briefcase"></i>
-    <h3>25+</h3>
-    <p>Projets réalisés</p>
-  </div>
-
-  <div class="stat-card">
-    <i class="fa-solid fa-clock"></i>
-    <h3>3+</h3>
-    <p>Années d’expérience</p>
-  </div>
-
-  <div class="stat-card">
-    <i class="fa-solid fa-star"></i>
-    <h3>20</h3>
-    <p>Clients satisfaits</p>
-  </div>
-</section>
-
-<!-- VALUES -->
-<section class="about-values">
-  <h2>Vision & Valeurs</h2>
-
-  <div class="values-grid">
-    <div class="value-card">
-      <i class="fa-solid fa-bullseye"></i>
-      <h4>Vision</h4>
-      <p>Rendre le digital accessible à toutes les entreprises, quelle que soit leur taille.</p>
-    </div>
-
-    <div class="value-card">
-      <i class="fa-solid fa-gem"></i>
-      <h4>Qualité</h4>
-      <p>Des solutions performantes, fiables et pensées pour durer.</p>
-    </div>
-
-    <div class="value-card">
-      <i class="fa-solid fa-handshake"></i>
-      <h4>Accompagnement</h4>
-      <p>Une approche humaine basée sur l’écoute et la transparence.</p>
-    </div>
-  </div>
-</section>
-
-<section class="skills">
-  <h2>Compétences</h2><br><br>
-
-  <div class="skills-container">
-
-    <!-- COLONNE GAUCHE -->
-    <div class="skills-left">
-      <h3>Domaines de compétences</h3><br><br>
-
-      <ul>
-        <li><strong>Gestion de projets web</strong><br>
-          Sites vitrines, e-commerce, intranet, applications web
-        </li>
-
-        <li><strong>Conception graphique & webdesign</strong><br>
-          Logos, templates web, supports publicitaires
-        </li>
-
-        <li><strong>Applications spécifiques & back-office</strong><br>
-          JavaScript, PHP, MySQL, APIs
-        </li>
-
-        <li><strong>CMS & maintenance</strong><br>
-          WordPress, gestion et optimisation
-        </li>
-
-        <li><strong>SEO & accessibilité</strong><br>
-          Référencement naturel, bonnes pratiques W3C
-        </li>
-      </ul>
-    </div>
-
-    <!-- COLONNE DROITE -->
-    <div class="skills-right">
-      <h3>Compétences techniques</h3><br><br>
-
-      <div class="skill-bar">
-        <span>HTML / CSS</span>
-        <div class="bar"><div style="width:95%"></div></div>
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-copy" data-reveal>
+        <span class="section-tag invert">À propos</span>
+        <h1>Une startup digitale qui veut être utile, crédible et bien organisée.</h1>
+        <p>WebFy est née d'une idée simple: aider les entreprises à mieux se présenter, mieux communiquer et mieux structurer leur présence digitale.</p>
       </div>
-
-      <div class="skill-bar">
-        <span>JavaScript / C# / Python / React</span>
-        <div class="bar"><div style="width:85%"></div></div>
+      <div class="page-hero-panel portrait" data-reveal>
+        <img src="image/me.png" alt="Fondateur WebFy">
       </div>
+    </section>
 
-      <div class="skill-bar">
-        <span>SQL / MySQL</span>
-        <div class="bar"><div style="width:80%"></div></div>
+    <section class="split-section">
+      <div class="split-copy" data-reveal>
+        <span class="section-tag">Histoire</span>
+        <h2>Le projet derrière WebFy.</h2>
+        <p>WebFy s'est construit autour d'une conviction: même une jeune structure peut avoir une image forte si elle travaille sa clarté, son design et son organisation.</p>
+        <p>Kieft Raphter Joly a développé WebFy avec l'envie de proposer des solutions digitales modernes, accessibles et sérieuses pour les entreprises haïtiennes.</p>
       </div>
-
-      <div class="skill-bar">
-        <span>SEO</span>
-        <div class="bar"><div style="width:75%"></div></div>
+      <div class="story-card" data-reveal>
+        <strong>Kieft Raphter Joly</strong>
+        <span>Fondateur et CEO</span>
+        <p>Développement web, vision produit, image de marque et organisation digitale.</p>
       </div>
+    </section>
 
-      <div class="skill-bar">
-        <span>Node.js</span>
-        <div class="bar"><div style="width:70%"></div></div>
+    <section class="content-section">
+      <div class="section-intro" data-reveal>
+        <span class="section-tag">Vision et valeurs</span>
+        <h2>Ce qui guide les projets WebFy.</h2>
       </div>
+      <div class="card-grid three" data-reveal>
+        <article class="info-card">
+          <h3>Clarté</h3>
+          <p>Une structure lisible et des choix visuels cohérents pour que l'entreprise paraisse plus stable.</p>
+        </article>
+        <article class="info-card">
+          <h3>Qualité</h3>
+          <p>Des livrables propres, utiles et suffisamment solides pour accompagner la croissance.</p>
+        </article>
+        <article class="info-card">
+          <h3>Accompagnement</h3>
+          <p>Une relation simple, réactive et compréhensible pour avancer sans confusion inutile.</p>
+        </article>
+      </div>
+    </section>
 
+    <section class="content-section tinted">
+      <div class="section-intro" data-reveal>
+        <span class="section-tag">Compétences</span>
+        <h2>Les domaines utiles à l'évolution d'une marque.</h2>
+      </div>
+      <div class="dual-grid" data-reveal>
+        <div class="list-card">
+          <h3>Expertises principales</h3>
+          <ul class="feature-list">
+            <li>Création et refonte de sites web</li>
+            <li>Interfaces internes et dashboards</li>
+            <li>Gestion visuelle de la communication digitale</li>
+            <li>Logo, branding et cohérence de marque</li>
+            <li>Support et amélioration continue</li>
+          </ul>
+        </div>
+        <div class="list-card">
+          <h3>Outils et stack</h3>
+          <ul class="feature-list">
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Node.js et APIs</li>
+            <li>SQL et structuration de données</li>
+            <li>UX, hiérarchie visuelle et contenu</li>
+            <li>SEO de base et optimisation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-card" data-reveal>
+        <span class="section-tag">Collaborer</span>
+        <h2>Si vous cherchez une image plus pro, WebFy va dans cette direction.</h2>
+        <p>Cette nouvelle version du site retire le bruit et met davantage l'accent sur la crédibilité, la structure et l'exécution.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn-quote">Parler du projet</a>
+          <a href="services.html" class="btn-ghost dark">Voir les services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>WebFy</h3>
+        <p>Une vision digitale plus claire, avec une meilleure exécution et une meilleure présentation.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: contact@webfy.ht</p>
+        <p>Tél: +509 4479-5902</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="/login">Connexion staff</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
     </div>
-
-  </div>
-</section>
-
-
-<!-- CTA -->
-<section class="about-cta">
-  <h2>Vous avez un projet en tête ?</h2>
-  <p>Construisons ensemble une solution digitale adaptée à vos besoins.</p>
-  <a href="tarifs.html" class="btn-pricing">Demander un devis</a>
-</section>
-
-<!-- FOOTER (identique à index.html) -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-col">
-      <h3>WebFy</h3>
-      <p>Nous créons des sites web et applications pour les entreprises haïtiennes.</p>
+    <div class="footer-bottom">
+      <p>WebFy Studio - Vision, méthode et progression.</p>
     </div>
+  </footer>
 
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>Email : kieftraphter.joly1@gmail.com</p>
-      <p>Tél : +509 4479-5902</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Liens</h4>
-      <a href="services.html">Services</a><br>
-      <a href="portfolio.html">Portfolio</a><br>
-      <!--  -->
-      <a href="mentions-legales.html">Mentions légales</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>WebFy</p>
-  </div>
-</footer>
-
-<script src="js/index.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

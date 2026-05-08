@@ -3,166 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Services Web en Haïti | Création de sites & applications – WebFy</title>
-
-  <meta name="description" content="Découvrez les services WebFy : création de sites web professionnels, applications web sur mesure, SEO et maintenance pour les entreprises haïtiennes.">
-
-  <meta name="keywords" content="services web Haïti, création site web Haïti, développeur web Haïti, application web Haïti, SEO Haïti">
+  <title>Services WebFy | Web, social media, contenu et branding</title>
+  <meta name="description" content="Découvrez les services WebFy: création de sites web, gestion des réseaux sociaux, création de contenu, branding, logos et support digital.">
+  <meta name="keywords" content="services webfy, site web haiti, reseaux sociaux, branding, logo, contenu digital">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Services WebFy – Solutions digitales pour entreprises haïtiennes">
-  <meta property="og:description" content="Sites web modernes, applications performantes et SEO pour entreprises en Haïti.">
-  <meta property="og:image" content="image/service-hero.jpg">
+  <meta property="og:title" content="Services WebFy | Studio digital complet">
+  <meta property="og:description" content="Une offre claire pour créer, publier, organiser et faire grandir votre présence digitale.">
+  <meta property="og:image" content="image/hero2.jpg">
   <meta property="og:type" content="website">
-
-  <link rel="stylesheet" href="assset/css/services.css">
-  <!--favicon-->
-    <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
-
-    <link rel="apple-touch-icon" href="assset/favicon/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assset/css/pages.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
 </head>
-
-
 <body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <span>📧 contact@webfy.ht</span>
-    <span>📞 +509 4479-5902</span>
-  </div>
-
-  <!-- MAIN NAV -->
-  <div class="nav-main">
-    <div class="logo">
-      <img src="image/logo.png" alt="WebFy">
+  <header class="site-header" id="site-header">
+    <div class="top-bar">
+      <span>Studio digital pour startups, PME et marques ambitieuses</span>
+      <span>contact@webfy.ht</span>
+      <span>+509 4479-5902</span>
     </div>
+    <div class="nav-main">
+      <a class="logo" href="index.html"><img src="image/logo.png" alt="WebFy"></a>
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="about.html">À propos</a>
+        <a href="/login">Connexion</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/login" class="btn-ghost desktop-only">Connexion staff</a>
+        <a href="contact.html" class="btn-quote desktop-only">Demander un devis</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <nav class="nav-links">
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-header">
+      <img src="image/logo.png" alt="WebFy">
+      <p>Une agence plus claire, plus solide et plus premium.</p>
+    </div>
+    <nav class="mobile-nav">
       <a href="index.html">Accueil</a>
       <a href="services.html">Services</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="tarifs.html">Tarifs</a>
       <a href="about.html">À propos</a>
+      <a href="/login">Connexion</a>
       <a href="contact.html">Contact</a>
     </nav>
-
-    <a href="tarifs.html#quote-section" class="btn-quote desktop-only">
-      Demander un devis
-    </a>
-
-    <!-- MENU TOGGLE -->
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="mobile-cta">
+      <a href="/login" class="btn-ghost">Connexion staff</a>
+      <a href="contact.html" class="btn-quote">Demander un devis</a>
     </div>
   </div>
-</header>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <div class="mobile-header">
-    <img src="image/logo.png" alt="WebFy">
-    <p>Solutions digitales pour votre croissance</p>
-  </div>
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-copy" data-reveal>
+        <span class="section-tag invert">Services</span>
+        <h1>Une offre complète pour bâtir une image digitale forte.</h1>
+        <p>WebFy ne se limite pas à coder un site. Nous structurons votre présence digitale pour mieux vendre, mieux publier et mieux organiser le travail.</p>
+      </div>
+      <div class="page-hero-panel" data-reveal>
+        <span class="stat-kicker">Ce que vous gagnez</span>
+        <strong>Clarté, cohérence et crédibilité</strong>
+        <p>Chaque service est pensé pour servir la croissance, pas seulement l'apparence.</p>
+      </div>
+    </section>
 
-  <nav class="mobile-nav">
-    <a href="index.html">Accueil</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="about.html">À propos</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+    <section class="content-section">
+      <div class="section-intro" data-reveal>
+        <span class="section-tag">Offre principale</span>
+        <h2>Les services qui donnent une allure professionnelle à votre startup.</h2>
+      </div>
+      <div class="card-grid three" data-reveal>
+        <article class="info-card">
+          <span class="card-index">01</span>
+          <h3>Création de sites web</h3>
+          <p>Sites vitrines, pages commerciales et interfaces claires qui renforcent la confiance dès la première visite.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-index">02</span>
+          <h3>Refonte de site</h3>
+          <p>Modernisation complète du design, du contenu et de la hiérarchie visuelle pour monter en gamme.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-index">03</span>
+          <h3>Applications et outils web</h3>
+          <p>Petits outils métiers, back-office et dashboards pour mieux piloter les opérations internes.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-index">04</span>
+          <h3>Gestion des réseaux sociaux</h3>
+          <p>Planification, cohérence visuelle, rythme éditorial et suivi pour garder une présence active.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-index">05</span>
+          <h3>Création de contenu</h3>
+          <p>Textes, visuels, concepts de publication et idées de campagne adaptés à votre audience.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-index">06</span>
+          <h3>Logo et branding</h3>
+          <p>Une base visuelle plus nette pour que la marque soit reconnaissable, cohérente et mémorable.</p>
+        </article>
+      </div>
+    </section>
 
-  <a href="tarifs.html#quote-section" class="btn-quote mobile-btn">
-    Demander un devis
-  </a>
+    <section class="split-section">
+      <div class="split-copy" data-reveal>
+        <span class="section-tag">Méthode</span>
+        <h2>Une façon de travailler plus simple et plus sérieuse.</h2>
+        <ul class="feature-list">
+          <li>Brief clair pour comprendre vos objectifs réels</li>
+          <li>Direction visuelle cohérente avant production</li>
+          <li>Exécution rapide avec points de validation</li>
+          <li>Livraison plus propre et suivi après mise en ligne</li>
+        </ul>
+      </div>
+      <div class="timeline-card" data-reveal>
+        <div class="timeline-step"><strong>01</strong><span>Analyse du besoin</span></div>
+        <div class="timeline-step"><strong>02</strong><span>Design et structure</span></div>
+        <div class="timeline-step"><strong>03</strong><span>Production et ajustements</span></div>
+        <div class="timeline-step"><strong>04</strong><span>Livraison et support</span></div>
+      </div>
+    </section>
 
-  <!-- <div class="mobile-footer">
-    <small>© WebFy – Agence digitale</small>
-  </div> -->
-</div>
+    <section class="content-section tinted">
+      <div class="section-intro" data-reveal>
+        <span class="section-tag">Pourquoi WebFy</span>
+        <h2>Un studio plus utile qu'une simple prestation isolée.</h2>
+      </div>
+      <div class="metrics-grid" data-reveal>
+        <article class="metric-card">
+          <strong>Image plus premium</strong>
+          <p>Une meilleure première impression pour les prospects et partenaires.</p>
+        </article>
+        <article class="metric-card">
+          <strong>Communication plus régulière</strong>
+          <p>Votre marque garde un rythme visible grâce au contenu et au social media.</p>
+        </article>
+        <article class="metric-card">
+          <strong>Organisation plus claire</strong>
+          <p>Le dashboard staff complète l'offre avec une meilleure lecture interne.</p>
+        </article>
+      </div>
+    </section>
 
-<!-- HERO INTRO -->
-<section class="hero-service">
-  <h1>Nos Services</h1>
-  <p>Des solutions digitales modernes conçues pour les entreprises haïtiennes.</p>
-</section>
+    <section class="cta-section">
+      <div class="cta-card" data-reveal>
+        <span class="section-tag">Prêt à avancer</span>
+        <h2>Choisissons les services vraiment utiles à votre croissance.</h2>
+        <p>Nous avons retiré le superflu et gardé l'essentiel: une offre plus crédible, plus claire et plus vendeuse.</p>
+        <div class="hero-actions">
+          <a href="tarifs.html" class="btn-quote">Voir les tarifs</a>
+          <a href="contact.html" class="btn-ghost dark">Parler du projet</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<!-- SERVICES -->
-<section class="services">
-  <div class="services-grid">
-
-    <div class="service-card">
-      <h3>Sites Web Professionnels</h3>
-      <p>Sites vitrines modernes, rapides et responsives pour présenter votre entreprise avec crédibilité.</p>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>WebFy</h3>
+        <p>Création web, contenu, branding et organisation digitale pour entreprises qui veulent monter en niveau.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: contact@webfy.ht</p>
+        <p>Tél: +509 4479-5902</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="/login">Connexion staff</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
     </div>
-
-    <div class="service-card">
-      <h3>Applications Web</h3>
-      <p>Applications sur mesure pour automatiser vos processus et améliorer votre productivité.</p>
+    <div class="footer-bottom">
+      <p>WebFy Studio - Web, contenu, branding et exécution.</p>
     </div>
+  </footer>
 
-    <div class="service-card">
-      <h3>Refonte de Site</h3>
-      <p>Modernisation complète de votre site existant avec un design actuel et une meilleure performance.</p>
-    </div>
-
-    <div class="service-card">
-      <h3>SEO & Visibilité</h3>
-      <p>Optimisation pour Google afin d’augmenter votre visibilité et attirer plus de clients.</p>
-    </div>
-
-    <div class="service-card">
-      <h3>Hébergement & Maintenance</h3>
-      <p>Gestion technique complète, sécurité, sauvegardes et mises à jour.</p>
-    </div>
-
-    <div class="service-card">
-      <h3>Support Technique</h3>
-      <p>Assistance continue et accompagnement local en toute simplicité.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- HERO IMAGE SOUS LES CARTES -->
-<section class="service-hero-image">
-  <div class="overlay">
-    <h2>Une technologie au service de votre croissance</h2>
-  </div>
-</section>
-
-<!-- MÉTHODE DE TRAVAIL -->
-<section class="process">
-  <h2>Notre Méthode de Travail</h2>
-
-  <div class="process-steps">
-    <div class="step">Analyse de vos besoins</div>
-    <div class="step">Conception & Design</div>
-    <div class="step">Développement</div>
-    <div class="step">Tests & Mise en ligne</div>
-  </div>
-
-  <!-- INCITATION TARIFS -->
-  <div class="pricing-cta">
-    <h3>Vous voulez connaître nos tarifs ?</h3>
-    <p>Des prix clairs et adaptés à votre budget.</p>
-    <a href="tarifs.html" class="btn-primary">Voir les tarifs</a>
-  </div>
-</section>
-
-<!-- JS -->
-<script src="js/index.js"></script>
-
+  <script src="js/index.js"></script>
 </body>
 </html>
