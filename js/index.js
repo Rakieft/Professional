@@ -3,6 +3,12 @@ const mobileMenu = document.getElementById("mobile-menu");
 const header = document.getElementById("site-header");
 const slides = document.querySelectorAll(".hero-slide");
 const revealItems = document.querySelectorAll("[data-reveal]");
+const publicLogo = document.querySelector(".logo");
+const footerBottom = document.querySelector(".footer-bottom");
+
+function openStaffLogin() {
+  window.location.href = "/login";
+}
 
 if (toggle && mobileMenu) {
   toggle.addEventListener("click", () => {
@@ -17,6 +23,23 @@ if (toggle && mobileMenu) {
     });
   });
 }
+
+if (publicLogo) {
+  publicLogo.addEventListener("dblclick", (event) => {
+    event.preventDefault();
+    openStaffLogin();
+  });
+}
+
+if (footerBottom) {
+  footerBottom.addEventListener("dblclick", openStaffLogin);
+}
+
+window.addEventListener("keydown", (event) => {
+  if (event.altKey && event.shiftKey && event.key.toLowerCase() === "w") {
+    openStaffLogin();
+  }
+});
 
 window.addEventListener("scroll", () => {
   if (!header) {

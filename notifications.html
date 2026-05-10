@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications | WebFy Staff</title>
+  <meta name="description" content="Centre d'activite WebFy pour les alertes equipe, finance et production.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assset/css/style.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body class="staff-app">
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/webfy-mark.svg" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Activity center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="/leads">Leads</a>
+        <a href="/team">Equipe</a>
+        <a href="/finance">Finance</a>
+        <a href="/profile">Profil</a>
+        <a href="/notifications" class="active">Notifications</a>
+        <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Signals</span>
+        <h3>Suivre ce qui bouge</h3>
+        <a href="/staff" class="btn-ghost">Retour dashboard</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Activity center</p>
+          <h1>Notifications</h1>
+          <span>Les alertes importantes de production, de finance et de coordination arrivent ici pour ne rien rater.</span>
+          <div class="role-banner">
+            <span class="role-chip" id="role-chip">staff</span>
+            <span id="session-user-label">Session staff</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/tasks" class="btn-primary">Retour aux taches</a>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card emphasis">
+          <span class="label">A lire</span>
+          <strong id="notifications-unread">0 alerte</strong>
+          <p>Tout ce qui demande une attention ou une verification rapide.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Centre</span>
+          <strong>Production + finance</strong>
+          <p>Le projet commence a centraliser les signaux qui comptent vraiment.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Flux</span>
+              <h2>Alertes recentes</h2>
+            </div>
+          </div>
+          <div class="toolbar-row">
+            <div class="toolbar-item">
+              <label for="notifications-filter-category">Categorie</label>
+              <select id="notifications-filter-category">
+                <option value="">Toutes</option>
+                <option value="system">System</option>
+                <option value="tasks">Tasks</option>
+                <option value="comments">Comments</option>
+                <option value="files">Files</option>
+                <option value="finance">Finance</option>
+              </select>
+            </div>
+          </div>
+          <div class="stack-list" id="notifications-categories"></div>
+          <div class="stack-list" id="notifications-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/notifications.js"></script>
+</body>
+</html>

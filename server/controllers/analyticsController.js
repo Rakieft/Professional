@@ -51,6 +51,20 @@ function buildExecutiveAlerts(rows = [], summary) {
     });
   }
 
+  if ((summary.netCashFlow || 0) < 0) {
+    alerts.push({
+      title: "Cash flow negatif",
+      text: `Le cash flow estime est actuellement de ${formatMoney(summary.netCashFlow || 0)}. Il faut proteger les encaissements ou reduire les engagements.`
+    });
+  }
+
+  if ((summary.grossMargin || 0) < 0) {
+    alerts.push({
+      title: "Marge estimee negative",
+      text: `La marge estimee passe sous zero a ${formatMoney(summary.grossMargin || 0)}. Le pilotage CEO doit reajuster les couts ou les revenus.`
+    });
+  }
+
   if (!alerts.length) {
     alerts.push({
       title: "Structure saine",
@@ -63,45 +77,56 @@ function buildExecutiveAlerts(rows = [], summary) {
 
 async function getExecutiveAnalytics(_req, res, next) {
   try {
-    const staffRows = await db.query(
-      `SELECT
-        u.id,
-        u.full_name AS fullName,
-        u.email,
-        u.job_title AS jobTitle,
-        u.is_active AS isActive,
-        COALESCE(r.name, 'staff') AS roleName,
-        COALESCE(sc.compensation_model, 'volunteer') AS compensationModel,
-        COALESCE(sc.amount, 0) AS amount,
-        COALESCE(sc.currency, 'USD') AS currency,
-        sc.notes,
-        sc.updated_at AS compensationUpdatedAt
-      FROM users u
-      LEFT JOIN roles r ON r.id = u.role_id
-      LEFT JOIN staff_compensation sc ON sc.user_id = u.id
-      ORDER BY u.is_active DESC, u.full_name ASC`
-    );
-
-    const projectStats = await db.query(
-      `SELECT
-        SUM(CASE WHEN status IN ('planned', 'in_progress', 'review') THEN 1 ELSE 0 END) AS activeProjects,
-        SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) AS deliveredProjects
-      FROM projects`
-    );
-
-    const taskStats = await db.query(
-      `SELECT
-        SUM(CASE WHEN status <> 'done' THEN 1 ELSE 0 END) AS openTasks,
-        SUM(CASE WHEN due_date IS NOT NULL AND due_date < CURDATE() AND status <> 'done' THEN 1 ELSE 0 END) AS overdueTasks
-      FROM tasks`
-    );
-
-    const leadStats = await db.query(
-      `SELECT
-        SUM(CASE WHEN status IN ('new', 'contacted', 'qualified') THEN 1 ELSE 0 END) AS pipelineLeads,
-        SUM(CASE WHEN status = 'won' THEN 1 ELSE 0 END) AS wonLeads
-      FROM leads`
-    );
+    const [staffRows, projectStats, taskStats, leadStats, quoteStats, paymentStats] = await Promise.all([
+      db.query(
+        `SELECT
+          u.id,
+          u.full_name AS fullName,
+          u.email,
+          u.job_title AS jobTitle,
+          u.is_active AS isActive,
+          COALESCE(r.name, 'staff') AS roleName,
+          COALESCE(sc.compensation_model, 'volunteer') AS compensationModel,
+          COALESCE(sc.amount, 0) AS amount,
+          COALESCE(sc.currency, 'USD') AS currency,
+          sc.notes,
+          sc.updated_at AS compensationUpdatedAt
+        FROM users u
+        LEFT JOIN roles r ON r.id = u.role_id
+        LEFT JOIN staff_compensation sc ON sc.user_id = u.id
+        ORDER BY u.is_active DESC, u.full_name ASC`
+      ),
+      db.query(
+        `SELECT
+          SUM(CASE WHEN status IN ('planned', 'in_progress', 'review') THEN 1 ELSE 0 END) AS activeProjects,
+          SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) AS deliveredProjects
+        FROM projects`
+      ),
+      db.query(
+        `SELECT
+          SUM(CASE WHEN status <> 'done' THEN 1 ELSE 0 END) AS openTasks,
+          SUM(CASE WHEN due_date IS NOT NULL AND due_date < CURDATE() AND status <> 'done' THEN 1 ELSE 0 END) AS overdueTasks
+        FROM tasks`
+      ),
+      db.query(
+        `SELECT
+          SUM(CASE WHEN status IN ('new', 'contacted', 'qualified') THEN 1 ELSE 0 END) AS pipelineLeads,
+          SUM(CASE WHEN status = 'won' THEN 1 ELSE 0 END) AS wonLeads
+        FROM leads`
+      ),
+      db.query(
+        `SELECT
+          SUM(CASE WHEN status = 'accepted' THEN amount ELSE 0 END) AS acceptedRevenue,
+          SUM(CASE WHEN status IN ('draft', 'sent') THEN amount ELSE 0 END) AS openQuotes
+        FROM quotes`
+      ),
+      db.query(
+        `SELECT
+          SUM(CASE WHEN payment_status = 'paid' THEN amount ELSE 0 END) AS receivedRevenue,
+          SUM(CASE WHEN payment_status IN ('pending', 'partial') THEN amount ELSE 0 END) AS pendingRevenue
+        FROM payment_records`
+      )
+    ]);
 
     const summary = staffRows.reduce((acc, row) => {
       const amount = Number(row.amount || 0);
@@ -142,6 +167,8 @@ async function getExecutiveAnalytics(_req, res, next) {
     const projectRow = projectStats[0] || {};
     const taskRow = taskStats[0] || {};
     const leadRow = leadStats[0] || {};
+    const quoteRow = quoteStats[0] || {};
+    const paymentRow = paymentStats[0] || {};
 
     const responseRows = staffRows.map((row) => ({
       ...row,
@@ -149,6 +176,13 @@ async function getExecutiveAnalytics(_req, res, next) {
       compensationLabel: MODEL_LABELS[row.compensationModel] || "A definir",
       amountLabel: Number(row.amount || 0) > 0 ? formatMoney(row.amount, row.currency) : "A definir"
     }));
+
+    const fixedCostBase = summary.monthlyPayroll + summary.supportBudget + summary.projectCommitment;
+    const receivedRevenue = Number(paymentRow.receivedRevenue || 0);
+    const pendingRevenue = Number(paymentRow.pendingRevenue || 0);
+    const netCashFlow = receivedRevenue - fixedCostBase;
+    const grossMargin = receivedRevenue - fixedCostBase;
+    const profitabilityRate = receivedRevenue > 0 ? (grossMargin / receivedRevenue) * 100 : 0;
 
     res.json({
       ok: true,
@@ -161,10 +195,26 @@ async function getExecutiveAnalytics(_req, res, next) {
           openTasks: Number(taskRow.openTasks || 0),
           overdueTasks: Number(taskRow.overdueTasks || 0),
           pipelineLeads: Number(leadRow.pipelineLeads || 0),
-          wonLeads: Number(leadRow.wonLeads || 0)
+          wonLeads: Number(leadRow.wonLeads || 0),
+          acceptedRevenue: Number(quoteRow.acceptedRevenue || 0),
+          openQuotes: Number(quoteRow.openQuotes || 0),
+          receivedRevenue: Number(paymentRow.receivedRevenue || 0),
+          pendingRevenue: Number(paymentRow.pendingRevenue || 0),
+          fixedCostBase,
+          netCashFlow,
+          grossMargin,
+          profitabilityRate,
+          acceptedRevenueLabel: formatMoney(quoteRow.acceptedRevenue || 0),
+          openQuotesLabel: formatMoney(quoteRow.openQuotes || 0),
+          receivedRevenueLabel: formatMoney(paymentRow.receivedRevenue || 0),
+          pendingRevenueLabel: formatMoney(paymentRow.pendingRevenue || 0),
+          fixedCostBaseLabel: formatMoney(fixedCostBase),
+          netCashFlowLabel: formatMoney(netCashFlow),
+          grossMarginLabel: formatMoney(grossMargin),
+          profitabilityRateLabel: `${profitabilityRate.toFixed(0)}%`
         },
         staff: responseRows,
-        alerts: buildExecutiveAlerts(responseRows, summary),
+        alerts: buildExecutiveAlerts(responseRows, { ...summary, netCashFlow, grossMargin }),
         modelLabels: MODEL_LABELS
       }
     });

@@ -3,11 +3,15 @@ const {
   listUsers,
   createUser,
   updateUser,
-  toggleUserStatus
+  toggleUserStatus,
+  getMyProfile,
+  updateMyProfile
 } = require("../controllers/userController");
 
 const router = express.Router();
 
+router.get("/me", getMyProfile);
+router.patch("/me", updateMyProfile);
 router.get("/", listUsers);
 router.post("/", createUser);
 router.put("/:id", updateUser);

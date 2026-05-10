@@ -16,6 +16,13 @@ const {
 const app = express();
 const port = Number(process.env.PORT || 5000);
 const rootDir = __dirname;
+const isProduction = process.env.NODE_ENV === "production";
+
+app.disable("x-powered-by");
+
+if (isProduction) {
+  app.set("trust proxy", 1);
+}
 
 const pageMap = {
   "/": "index.html",
@@ -46,7 +53,7 @@ app.use(
     cookie: {
       httpOnly: true,
       sameSite: "lax",
-      secure: false,
+      secure: isProduction,
       maxAge: 1000 * 60 * 60 * 10
     }
   })
@@ -125,6 +132,30 @@ app.get("/team", requireStaffPage, (_req, res) => {
 
 app.get("/team.html", requireStaffPage, (_req, res) => {
   res.redirect("/team");
+});
+
+app.get("/profile", requireStaffPage, (_req, res) => {
+  res.sendFile(path.join(rootDir, "profile.html"));
+});
+
+app.get("/profile.html", requireStaffPage, (_req, res) => {
+  res.redirect("/profile");
+});
+
+app.get("/finance", requireStaffPage, (_req, res) => {
+  res.sendFile(path.join(rootDir, "finance.html"));
+});
+
+app.get("/finance.html", requireStaffPage, (_req, res) => {
+  res.redirect("/finance");
+});
+
+app.get("/notifications", requireStaffPage, (_req, res) => {
+  res.sendFile(path.join(rootDir, "notifications.html"));
+});
+
+app.get("/notifications.html", requireStaffPage, (_req, res) => {
+  res.redirect("/notifications");
 });
 
 app.get("/analytics", requireStaffRolePage("admin"), (_req, res) => {

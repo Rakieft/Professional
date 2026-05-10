@@ -18,6 +18,7 @@ Le projet contient deja:
 - configuration de connexion MySQL
 - schema SQL et seed SQL
 - formulaires marketing toujours presents cote vitrine
+- espace staff avec roles, finance, notifications et analytics CEO
 
 Le dashboard peut fonctionner en mode secours tant que la base n'est pas configuree.
 
@@ -86,6 +87,11 @@ Le schema prevoit deja des tables utiles pour une vraie organisation:
 - `content_calendar`
 - `activity_logs`
 - `quotes`
+- `invoices`
+- `payment_records`
+- `notifications`
+- `task_comments`
+- `task_files`
 
 Le schema est dans [database/schema.sql](C:/Users/kieft/Documents/Codex/2026-05-08/j-ai-un-projet-dans-c/Professional/database/schema.sql) et les donnees de demo dans [database/seed.sql](C:/Users/kieft/Documents/Codex/2026-05-08/j-ai-un-projet-dans-c/Professional/database/seed.sql).
 
@@ -118,6 +124,17 @@ npm run dev
 ```
 
 Le site sera alors disponible sur `http://localhost:5000`.
+
+## Preparation lancement
+
+Avant un vrai lancement, gardez cette checklist:
+
+- definir un `SESSION_SECRET` fort et unique
+- passer `NODE_ENV=production`
+- servir le site derriere HTTPS
+- sauvegarder la base MySQL regulierement
+- verifier les comptes staff, mots de passe et permissions
+- remplir les vraies informations de devis, factures et paiements
 
 ## Limites actuelles
 

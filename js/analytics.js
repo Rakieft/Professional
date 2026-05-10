@@ -9,6 +9,10 @@ const analyticsMonthlyPayroll = document.getElementById("analytics-monthly-payro
 const analyticsSupportBudget = document.getElementById("analytics-support-budget");
 const analyticsProjectCommitment = document.getElementById("analytics-project-commitment");
 const analyticsVolunteers = document.getElementById("analytics-volunteers");
+const analyticsNetCashFlow = document.getElementById("analytics-net-cash-flow");
+const analyticsGrossMargin = document.getElementById("analytics-gross-margin");
+const analyticsProfitability = document.getElementById("analytics-profitability");
+const analyticsFixedCostBase = document.getElementById("analytics-fixed-cost-base");
 const analyticsAverageSalary = document.getElementById("analytics-average-salary");
 const analyticsTable = document.getElementById("analytics-table");
 const analyticsAlerts = document.getElementById("analytics-alerts");
@@ -35,6 +39,10 @@ function renderSummary(summary) {
   analyticsSupportBudget.textContent = money(summary.supportBudget || 0);
   analyticsProjectCommitment.textContent = money(summary.projectCommitment || 0);
   analyticsVolunteers.textContent = `${summary.volunteerCount || 0} poste(s)`;
+  analyticsNetCashFlow.textContent = summary.netCashFlowLabel || "$0";
+  analyticsGrossMargin.textContent = summary.grossMarginLabel || "$0";
+  analyticsProfitability.textContent = summary.profitabilityRateLabel || "0%";
+  analyticsFixedCostBase.textContent = summary.fixedCostBaseLabel || "$0";
   analyticsAverageSalary.textContent = `Salaire moyen: ${money(summary.averageSalary || 0)}`;
 
   analyticsBusinessSnapshot.innerHTML = `
@@ -50,7 +58,14 @@ function renderSummary(summary) {
         <strong>${summary.pipelineLeads || 0} leads dans le pipeline</strong>
         <span class="status-chip">sales</span>
       </div>
-      <p>${summary.wonLeads || 0} lead(s) gagnes et ${summary.deliveredProjects || 0} projet(s) deja livres.</p>
+      <p>${summary.wonLeads || 0} lead(s) gagnes, ${summary.openQuotesLabel || "$0"} en devis ouverts et ${summary.deliveredProjects || 0} projet(s) deja livres.</p>
+    </article>
+    <article class="stack-card">
+      <div class="stack-head">
+        <strong>${summary.receivedRevenueLabel || "$0"} encaisses</strong>
+        <span class="status-chip">cash</span>
+      </div>
+      <p>${summary.pendingRevenueLabel || "$0"} en paiements a suivre et ${summary.acceptedRevenueLabel || "$0"} de valeur deja signee.</p>
     </article>
     <article class="stack-card">
       <div class="stack-head">

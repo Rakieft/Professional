@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance | WebFy Staff</title>
+  <meta name="description" content="Gestion des devis, factures, paiements et revenus WebFy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assset/css/style.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body class="staff-app">
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/webfy-mark.svg" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Finance center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="/leads">Leads</a>
+        <a href="/team">Equipe</a>
+        <a href="/finance" class="active">Finance</a>
+        <a href="/profile">Profil</a>
+        <a href="/notifications">Notifications</a>
+        <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Business</span>
+        <h3>Transformer l'activite en cash</h3>
+        <a href="/staff" class="btn-ghost">Retour dashboard</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Revenue ops</p>
+          <h1>Finance</h1>
+          <span>Suivez vos devis, les factures, les montants encaisses et ce qui reste encore a transformer en revenu reel.</span>
+          <div class="role-banner">
+            <span class="role-chip" id="role-chip">staff</span>
+            <span id="session-user-label">Session staff</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/analytics" class="btn-primary" data-admin-only hidden>Vue CEO</a>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card emphasis">
+          <span class="label">Montants devis</span>
+          <strong id="finance-total-quoted">$0</strong>
+          <p>Total de la valeur commerciale enregistree.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Devis signes</span>
+          <strong id="finance-accepted">$0</strong>
+          <p>Valeur deja validee par les clients.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Revenus recus</span>
+          <strong id="finance-received">$0</strong>
+          <p>Cash deja entre dans l'activite.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">En attente</span>
+          <strong id="finance-pending">$0</strong>
+          <p>Devis ouverts et paiements encore a suivre.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid module-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Nouveau devis</span>
+              <h2>Ajouter une proposition</h2>
+            </div>
+          </div>
+
+          <form id="quote-form" class="staff-form">
+            <div class="form-row">
+              <label for="quote-client">Client</label>
+              <select id="quote-client" name="clientId"></select>
+            </div>
+            <div class="form-row">
+              <label for="quote-project-type">Type de projet</label>
+              <input id="quote-project-type" name="projectType" type="text" required placeholder="Site web, branding, social media...">
+            </div>
+            <div class="form-row">
+              <label for="quote-amount">Montant</label>
+              <input id="quote-amount" name="amount" type="number" min="0" step="0.01" required>
+            </div>
+            <div class="form-row">
+              <label for="quote-status">Statut</label>
+              <select id="quote-status" name="status">
+                <option value="draft">Brouillon</option>
+                <option value="sent">Envoye</option>
+                <option value="accepted">Accepte</option>
+                <option value="rejected">Refuse</option>
+              </select>
+            </div>
+            <div class="form-row full">
+              <label for="quote-notes">Notes</label>
+              <textarea id="quote-notes" name="notes" rows="4"></textarea>
+            </div>
+            <p class="module-feedback" id="quote-feedback">Les devis vous donnent enfin une lecture commerciale plus concrete de WebFy.</p>
+            <button type="submit" class="btn-primary full-width">Creer le devis</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Paiement</span>
+              <h2>Enregistrer un encaissement</h2>
+            </div>
+          </div>
+
+          <form id="payment-form" class="staff-form">
+            <div class="form-row">
+              <label for="payment-client">Client</label>
+              <select id="payment-client" name="clientId"></select>
+            </div>
+            <div class="form-row">
+              <label for="payment-project">Projet</label>
+              <select id="payment-project" name="projectId"></select>
+            </div>
+            <div class="form-row">
+              <label for="payment-invoice">Facture</label>
+              <select id="payment-invoice" name="invoiceId"></select>
+            </div>
+            <div class="form-row">
+              <label for="payment-title">Libelle</label>
+              <input id="payment-title" name="title" type="text" required placeholder="Acompte, paiement final, support mensuel...">
+            </div>
+            <div class="form-row">
+              <label for="payment-amount">Montant</label>
+              <input id="payment-amount" name="amount" type="number" min="0" step="0.01" required>
+            </div>
+            <div class="form-row">
+              <label for="payment-method">Methode</label>
+              <input id="payment-method" name="paymentMethod" type="text" placeholder="Bank transfer, cash, MonCash...">
+            </div>
+            <div class="form-row">
+              <label for="payment-status">Statut</label>
+              <select id="payment-status" name="paymentStatus">
+                <option value="paid">Paye</option>
+                <option value="partial">Partiel</option>
+                <option value="pending">En attente</option>
+                <option value="cancelled">Annule</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="payment-date">Date</label>
+              <input id="payment-date" name="paymentDate" type="date">
+            </div>
+            <div class="form-row">
+              <label for="payment-currency">Devise</label>
+              <input id="payment-currency" name="currency" type="text" value="USD" maxlength="10">
+            </div>
+            <div class="form-row full">
+              <label for="payment-notes">Notes</label>
+              <textarea id="payment-notes" name="notes" rows="4"></textarea>
+            </div>
+            <p class="module-feedback" id="payment-feedback">Chaque paiement enregistre vous aide a suivre le vrai revenu du projet.</p>
+            <button type="submit" class="btn-primary full-width">Enregistrer le paiement</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Devis</span>
+              <h2>Pipeline commercial</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="quote-list"></div>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Factures</span>
+              <h2>Factures generees</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="invoice-list"></div>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Paiements</span>
+              <h2>Encaissements enregistres</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="payment-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/finance.js"></script>
+</body>
+</html>

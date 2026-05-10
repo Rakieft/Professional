@@ -39,6 +39,9 @@
         <a href="/tasks" class="active">Taches</a>
         <a href="/leads">Leads</a>
         <a href="/team">Equipe</a>
+        <a href="/finance">Finance</a>
+        <a href="/profile">Profil</a>
+        <a href="/notifications">Notifications</a>
         <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
       </nav>
 
@@ -148,7 +151,7 @@
           <div class="panel-head">
             <div>
               <span class="label">Execution</span>
-              <h2>Taches enregistrees</h2>
+              <h2>Pilotage et filtres</h2>
             </div>
           </div>
           <div class="toolbar-row">
@@ -179,6 +182,118 @@
             </div>
           </div>
           <div class="stack-list" id="task-list"></div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid tasks-workspace">
+        <article class="panel wide kanban-panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Kanban</span>
+              <h2>Vue operationnelle des taches</h2>
+            </div>
+          </div>
+
+          <div class="kanban-board">
+            <section class="kanban-column">
+              <div class="kanban-column-head">
+                <strong>A faire</strong>
+                <span id="kanban-count-todo">0</span>
+              </div>
+              <div class="kanban-column-body" id="kanban-todo"></div>
+            </section>
+
+            <section class="kanban-column">
+              <div class="kanban-column-head">
+                <strong>En cours</strong>
+                <span id="kanban-count-in-progress">0</span>
+              </div>
+              <div class="kanban-column-body" id="kanban-in-progress"></div>
+            </section>
+
+            <section class="kanban-column">
+              <div class="kanban-column-head">
+                <strong>Validation</strong>
+                <span id="kanban-count-review">0</span>
+              </div>
+              <div class="kanban-column-body" id="kanban-review"></div>
+            </section>
+
+            <section class="kanban-column">
+              <div class="kanban-column-head">
+                <strong>Termine</strong>
+                <span id="kanban-count-done">0</span>
+              </div>
+              <div class="kanban-column-body" id="kanban-done"></div>
+            </section>
+          </div>
+        </article>
+
+        <article class="panel task-detail-panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Detail</span>
+              <h2>Tache selectionnee</h2>
+            </div>
+          </div>
+
+          <div class="stack-list" id="task-detail-summary">
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Aucune tache selectionnee</strong>
+                <span class="status-chip">attente</span>
+              </div>
+              <p>Cliquez sur une carte dans le Kanban pour ouvrir le contexte, les commentaires et les fichiers.</p>
+            </article>
+          </div>
+
+          <div class="task-detail-split">
+            <div class="detail-block">
+              <div class="panel-head compact">
+                <div>
+                  <span class="label">Commentaires</span>
+                </div>
+              </div>
+              <form id="task-comment-form" class="staff-form compact-form">
+                <div class="form-row full">
+                  <label for="task-comment-message">Ajouter un commentaire</label>
+                  <textarea id="task-comment-message" name="message" rows="4" placeholder="Brief, mise a jour, blocage, validation, prochain pas..."></textarea>
+                </div>
+                <p class="module-feedback" id="task-comment-feedback">Selectionnez une tache pour ajouter des echanges de production.</p>
+                <button type="submit" class="btn-ghost dark full-width">Publier le commentaire</button>
+              </form>
+              <div class="stack-list" id="task-comments-list"></div>
+            </div>
+
+            <div class="detail-block">
+              <div class="panel-head compact">
+                <div>
+                  <span class="label">Fichiers</span>
+                </div>
+              </div>
+              <form id="task-file-form" class="staff-form compact-form">
+                <div class="form-row">
+                  <label for="task-file-name">Nom</label>
+                  <input id="task-file-name" name="fileName" type="text" placeholder="Mockup, livrable, brief...">
+                </div>
+                <div class="form-row">
+                  <label for="task-file-kind">Type</label>
+                  <input id="task-file-kind" name="fileKind" type="text" placeholder="reference, delivery, asset...">
+                </div>
+                <div class="form-row full">
+                  <label for="task-file-url">Lien</label>
+                  <input id="task-file-url" name="fileUrl" type="url" placeholder="https://...">
+                </div>
+                <div class="form-row full">
+                  <label for="task-file-notes">Notes</label>
+                  <textarea id="task-file-notes" name="notes" rows="3" placeholder="Contexte ou instruction utile pour l'equipe..."></textarea>
+                </div>
+                <p class="module-feedback" id="task-file-feedback">Ajoutez des references, livrables ou liens de travail sur la tache selectionnee.</p>
+                <button type="submit" class="btn-ghost dark full-width">Ajouter le fichier</button>
+              </form>
+              <div class="stack-list" id="task-files-list"></div>
+            </div>
+          </div>
         </article>
       </section>
     </main>

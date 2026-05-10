@@ -27,6 +27,13 @@ FROM roles r
 WHERE r.name = 'admin'
 ON DUPLICATE KEY UPDATE full_name = VALUES(full_name), job_title = VALUES(job_title);
 
+UPDATE users
+SET
+  phone = '+509 4479-5902',
+  whatsapp_phone = '+509 4479-5902',
+  bio = 'Fondateur de WebFy. Vision produit, structure operationnelle, image de marque et developpement business.'
+WHERE email = 'admin@webfy.ht';
+
 INSERT INTO staff_compensation (user_id, compensation_model, amount, currency, notes)
 SELECT u.id, 'volunteer', 0, 'USD', 'Fondateur en phase de lancement'
 FROM users u
@@ -92,6 +99,33 @@ FROM projects p
 JOIN users u ON u.email = 'admin@webfy.ht'
 WHERE p.name = 'Refonte WebFy';
 
+INSERT INTO task_comments (task_id, user_id, message)
+SELECT
+  t.id,
+  u.id,
+  'On pose ici les premiers echanges d execution pour transformer WebFy en vrai outil staff.'
+FROM tasks t
+JOIN users u ON u.email = 'admin@webfy.ht'
+WHERE t.title = 'Construire le backend staff'
+  AND NOT EXISTS (
+    SELECT 1 FROM task_comments tc WHERE tc.task_id = t.id LIMIT 1
+  );
+
+INSERT INTO task_files (task_id, user_id, file_name, file_url, file_kind, notes)
+SELECT
+  t.id,
+  u.id,
+  'WebFy Planning Board',
+  'https://www.figma.com/',
+  'reference',
+  'Lien de travail ou reference de structure a remplacer par vos vrais assets.'
+FROM tasks t
+JOIN users u ON u.email = 'admin@webfy.ht'
+WHERE t.title = 'Construire le backend staff'
+  AND NOT EXISTS (
+    SELECT 1 FROM task_files tf WHERE tf.task_id = t.id LIMIT 1
+  );
+
 INSERT INTO activity_logs (project_id, message, happened_at)
 SELECT
   p.id,
@@ -99,3 +133,59 @@ SELECT
   NOW()
 FROM projects p
 WHERE p.name = 'Refonte WebFy';
+
+INSERT INTO quotes (client_id, project_type, amount, status, notes)
+SELECT
+  c.id,
+  'Refonte site vitrine',
+  950,
+  'sent',
+  'Pack croissance propose pour un site pro avec image plus forte.'
+FROM clients c
+WHERE c.name = 'Restaurant Local';
+
+INSERT INTO invoices (quote_id, client_id, invoice_number, title, amount, currency, status, issued_date, due_date, notes)
+SELECT
+  q.id,
+  q.client_id,
+  'WFY-2026-001',
+  'Facture - Refonte site vitrine',
+  q.amount,
+  'USD',
+  'sent',
+  CURDATE(),
+  DATE_ADD(CURDATE(), INTERVAL 7 DAY),
+  'Facture de lancement issue du premier devis test.'
+FROM quotes q
+WHERE q.project_type = 'Refonte site vitrine'
+  AND NOT EXISTS (
+    SELECT 1 FROM invoices i WHERE i.quote_id = q.id LIMIT 1
+  );
+
+INSERT INTO payment_records (client_id, project_id, title, amount, currency, payment_method, payment_status, payment_date, notes)
+SELECT
+  c.id,
+  p.id,
+  'Acompte lancement WebFy',
+  250,
+  'USD',
+  'Bank transfer',
+  'paid',
+  CURDATE(),
+  'Paiement de depart pour enclencher la production.'
+FROM clients c
+JOIN projects p ON p.client_id = c.id
+WHERE c.name = 'WebFy Internal' AND p.name = 'Refonte WebFy';
+
+INSERT INTO notifications (user_id, title, message, category, link_url)
+SELECT
+  u.id,
+  'Bienvenue dans le centre d activite',
+  'WebFy commence a centraliser les taches, la finance et les signaux importants ici.',
+  'system',
+  '/staff'
+FROM users u
+WHERE u.email = 'admin@webfy.ht'
+  AND NOT EXISTS (
+    SELECT 1 FROM notifications n WHERE n.user_id = u.id AND n.title = 'Bienvenue dans le centre d activite' LIMIT 1
+  );

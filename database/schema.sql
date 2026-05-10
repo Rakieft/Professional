@@ -17,6 +17,9 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(190) NOT NULL UNIQUE,
   password_hash VARCHAR(255) NULL,
   job_title VARCHAR(120) NULL,
+  phone VARCHAR(50) NULL,
+  whatsapp_phone VARCHAR(50) NULL,
+  bio TEXT NULL,
   is_active TINYINT(1) NOT NULL DEFAULT 1,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -103,6 +106,38 @@ CREATE TABLE IF NOT EXISTS tasks (
     ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS task_comments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  task_id INT NOT NULL,
+  user_id INT NULL,
+  message TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_task_comments_task
+    FOREIGN KEY (task_id) REFERENCES tasks(id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_task_comments_user
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS task_files (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  task_id INT NOT NULL,
+  user_id INT NULL,
+  file_name VARCHAR(180) NOT NULL,
+  file_url VARCHAR(500) NOT NULL,
+  file_kind VARCHAR(80) NULL,
+  notes VARCHAR(255) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_task_files_task
+    FOREIGN KEY (task_id) REFERENCES tasks(id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_task_files_user
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE SET NULL
+);
+
 CREATE TABLE IF NOT EXISTS leads (
   id INT AUTO_INCREMENT PRIMARY KEY,
   company_name VARCHAR(180) NOT NULL,
@@ -161,4 +196,73 @@ CREATE TABLE IF NOT EXISTS quotes (
   CONSTRAINT fk_quotes_lead
     FOREIGN KEY (lead_id) REFERENCES leads(id)
     ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS invoices (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  quote_id INT NULL,
+  client_id INT NULL,
+  project_id INT NULL,
+  invoice_number VARCHAR(40) NOT NULL UNIQUE,
+  title VARCHAR(180) NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  currency VARCHAR(10) NOT NULL DEFAULT 'USD',
+  status ENUM('draft', 'sent', 'paid', 'overdue', 'cancelled') NOT NULL DEFAULT 'draft',
+  issued_date DATE NULL,
+  due_date DATE NULL,
+  notes TEXT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_invoices_quote
+    FOREIGN KEY (quote_id) REFERENCES quotes(id)
+    ON DELETE SET NULL,
+  CONSTRAINT fk_invoices_client
+    FOREIGN KEY (client_id) REFERENCES clients(id)
+    ON DELETE SET NULL,
+  CONSTRAINT fk_invoices_project
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+    ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS payment_records (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  client_id INT NULL,
+  project_id INT NULL,
+  quote_id INT NULL,
+  invoice_id INT NULL,
+  title VARCHAR(180) NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  currency VARCHAR(10) NOT NULL DEFAULT 'USD',
+  payment_method VARCHAR(80) NULL,
+  payment_status ENUM('pending', 'paid', 'partial', 'cancelled') NOT NULL DEFAULT 'paid',
+  payment_date DATE NULL,
+  notes TEXT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_payments_client
+    FOREIGN KEY (client_id) REFERENCES clients(id)
+    ON DELETE SET NULL,
+  CONSTRAINT fk_payments_project
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+    ON DELETE SET NULL,
+  CONSTRAINT fk_payments_quote
+    FOREIGN KEY (quote_id) REFERENCES quotes(id)
+    ON DELETE SET NULL,
+  CONSTRAINT fk_payments_invoice
+    FOREIGN KEY (invoice_id) REFERENCES invoices(id)
+    ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  title VARCHAR(180) NOT NULL,
+  message VARCHAR(255) NOT NULL,
+  category VARCHAR(80) NOT NULL DEFAULT 'general',
+  link_url VARCHAR(255) NULL,
+  is_read TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_notifications_user
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE CASCADE
 );

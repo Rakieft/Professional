@@ -1,5 +1,6 @@
 const express = require("express");
 const authRoutes = require("./authRoutes");
+const contactRoutes = require("./contactRoutes");
 const clientRoutes = require("./clientRoutes");
 const dashboardRoutes = require("./dashboardRoutes");
 const projectRoutes = require("./projectRoutes");
@@ -8,6 +9,8 @@ const metaRoutes = require("./metaRoutes");
 const taskRoutes = require("./taskRoutes");
 const userRoutes = require("./userRoutes");
 const analyticsRoutes = require("./analyticsRoutes");
+const financeRoutes = require("./financeRoutes");
+const notificationRoutes = require("./notificationRoutes");
 const { requireAuth } = require("../middleware/authMiddleware");
 const errorHandler = require("../middleware/errorHandler");
 
@@ -22,6 +25,7 @@ router.get("/health", (_req, res) => {
 });
 
 router.use("/auth", authRoutes);
+router.use("/contact", contactRoutes);
 router.use(requireAuth);
 router.use("/clients", clientRoutes);
 router.use("/dashboard", dashboardRoutes);
@@ -31,6 +35,8 @@ router.use("/tasks", taskRoutes);
 router.use("/leads", leadRoutes);
 router.use("/users", userRoutes);
 router.use("/analytics", analyticsRoutes);
+router.use("/finance", financeRoutes);
+router.use("/notifications", notificationRoutes);
 router.use(errorHandler);
 
 module.exports = router;
