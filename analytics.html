@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEO Analytics | WebFy Staff</title>
+  <meta name="description" content="Vue executive WebFy pour suivre la masse salariale, les engagements staff et les indicateurs de pilotage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assset/css/style.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body class="staff-app">
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/webfy-mark.svg" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Executive center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="/leads">Leads</a>
+        <a href="/team">Equipe</a>
+        <a href="/analytics" class="active" data-admin-only hidden>CEO Analytics</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">CEO only</span>
+        <h3>Piloter la structure</h3>
+        <a href="/staff" class="btn-ghost">Retour au dashboard</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Executive view</p>
+          <h1>CEO Analytics</h1>
+          <span>Une vue privee pour suivre les remunerations, les postes benevoles et la capacite reelle de WebFy.</span>
+          <div class="role-banner">
+            <span class="role-chip" id="role-chip">admin</span>
+            <span id="session-user-label">Session CEO</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/team" class="btn-primary">Gerer l'equipe</a>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card emphasis">
+          <span class="label">Masse mensuelle</span>
+          <strong id="analytics-monthly-payroll">$0</strong>
+          <p>Salaires mensuels a absorber si vous activez les postes remuneres.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Support et primes</span>
+          <strong id="analytics-support-budget">$0</strong>
+          <p>Budget de soutien, primes ou petites enveloppes staff.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Paiements mission</span>
+          <strong id="analytics-project-commitment">$0</strong>
+          <p>Montants prevus pour les roles payes a la mission.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Benevoles actifs</span>
+          <strong id="analytics-volunteers">0 poste</strong>
+          <p>Vision claire des membres encore en phase benevole.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid module-grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Vue executive</span>
+              <h2>Lecture rapide du projet</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="analytics-alerts">
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Chargement</strong>
+                <span class="status-chip">analyse</span>
+              </div>
+              <p>Preparation des alertes CEO et de la lecture budgetaire.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Compensation</span>
+              <h2>Mettre a jour un membre</h2>
+            </div>
+          </div>
+
+          <form id="compensation-form" class="staff-form">
+            <div class="form-row">
+              <label for="comp-user">Membre</label>
+              <select id="comp-user" name="userId" required></select>
+            </div>
+            <div class="form-row">
+              <label for="comp-model">Modele</label>
+              <select id="comp-model" name="compensationModel" required>
+                <option value="volunteer">Benevole</option>
+                <option value="monthly_salary">Salaire mensuel</option>
+                <option value="project_based">Paiement par mission</option>
+                <option value="stipend">Prime / support</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="comp-amount">Montant</label>
+              <input id="comp-amount" name="amount" type="number" min="0" step="1" placeholder="0">
+            </div>
+            <div class="form-row">
+              <label for="comp-currency">Devise</label>
+              <input id="comp-currency" name="currency" type="text" value="USD" maxlength="10">
+            </div>
+            <div class="form-row full">
+              <label for="comp-notes">Notes CEO</label>
+              <textarea id="comp-notes" name="notes" rows="4" placeholder="Ex: benevolat jusqu'a 3 clients signes, prime ponctuelle, salaire a activer si revenu stable..."></textarea>
+            </div>
+            <p class="module-feedback" id="comp-feedback">Utilisez cette page pour definir clairement quels postes restent benevoles et lesquels doivent etre remuneres des que WebFy montera.</p>
+            <div class="action-row">
+              <button type="submit" class="btn-primary full-width">Enregistrer la remuneration</button>
+            </div>
+          </form>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Structure du staff</span>
+              <h2>Remuneration par membre</h2>
+            </div>
+            <span class="badge" id="analytics-average-salary">Salaire moyen: $0</span>
+          </div>
+
+          <div class="project-table" id="analytics-table">
+            <div class="project-row header-row">
+              <span>Membre</span>
+              <span>Role</span>
+              <span>Modele</span>
+              <span>Montant</span>
+            </div>
+            <div class="project-row">
+              <span>Chargement...</span>
+              <span>--</span>
+              <span>--</span>
+              <span>--</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Health check</span>
+              <h2>Pipeline de l'agence</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="analytics-business-snapshot">
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Operations</strong>
+                <span class="status-chip">live</span>
+              </div>
+              <p>Les indicateurs projet, leads et charge de travail seront affiches ici.</p>
+            </article>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projets | WebFy Staff</title>
-  <meta name="description" content="Gestion des projets WebFy.">
+  <title>Leads | WebFy Staff</title>
+  <meta name="description" content="Gestion des leads WebFy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="stylesheet" href="assset/css/style.css">
   <link rel="icon" type="image/svg+xml" href="image/webfy-mark.svg">
@@ -35,9 +35,9 @@
       <nav class="side-nav">
         <a href="/staff">Vue d'ensemble</a>
         <a href="/clients">Clients</a>
-        <a href="/projects" class="active">Projets</a>
+        <a href="/projects">Projets</a>
         <a href="/tasks">Taches</a>
-        <a href="/leads">Leads</a>
+        <a href="/leads" class="active">Leads</a>
         <a href="/team">Equipe</a>
         <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
       </nav>
@@ -52,9 +52,9 @@
     <main class="staff-main">
       <header class="staff-topbar">
         <div>
-          <p class="eyebrow">Project workspace</p>
-          <h1>Projets</h1>
-          <span>Suivez les missions actives avec plus de lisibilite sur le service, le responsable, la priorite, le budget et les echeances.</span>
+          <p class="eyebrow">Lead workspace</p>
+          <h1>Leads</h1>
+          <span>Centralisez les prospects, leurs besoins, leur statut commercial et les prochaines actions a mener.</span>
           <div class="role-banner">
             <span class="role-chip" id="role-chip">staff</span>
             <span id="session-user-label">Session staff</span>
@@ -72,19 +72,19 @@
 
       <section class="stats-grid">
         <article class="stat-card emphasis">
-          <span class="label">Pilotage</span>
-          <strong>Un pipeline plus net</strong>
-          <p>Chaque mission devient une ligne de production claire pour Operations, Design, Dev et Support.</p>
+          <span class="label">Pipeline commercial</span>
+          <strong>Prospects plus lisibles</strong>
+          <p>Le module regroupe les demandes entrantes et les besoins a convertir en clients actifs.</p>
         </article>
         <article class="stat-card">
-          <span class="label">Structure</span>
-          <strong>Client + service + owner</strong>
-          <p>Une base projet propre pour faire evoluer ensuite les taches et permissions.</p>
+          <span class="label">Equipe cible</span>
+          <strong>Sales + Direction</strong>
+          <p>Leads, qualification, relance et orientation vers devis ou projet.</p>
         </article>
         <article class="stat-card">
-          <span class="label">Etape suivante</span>
-          <strong>Module Taches</strong>
-          <p>Le prochain ajout reliera chaque projet a des actions concretes pour chaque role.</p>
+          <span class="label">Usage</span>
+          <strong>Suivi commercial</strong>
+          <p>Qui a contacté, pour quel besoin, avec quelle priorité et quel budget.</p>
         </article>
       </section>
 
@@ -92,84 +92,77 @@
         <article class="panel">
           <div class="panel-head">
             <div>
-              <span class="label">Nouveau projet</span>
-              <h2>Ajouter une mission</h2>
+              <span class="label">Nouveau lead</span>
+              <h2>Ajouter un prospect</h2>
             </div>
           </div>
 
-          <form id="project-form" class="staff-form">
+          <form id="lead-form" class="staff-form">
             <div class="form-row">
-              <label for="project-name">Nom du projet</label>
-              <input id="project-name" name="name" type="text" required>
+              <label for="lead-company">Entreprise</label>
+              <input id="lead-company" name="companyName" type="text" required>
             </div>
             <div class="form-row">
-              <label for="project-client">Client</label>
-              <select id="project-client" name="clientId"></select>
+              <label for="lead-contact">Contact</label>
+              <input id="lead-contact" name="contactName" type="text">
             </div>
             <div class="form-row">
-              <label for="project-service">Service</label>
-              <select id="project-service" name="primaryServiceId"></select>
+              <label for="lead-email">Email</label>
+              <input id="lead-email" name="email" type="email">
             </div>
             <div class="form-row">
-              <label for="project-owner">Responsable</label>
-              <select id="project-owner" name="ownerUserId"></select>
+              <label for="lead-phone">Telephone</label>
+              <input id="lead-phone" name="phone" type="text">
             </div>
             <div class="form-row">
-              <label for="project-status">Statut</label>
-              <select id="project-status" name="status">
-                <option value="planned">Planifie</option>
-                <option value="in_progress">En cours</option>
-                <option value="review">Validation</option>
-                <option value="completed">Termine</option>
-                <option value="archived">Archive</option>
+              <label for="lead-need">Besoin</label>
+              <input id="lead-need" name="needSummary" type="text" required>
+            </div>
+            <div class="form-row">
+              <label for="lead-project-type">Type de projet</label>
+              <input id="lead-project-type" name="projectType" type="text" placeholder="Site, branding, social media...">
+            </div>
+            <div class="form-row">
+              <label for="lead-budget">Budget</label>
+              <input id="lead-budget" name="budgetRange" type="text" placeholder="$300-$800">
+            </div>
+            <div class="form-row">
+              <label for="lead-status">Statut</label>
+              <select id="lead-status" name="status">
+                <option value="new">Nouveau</option>
+                <option value="contacted">Contacte</option>
+                <option value="qualified">Qualifie</option>
+                <option value="won">Gagne</option>
+                <option value="lost">Perdu</option>
               </select>
-            </div>
-            <div class="form-row">
-              <label for="project-priority">Priorite</label>
-              <select id="project-priority" name="priority">
-                <option value="low">Basse</option>
-                <option value="medium">Moyenne</option>
-                <option value="high">Haute</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <label for="project-budget">Budget</label>
-              <input id="project-budget" name="budget" type="number" step="0.01">
-            </div>
-            <div class="form-row">
-              <label for="project-start">Debut</label>
-              <input id="project-start" name="startDate" type="date">
-            </div>
-            <div class="form-row">
-              <label for="project-due">Echeance</label>
-              <input id="project-due" name="dueDate" type="date">
             </div>
             <div class="form-row full">
-              <label for="project-description">Description</label>
-              <textarea id="project-description" name="description" rows="4"></textarea>
+              <label for="lead-notes">Notes</label>
+              <textarea id="lead-notes" name="notes" rows="4"></textarea>
             </div>
-            <p class="module-feedback" id="project-feedback">Creez un projet rattache a un client et un service.</p>
-            <button type="submit" class="btn-primary full-width">Creer le projet</button>
+            <p class="module-feedback" id="lead-feedback">Ajoutez un lead pour suivre le pipeline commercial.</p>
+            <button type="submit" class="btn-primary full-width">Creer le lead</button>
           </form>
         </article>
 
         <article class="panel wide">
           <div class="panel-head">
             <div>
-              <span class="label">Pipeline projets</span>
-              <h2>Projets enregistres</h2>
+              <span class="label">Prospection</span>
+              <h2>Leads enregistres</h2>
             </div>
           </div>
-          <div class="stack-list" id="project-list"></div>
+          <div class="stack-list" id="lead-list-page"></div>
         </article>
       </section>
     </main>
   </div>
 
   <script src="js/staff-common.js"></script>
-  <script src="js/projects.js"></script>
+  <script src="js/leads.js"></script>
 </body>
 </html>
+
 
 
 

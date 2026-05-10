@@ -1,6 +1,9 @@
 const menuButton = document.getElementById("menu-button");
 const sidebar = document.getElementById("sidebar");
 const logoutButton = document.getElementById("logout-button");
+const roleChip = document.getElementById("role-chip");
+const sessionUserLabel = document.getElementById("session-user-label");
+let currentStaffUser = null;
 
 if (menuButton && sidebar) {
   menuButton.addEventListener("click", () => {
@@ -30,5 +33,33 @@ async function ensureStaffSession() {
     throw new Error("Unauthenticated");
   }
 
+  const roleName = payload.user?.roleName || "staff";
+  const fullName = payload.user?.fullName || "Session staff";
+
+  if (roleChip) {
+    roleChip.textContent = roleName.replaceAll("_", " ");
+  }
+
+  if (sessionUserLabel) {
+    sessionUserLabel.textContent = `${fullName} | ${roleName.replaceAll("_", " ")}`;
+  }
+
+  document.body.dataset.role = roleName;
+  const adminOnlyLinks = document.querySelectorAll("[data-admin-only]");
+
+  adminOnlyLinks.forEach((link) => {
+    if (roleName === "admin") {
+      link.hidden = false;
+    } else {
+      link.hidden = true;
+    }
+  });
+
+  currentStaffUser = payload.user;
+
   return payload.user;
+}
+
+function getCurrentStaffUser() {
+  return currentStaffUser;
 }

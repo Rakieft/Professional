@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -6,16 +6,26 @@
   <title>Taches | WebFy Staff</title>
   <meta name="description" content="Gestion des taches WebFy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assset/css/staff.css">
-  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="assset/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="image/webfy-mark.svg">
+  <link rel="icon" type="image/x-icon" href="assset/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assset/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assset/favicon/site.webmanifest">
+  <meta name="theme-color" content="#0a2238">
+  <meta name="msapplication-TileColor" content="#0a2238">
+  <meta name="msapplication-config" content="assset/favicon/browserconfig.xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WebFy">
+
 </head>
-<body>
+<body class="staff-app">
   <div class="staff-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <img src="image/logo.png" alt="WebFy">
+        <img src="image/webfy-mark.svg" alt="WebFy">
         <div>
           <strong>WebFy Staff</strong>
           <span>Operations center</span>
@@ -27,7 +37,9 @@
         <a href="/clients">Clients</a>
         <a href="/projects">Projets</a>
         <a href="/tasks" class="active">Taches</a>
-        <a href="#coming-soon">Leads</a>
+        <a href="/leads">Leads</a>
+        <a href="/team">Equipe</a>
+        <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
       </nav>
 
       <div class="sidebar-card">
@@ -43,6 +55,10 @@
           <p class="eyebrow">Task workspace</p>
           <h1>Taches</h1>
           <span>Le coeur de production quotidien pour transformer les projets en actions concretes par role.</span>
+          <div class="role-banner">
+            <span class="role-chip" id="role-chip">staff</span>
+            <span id="session-user-label">Session staff</span>
+          </div>
         </div>
 
         <div class="topbar-actions">
@@ -57,18 +73,18 @@
       <section class="stats-grid">
         <article class="stat-card emphasis">
           <span class="label">Noyau metier</span>
-          <strong>Le module central</strong>
+          <strong id="tasks-total">-- taches</strong>
           <p>Chaque role travaille ici sur de vraies actions reliees aux projets et a la production.</p>
         </article>
         <article class="stat-card">
-          <span class="label">Utilite</span>
-          <strong>Priorites visibles</strong>
-          <p>Qui fait quoi, pour quel projet, et pour quelle echeance.</p>
+          <span class="label">En cours</span>
+          <strong id="tasks-in-progress">-- actions</strong>
+          <p>Ce qui mobilise actuellement l'equipe de production.</p>
         </article>
         <article class="stat-card">
-          <span class="label">Suite logique</span>
-          <strong>Vues par role</strong>
-          <p>Ce module sera ensuite filtre selon designer, dev, content, sales et support.</p>
+          <span class="label">Priorite haute</span>
+          <strong id="tasks-high-priority">-- urgences</strong>
+          <p>Les elements qui demandent une attention plus rapide.</p>
         </article>
       </section>
 
@@ -77,11 +93,12 @@
           <div class="panel-head">
             <div>
               <span class="label">Nouvelle tache</span>
-              <h2>Ajouter une action</h2>
+              <h2 id="task-form-title">Ajouter une action</h2>
             </div>
           </div>
 
           <form id="task-form" class="staff-form">
+            <input id="task-id" name="id" type="hidden">
             <div class="form-row">
               <label for="task-title">Titre</label>
               <input id="task-title" name="title" type="text" required>
@@ -120,7 +137,10 @@
               <textarea id="task-description" name="description" rows="4"></textarea>
             </div>
             <p class="module-feedback" id="task-feedback">Ajoutez une tache rattachee a un projet pour structurer la production.</p>
-            <button type="submit" class="btn-primary full-width">Creer la tache</button>
+            <div class="action-row">
+              <button type="submit" class="btn-primary full-width" id="task-submit-button">Creer la tache</button>
+              <button type="button" class="btn-ghost dark full-width" id="task-cancel-button">Annuler</button>
+            </div>
           </form>
         </article>
 
@@ -129,6 +149,33 @@
             <div>
               <span class="label">Execution</span>
               <h2>Taches enregistrees</h2>
+            </div>
+          </div>
+          <div class="toolbar-row">
+            <div class="toolbar-item">
+              <label for="task-filter-status">Statut</label>
+              <select id="task-filter-status">
+                <option value="">Tous</option>
+                <option value="todo">A faire</option>
+                <option value="in_progress">En cours</option>
+                <option value="review">Validation</option>
+                <option value="done">Termine</option>
+              </select>
+            </div>
+            <div class="toolbar-item">
+              <label for="task-filter-priority">Priorite</label>
+              <select id="task-filter-priority">
+                <option value="">Toutes</option>
+                <option value="high">Haute</option>
+                <option value="medium">Moyenne</option>
+                <option value="low">Basse</option>
+              </select>
+            </div>
+            <div class="toolbar-item">
+              <label for="task-filter-assignee">Responsable</label>
+              <select id="task-filter-assignee">
+                <option value="">Tous</option>
+              </select>
             </div>
           </div>
           <div class="stack-list" id="task-list"></div>
@@ -141,3 +188,10 @@
   <script src="js/tasks.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+

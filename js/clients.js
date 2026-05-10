@@ -1,6 +1,12 @@
 const clientForm = document.getElementById("client-form");
 const clientFeedback = document.getElementById("client-feedback");
 const clientList = document.getElementById("client-list");
+let currentUser = null;
+
+function canManageClients() {
+  const roleName = currentUser?.roleName || "";
+  return ["admin", "operations_manager", "project_manager", "sales_manager", "support_manager"].includes(roleName);
+}
 
 function renderClients(clients) {
   clientList.innerHTML = clients
@@ -53,6 +59,20 @@ if (clientForm) {
 }
 
 (async () => {
-  await ensureStaffSession();
+  currentUser = await ensureStaffSession();
+
+  if (!canManageClients() && clientForm) {
+    Array.from(clientForm.elements).forEach((field) => {
+      if (field.tagName === "BUTTON") {
+        field.disabled = true;
+        field.textContent = "Gestion reservee aux roles business";
+      } else {
+        field.disabled = true;
+      }
+    });
+
+    clientFeedback.textContent = "Vous pouvez consulter les clients, mais la creation est reservee aux roles business et management.";
+  }
+
   await loadClients();
 })();

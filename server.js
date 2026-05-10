@@ -7,7 +7,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const apiRouter = require("./server/routes");
-const { requireStaffPage, redirectIfAuthenticated } = require("./server/middleware/authMiddleware");
+const {
+  requireStaffPage,
+  requireStaffRolePage,
+  redirectIfAuthenticated
+} = require("./server/middleware/authMiddleware");
 
 const app = express();
 const port = Number(process.env.PORT || 5000);
@@ -87,12 +91,48 @@ app.get("/clients", requireStaffPage, (_req, res) => {
   res.sendFile(path.join(rootDir, "clients.html"));
 });
 
+app.get("/clients.html", requireStaffPage, (_req, res) => {
+  res.redirect("/clients");
+});
+
 app.get("/projects", requireStaffPage, (_req, res) => {
   res.sendFile(path.join(rootDir, "projects.html"));
 });
 
+app.get("/projects.html", requireStaffPage, (_req, res) => {
+  res.redirect("/projects");
+});
+
 app.get("/tasks", requireStaffPage, (_req, res) => {
   res.sendFile(path.join(rootDir, "tasks.html"));
+});
+
+app.get("/tasks.html", requireStaffPage, (_req, res) => {
+  res.redirect("/tasks");
+});
+
+app.get("/leads", requireStaffPage, (_req, res) => {
+  res.sendFile(path.join(rootDir, "leads.html"));
+});
+
+app.get("/leads.html", requireStaffPage, (_req, res) => {
+  res.redirect("/leads");
+});
+
+app.get("/team", requireStaffPage, (_req, res) => {
+  res.sendFile(path.join(rootDir, "team.html"));
+});
+
+app.get("/team.html", requireStaffPage, (_req, res) => {
+  res.redirect("/team");
+});
+
+app.get("/analytics", requireStaffRolePage("admin"), (_req, res) => {
+  res.sendFile(path.join(rootDir, "analytics.html"));
+});
+
+app.get("/analytics.html", requireStaffRolePage("admin"), (_req, res) => {
+  res.redirect("/analytics");
 });
 
 app.use((req, res) => {

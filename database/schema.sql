@@ -25,6 +25,20 @@ CREATE TABLE IF NOT EXISTS users (
     ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS staff_compensation (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL UNIQUE,
+  compensation_model ENUM('volunteer', 'monthly_salary', 'project_based', 'stipend') NOT NULL DEFAULT 'volunteer',
+  amount DECIMAL(10,2) NULL DEFAULT NULL,
+  currency VARCHAR(10) NOT NULL DEFAULT 'USD',
+  notes VARCHAR(255) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_staff_compensation_user
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS clients (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(180) NOT NULL,

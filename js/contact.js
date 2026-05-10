@@ -1,4 +1,4 @@
-
+﻿
 const toggle = document.getElementById("menu-toggle");
 const mobileMenu = document.getElementById("mobile-menu");
 
@@ -37,3 +37,4 @@ document.getElementById("quote-form").addEventListener("submit", function(e) {
     console.error(error);
   });
 });
+

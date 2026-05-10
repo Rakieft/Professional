@@ -1,7 +1,16 @@
-USE webfy_platform;
+USE webfy;
 
 INSERT INTO roles (name)
-VALUES ('admin'), ('manager'), ('creative'), ('developer')
+VALUES
+  ('admin'),
+  ('operations_manager'),
+  ('project_manager'),
+  ('designer'),
+  ('developer'),
+  ('content_creator'),
+  ('social_media_manager'),
+  ('sales_manager'),
+  ('support_manager')
 ON DUPLICATE KEY UPDATE name = VALUES(name);
 
 INSERT INTO services (name, description)
@@ -17,6 +26,16 @@ SELECT r.id, 'WebFy Admin', 'admin@webfy.ht', 'Founder'
 FROM roles r
 WHERE r.name = 'admin'
 ON DUPLICATE KEY UPDATE full_name = VALUES(full_name), job_title = VALUES(job_title);
+
+INSERT INTO staff_compensation (user_id, compensation_model, amount, currency, notes)
+SELECT u.id, 'volunteer', 0, 'USD', 'Fondateur en phase de lancement'
+FROM users u
+WHERE u.email = 'admin@webfy.ht'
+ON DUPLICATE KEY UPDATE
+  compensation_model = VALUES(compensation_model),
+  amount = VALUES(amount),
+  currency = VALUES(currency),
+  notes = VALUES(notes);
 
 INSERT INTO clients (name, company_type, contact_name, email, phone, status)
 VALUES

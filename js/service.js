@@ -1,4 +1,4 @@
-/* =========================
+﻿/* =========================
    MENU TOGGLE (MOBILE)
 ========================= */
 const toggle = document.getElementById("menu-toggle");
@@ -39,3 +39,4 @@ document.getElementById("quote-form").addEventListener("submit", function(e) {
     console.error(error);
   });
 });
+

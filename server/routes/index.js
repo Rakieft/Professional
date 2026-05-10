@@ -6,6 +6,8 @@ const projectRoutes = require("./projectRoutes");
 const leadRoutes = require("./leadRoutes");
 const metaRoutes = require("./metaRoutes");
 const taskRoutes = require("./taskRoutes");
+const userRoutes = require("./userRoutes");
+const analyticsRoutes = require("./analyticsRoutes");
 const { requireAuth } = require("../middleware/authMiddleware");
 const errorHandler = require("../middleware/errorHandler");
 
@@ -27,6 +29,8 @@ router.use("/meta", metaRoutes);
 router.use("/projects", projectRoutes);
 router.use("/tasks", taskRoutes);
 router.use("/leads", leadRoutes);
+router.use("/users", userRoutes);
+router.use("/analytics", analyticsRoutes);
 router.use(errorHandler);
 
 module.exports = router;

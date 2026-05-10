@@ -1,5 +1,9 @@
 const db = require("../config/db");
 
+function canManageProjects(roleName = "") {
+  return ["admin", "operations_manager", "project_manager"].includes(roleName);
+}
+
 async function listProjects(_req, res, next) {
   try {
     const projects = await db.query(
@@ -29,6 +33,15 @@ async function listProjects(_req, res, next) {
 
 async function createProject(req, res, next) {
   try {
+    const sessionUser = req.session?.user || {};
+
+    if (!canManageProjects(sessionUser.roleName)) {
+      return res.status(403).json({
+        ok: false,
+        message: "Vous n'avez pas les permissions pour creer un projet."
+      });
+    }
+
     const {
       clientId,
       primaryServiceId,

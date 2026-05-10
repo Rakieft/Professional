@@ -8,6 +8,40 @@ const projectTable = document.getElementById("project-table");
 const scheduleList = document.getElementById("schedule-list");
 const leadList = document.getElementById("lead-list");
 const activityFeed = document.getElementById("activity-feed");
+const staffRoleSummary = document.getElementById("staff-role-summary");
+const focusLabel = document.getElementById("focus-label");
+const focusTitle = document.getElementById("focus-title");
+const focusBadge = document.getElementById("focus-badge");
+const roleFocusList = document.getElementById("role-focus-list");
+const quickActionsTitle = document.getElementById("quick-actions-title");
+const quickActionsList = document.getElementById("quick-actions-list");
+const activityTitle = document.getElementById("activity-title");
+const myWorkTitle = document.getElementById("my-work-title");
+const myWorkList = document.getElementById("my-work-list");
+
+function statusLabel(status) {
+  switch (status) {
+    case "in_progress":
+      return "En cours";
+    case "review":
+      return "Validation";
+    case "done":
+      return "Termine";
+    default:
+      return "A faire";
+  }
+}
+
+function priorityLabel(priority) {
+  switch (priority) {
+    case "high":
+      return "Haute";
+    case "low":
+      return "Basse";
+    default:
+      return "Moyenne";
+  }
+}
 
 function renderProjects(projects) {
   if (!projectTable) {
@@ -97,8 +131,92 @@ function renderActivities(activities) {
     .join("");
 }
 
+function renderRoleView(roleView) {
+  if (!roleView) {
+    return;
+  }
+
+  if (staffRoleSummary) {
+    staffRoleSummary.textContent = roleView.summary;
+  }
+
+  if (focusLabel) {
+    focusLabel.textContent = roleView.focusLabel;
+  }
+
+  if (focusTitle) {
+    focusTitle.textContent = roleView.focusTitle;
+  }
+
+  if (focusBadge) {
+    focusBadge.textContent = roleView.focusBadge;
+  }
+
+  if (quickActionsTitle) {
+    quickActionsTitle.textContent = roleView.quickActionsTitle;
+  }
+
+  if (activityTitle) {
+    activityTitle.textContent = roleView.activityTitle;
+  }
+
+  if (myWorkTitle) {
+    myWorkTitle.textContent = roleView.myWorkTitle;
+  }
+
+  if (roleFocusList) {
+    roleFocusList.innerHTML = (roleView.focusItems || [])
+      .map(
+        (item) => `
+          <div class="activity-item">
+            <strong>${item.title}</strong>
+            <p>${item.text}</p>
+          </div>
+        `
+      )
+      .join("");
+  }
+
+  if (quickActionsList) {
+    quickActionsList.innerHTML = (roleView.quickActions || [])
+      .map(
+        (item) => `
+          <article class="stack-card">
+            <div class="stack-head">
+              <strong>${item.title}</strong>
+              <span class="status-chip">${item.status}</span>
+            </div>
+            <p>${item.text}</p>
+          </article>
+        `
+      )
+      .join("");
+  }
+}
+
+function renderMyTasks(tasks) {
+  if (!myWorkList) {
+    return;
+  }
+
+  myWorkList.innerHTML = tasks
+    .map(
+      (task) => `
+        <article class="stack-card">
+          <div class="stack-head">
+            <strong>${task.title}</strong>
+            <span class="status-chip">${statusLabel(task.status)}</span>
+          </div>
+          <p>${task.projectName || "Sans projet"}</p>
+          <small>Priorite: ${priorityLabel(task.priority)} · Echeance: ${task.dueDate || "-"}</small>
+        </article>
+      `
+    )
+    .join("");
+}
+
 function renderOverview(payload, warning) {
-  const { metrics, projects, content, leads, activities, source } = payload;
+  const { metrics, projects, content, leads, activities, source, roleView, myTasks } = payload;
 
   if (metricProjects) {
     metricProjects.textContent = `${metrics.activeProjects} projets actifs`;
@@ -135,6 +253,8 @@ function renderOverview(payload, warning) {
   renderSchedule(content || []);
   renderLeads(leads || []);
   renderActivities(activities || []);
+  renderRoleView(roleView);
+  renderMyTasks(myTasks || []);
 }
 
 async function loadDashboard() {

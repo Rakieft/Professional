@@ -1,5 +1,9 @@
 const db = require("../config/db");
 
+function canManageClients(roleName = "") {
+  return ["admin", "operations_manager", "project_manager", "sales_manager", "support_manager"].includes(roleName);
+}
+
 async function listClients(_req, res, next) {
   try {
     const clients = await db.query(
@@ -28,6 +32,15 @@ async function listClients(_req, res, next) {
 
 async function createClient(req, res, next) {
   try {
+    const sessionUser = req.session?.user || {};
+
+    if (!canManageClients(sessionUser.roleName)) {
+      return res.status(403).json({
+        ok: false,
+        message: "Vous n'avez pas les permissions pour creer un client."
+      });
+    }
+
     const {
       name,
       companyType,

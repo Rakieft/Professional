@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -6,16 +6,26 @@
   <title>Clients | WebFy Staff</title>
   <meta name="description" content="Gestion des clients WebFy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assset/css/staff.css">
-  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="assset/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="image/webfy-mark.svg">
+  <link rel="icon" type="image/x-icon" href="assset/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assset/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assset/favicon/site.webmanifest">
+  <meta name="theme-color" content="#0a2238">
+  <meta name="msapplication-TileColor" content="#0a2238">
+  <meta name="msapplication-config" content="assset/favicon/browserconfig.xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WebFy">
+
 </head>
-<body>
+<body class="staff-app">
   <div class="staff-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <img src="image/logo.png" alt="WebFy">
+        <img src="image/webfy-mark.svg" alt="WebFy">
         <div>
           <strong>WebFy Staff</strong>
           <span>Operations center</span>
@@ -27,7 +37,9 @@
         <a href="/clients" class="active">Clients</a>
         <a href="/projects">Projets</a>
         <a href="/tasks">Taches</a>
-        <a href="#coming-soon">Leads</a>
+        <a href="/leads">Leads</a>
+        <a href="/team">Equipe</a>
+        <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
       </nav>
 
       <div class="sidebar-card">
@@ -43,6 +55,10 @@
           <p class="eyebrow">Client workspace</p>
           <h1>Clients</h1>
           <span>Centralisez les entreprises, les points de contact et le statut de chaque relation client dans une interface plus haut de gamme.</span>
+          <div class="role-banner">
+            <span class="role-chip" id="role-chip">staff</span>
+            <span id="session-user-label">Session staff</span>
+          </div>
         </div>
 
         <div class="topbar-actions">
@@ -137,3 +153,10 @@
   <script src="js/clients.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+

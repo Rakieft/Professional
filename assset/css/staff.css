@@ -246,6 +246,29 @@ select {
   flex-wrap: wrap;
 }
 
+.role-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.role-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  color: #05212d;
+  background: linear-gradient(135deg, var(--accent), #8df0e3);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 .menu-button {
   display: none;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -531,12 +554,54 @@ select {
   width: 100%;
 }
 
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
 .stack-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 0.45rem;
+}
+
+.stack-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.mini-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 35, 55, 0.08);
+  background: #ffffff;
+  color: var(--dark-text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mini-btn.success {
+  color: #0c6a5d;
+  background: rgba(26, 214, 192, 0.1);
+}
+
+.mini-btn.warn {
+  color: #8a5d11;
+  background: rgba(255, 185, 102, 0.15);
+}
+
+.mini-btn.danger {
+  color: #9f2f3a;
+  background: rgba(255, 99, 132, 0.12);
 }
 
 @media (max-width: 1260px) {

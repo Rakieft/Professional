@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipe | WebFy Staff</title>
+  <meta name="description" content="Gestion des comptes staff et des roles WebFy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assset/css/style.css">
+  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body class="staff-app">
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/webfy-mark.svg" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Operations center</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="/leads">Leads</a>
+        <a href="/team" class="active">Equipe</a>
+        <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Admin</span>
+        <h3>Organiser le staff</h3>
+        <a href="/" class="btn-ghost">Voir le site</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Team management</p>
+          <h1>Equipe et roles</h1>
+          <span>Créez les comptes staff, attribuez les rôles et gardez une structure claire pour la production.</span>
+          <div class="role-banner">
+            <span class="role-chip" id="role-chip">staff</span>
+            <span id="session-user-label">Session staff</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/tasks" class="btn-primary">Voir les taches</a>
+        </div>
+      </header>
+
+      <section class="stats-grid" id="team-stats">
+        <article class="stat-card emphasis">
+          <span class="label">Structure</span>
+          <strong id="team-total">-- membres</strong>
+          <p>Une equipe mieux definie donne un dashboard beaucoup plus utile.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Actifs</span>
+          <strong id="team-active">-- comptes</strong>
+          <p>Comptes actuellement disponibles pour travailler dans l'espace staff.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Roles</span>
+          <strong id="team-roles">-- roles</strong>
+          <p>Base pour les vues par role, permissions et production quotidienne.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid module-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Nouveau membre</span>
+              <h2 id="team-form-title">Ajouter un compte staff</h2>
+            </div>
+          </div>
+
+          <form id="team-form" class="staff-form">
+            <input id="team-id" name="id" type="hidden">
+            <div class="form-row">
+              <label for="team-full-name">Nom complet</label>
+              <input id="team-full-name" name="fullName" type="text" required>
+            </div>
+            <div class="form-row">
+              <label for="team-email">Email</label>
+              <input id="team-email" name="email" type="email" required>
+            </div>
+            <div class="form-row">
+              <label for="team-role">Role</label>
+              <select id="team-role" name="roleId" required></select>
+            </div>
+            <div class="form-row">
+              <label for="team-job-title">Poste</label>
+              <input id="team-job-title" name="jobTitle" type="text" placeholder="Designer, Developer, Sales...">
+            </div>
+            <div class="form-row full">
+              <label for="team-password">Mot de passe</label>
+              <input id="team-password" name="password" type="password" placeholder="Obligatoire a la creation, optionnel en modification">
+            </div>
+            <p class="module-feedback" id="team-feedback">Commencez par creer les comptes reels du staff avec un role et un poste clair.</p>
+            <div class="action-row">
+              <button type="submit" class="btn-primary full-width" id="team-submit-button">Creer le membre</button>
+              <button type="button" class="btn-ghost dark full-width" id="team-cancel-button">Annuler</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Staff</span>
+              <h2>Membres enregistres</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="team-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js"></script>
+  <script src="js/team.js"></script>
+</body>
+</html>

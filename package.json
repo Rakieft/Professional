@@ -4,8 +4,9 @@
   "description": "WebFy marketing website and staff platform with MySQL-backed API.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
+    "dev": "node server/scripts/run-webfy.js --dev",
+    "start": "node server/scripts/run-webfy.js",
+    "restart": "node server/scripts/run-webfy.js",
     "db:schema": "node server/scripts/run-sql.js database/schema.sql",
     "db:seed": "node server/scripts/run-sql.js database/seed.sql",
     "admin:sync": "node server/scripts/sync-admin.js"

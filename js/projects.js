@@ -4,6 +4,12 @@ const projectList = document.getElementById("project-list");
 const projectClient = document.getElementById("project-client");
 const projectService = document.getElementById("project-service");
 const projectOwner = document.getElementById("project-owner");
+let currentUser = null;
+
+function canManageProjects() {
+  const roleName = currentUser?.roleName || "";
+  return ["admin", "operations_manager", "project_manager"].includes(roleName);
+}
 
 function fillSelect(select, items, labelKey, valueKey, emptyLabel) {
   select.innerHTML = `<option value="">${emptyLabel}</option>` +
@@ -75,7 +81,21 @@ if (projectForm) {
 }
 
 (async () => {
-  await ensureStaffSession();
+  currentUser = await ensureStaffSession();
   await loadMeta();
+
+  if (!canManageProjects() && projectForm) {
+    Array.from(projectForm.elements).forEach((field) => {
+      if (field.tagName === "BUTTON") {
+        field.disabled = true;
+        field.textContent = "Creation reservee aux managers";
+      } else {
+        field.disabled = true;
+      }
+    });
+
+    projectFeedback.textContent = "Vous pouvez consulter les projets, mais la creation est reservee aux roles manageriaux.";
+  }
+
   await loadProjects();
 })();
