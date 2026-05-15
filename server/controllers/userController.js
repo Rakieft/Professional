@@ -119,6 +119,13 @@ async function toggleUserStatus(req, res, next) {
     const { id } = req.params;
     const { isActive } = req.body;
 
+    if (Number(id) === Number(req.session?.user?.id) && !isActive) {
+      return res.status(400).json({
+        ok: false,
+        message: "Vous ne pouvez pas desactiver votre propre compte."
+      });
+    }
+
     await db.query(`UPDATE users SET is_active = ? WHERE id = ?`, [isActive ? 1 : 0, id]);
 
     res.json({

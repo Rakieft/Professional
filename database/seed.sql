@@ -3,6 +3,8 @@ USE webfy;
 INSERT INTO roles (name)
 VALUES
   ('admin'),
+  ('cofounder'),
+  ('secretary'),
   ('operations_manager'),
   ('project_manager'),
   ('designer'),
@@ -10,7 +12,8 @@ VALUES
   ('content_creator'),
   ('social_media_manager'),
   ('sales_manager'),
-  ('support_manager')
+  ('support_manager'),
+  ('administrative_assistant')
 ON DUPLICATE KEY UPDATE name = VALUES(name);
 
 INSERT INTO services (name, description)

@@ -8,25 +8,26 @@
   <meta name="keywords" content="tarifs webfy, prix site web haiti, devis branding, offre digitale">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#08131f">
   <meta property="og:title" content="Tarifs WebFy | Des offres plus claires">
   <meta property="og:description" content="Des packs plus cohérents, moins de répétition et une base plus professionnelle pour présenter vos prix.">
   <meta property="og:image" content="image/hero2.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webfy.ht/tarifs">
+  <link rel="canonical" href="https://webfy.ht/tarifs">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="assset/css/style.css">
   <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
 
 </head>
-<body class="public-app">
+<body class="public-app page-tarifs">
   <header class="site-header" id="site-header">
     <div class="top-bar">
-      <span>Des offres mieux structurées pour mieux vendre</span>
-      <span>contact@webfy.ht</span>
-      <span>+509 4479-5902</span>
+      <span>contact@webfy.ht/ +509 4479-5902</span>
     </div>
     <div class="nav-main">
-      <a class="logo" href="index.html"><img src="image/webfy-mark.svg" alt="WebFy"></a>
+      <a class="logo" href="index.html"><img src="image/webfy-mark.svg" alt="WebFy" width="160" height="48"></a>
       <nav class="nav-links">
         <a href="index.html">Accueil</a>
         <a href="services.html">Services</a>
@@ -47,7 +48,7 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-header">
-      <img src="image/webfy-mark.svg" alt="WebFy">
+      <img src="image/webfy-mark.svg" alt="WebFy" width="160" height="48">
       <p>Des tarifs plus propres et plus cohérents à présenter.</p>
     </div>
     <nav class="mobile-nav">
@@ -91,7 +92,7 @@
             <li>Mise en ligne et réglages de base</li>
             <li>Idéal pour jeune entreprise, indépendant ou petite structure</li>
           </ul>
-          <a href="contact.html" class="btn-ghost dark">Choisir Essentiel</a>
+          <a href="#quote-section" class="btn-ghost dark" data-select-plan="Essentiel" data-project-type="Site vitrine">Choisir Essentiel</a>
         </article>
         <article class="pricing-card featured">
           <span class="section-tag">Croissance</span>
@@ -104,7 +105,7 @@
             <li>Pages services, portfolio, contact et conversion</li>
             <li>Support après livraison pendant 30 jours</li>
           </ul>
-          <a href="contact.html" class="btn-quote">Choisir Croissance</a>
+          <a href="#quote-section" class="btn-quote" data-select-plan="Croissance" data-project-type="Site professionnel">Choisir Croissance</a>
         </article>
         <article class="pricing-card">
           <span class="section-tag">Signature</span>
@@ -117,7 +118,7 @@
             <li>Accompagnement, itérations et support élargi</li>
             <li>Adapté aux startups, équipes et projets plus structurés</li>
           </ul>
-          <a href="#quote-section" class="btn-ghost dark">Demander un devis</a>
+          <a href="#quote-section" class="btn-ghost dark" data-select-plan="Signature" data-project-type="Application web">Demander un devis</a>
         </article>
       </div>
     </section>
@@ -182,6 +183,10 @@
       <form id="quote-form" class="form-card" data-reveal>
         <span class="section-tag">Demande de devis</span>
         <h2>Expliquez le projet</h2>
+        <div class="selected-plan-banner" id="selected-plan-banner" hidden>
+          <strong>Plan choisi:</strong>
+          <span id="selected-plan-label"></span>
+        </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="name">Nom complet</label>
@@ -221,7 +226,7 @@
           <label for="consent">Je confirme envoyer cette demande de devis à WebFy.</label>
         </div>
         <button type="submit" class="btn-submit">Envoyer la demande</button>
-        <p class="form-note">Réponse estimée sous <strong>48 heures</strong>.</p>
+        <p class="form-note">Réponse estimée sous <strong>24 à 48 heures</strong> selon la complexité.</p>
       </form>
     </section>
   </main>
@@ -255,12 +260,10 @@
     </div>
   </footer>
 
-  <script src="js/index.js"></script>
-  <script src="js/tarifs.js"></script>
+  <script src="js/index.js" defer></script>
+  <script src="js/tarifs.js" defer></script>
 </body>
 </html>
-
-
 
 
 

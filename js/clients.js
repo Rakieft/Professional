@@ -18,7 +18,8 @@ function renderClients(clients) {
             <span class="status-chip">${client.status}</span>
           </div>
           <p>${client.companyType || "Type non precise"}</p>
-          <small>${client.contactName || "Sans contact"} · ${client.email || "Sans email"} · ${client.phone || "Sans telephone"}</small>
+          <small>Contact: ${client.contactName || "Sans contact"}</small>
+          <small>${client.email || "Sans email"} | ${client.phone || "Sans telephone"}</small>
         </article>
       `
     )

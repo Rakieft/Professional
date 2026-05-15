@@ -1,8 +1,6 @@
 const db = require("../config/db");
-
-function canManageClients(roleName = "") {
-  return ["admin", "operations_manager", "project_manager", "sales_manager", "support_manager"].includes(roleName);
-}
+const { hasPermission } = require("../middleware/authMiddleware");
+const { createActivityLog } = require("../services/activityService");
 
 async function listClients(_req, res, next) {
   try {
@@ -34,7 +32,7 @@ async function createClient(req, res, next) {
   try {
     const sessionUser = req.session?.user || {};
 
-    if (!canManageClients(sessionUser.roleName)) {
+    if (!hasPermission(sessionUser, "clients", "manage")) {
       return res.status(403).json({
         ok: false,
         message: "Vous n'avez pas les permissions pour creer un client."
@@ -64,6 +62,8 @@ async function createClient(req, res, next) {
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [name, companyType || null, contactName || null, email || null, phone || null, status, notes || null]
     );
+
+    await createActivityLog(`Nouveau client cree: ${name}`);
 
     res.status(201).json({
       ok: true,

@@ -17,9 +17,28 @@ const teamRoles = document.getElementById("team-roles");
 let usersCache = [];
 let rolesCache = [];
 
+function formatRoleName(roleName = "") {
+  const labels = {
+    admin: "Admin",
+    cofounder: "Co-Fondateur",
+    secretary: "Secretaire",
+    operations_manager: "Operations manager",
+    project_manager: "Project manager",
+    designer: "Designer",
+    developer: "Developer",
+    content_creator: "Content creator",
+    social_media_manager: "Social media manager",
+    sales_manager: "Sales manager",
+    support_manager: "Support manager",
+    administrative_assistant: "Assistante administrative"
+  };
+
+  return labels[roleName] || roleName.replaceAll("_", " ");
+}
+
 function fillRoleSelect() {
   teamRole.innerHTML = '<option value="">Choisir un role</option>' +
-    rolesCache.map((role) => `<option value="${role.id}">${role.name}</option>`).join("");
+    rolesCache.map((role) => `<option value="${role.id}">${formatRoleName(role.name)}</option>`).join("");
 }
 
 function resetTeamForm() {
@@ -84,7 +103,7 @@ function renderUsers(users) {
         <strong>${user.fullName}</strong>
         <span class="status-chip">${Number(user.isActive) === 1 ? "Actif" : "Inactif"}</span>
       </div>
-      <p>${user.roleName || "staff"} · ${user.jobTitle || "Poste non precise"}</p>
+      <p>${formatRoleName(user.roleName || "staff")} | ${user.jobTitle || "Poste non precise"}</p>
       <small>${user.email}</small>
       <div class="stack-actions">
         <button class="mini-btn" data-edit-user="${user.id}" type="button">Modifier</button>

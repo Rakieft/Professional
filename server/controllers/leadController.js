@@ -1,4 +1,6 @@
 const db = require("../config/db");
+const { hasPermission } = require("../middleware/authMiddleware");
+const { createActivityLog } = require("../services/activityService");
 
 function canManageLeads(roleName = "") {
   return ["admin", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
@@ -33,7 +35,7 @@ async function createLead(req, res, next) {
   try {
     const sessionUser = req.session?.user || {};
 
-    if (!canManageLeads(sessionUser.roleName)) {
+    if (!hasPermission(sessionUser, "leads", "manage")) {
       return res.status(403).json({
         ok: false,
         message: "Vous n'avez pas les permissions pour creer un lead."
@@ -78,6 +80,8 @@ async function createLead(req, res, next) {
       ]
     );
 
+    await createActivityLog(`Nouveau lead cree: ${companyName}`);
+
     res.status(201).json({
       ok: true,
       message: "Lead created",
@@ -94,7 +98,7 @@ async function convertLeadToClient(req, res, next) {
   try {
     const sessionUser = req.session?.user || {};
 
-    if (!canManageLeads(sessionUser.roleName)) {
+    if (!hasPermission(sessionUser, "leads", "manage")) {
       return res.status(403).json({
         ok: false,
         message: "Vous n'avez pas les permissions pour convertir un lead."
@@ -159,6 +163,7 @@ async function convertLeadToClient(req, res, next) {
     }
 
     await db.query(`UPDATE leads SET status = 'won' WHERE id = ?`, [id]);
+    await createActivityLog(`Lead converti en client: ${lead.companyName}`);
 
     res.json({
       ok: true,
@@ -391,7 +396,7 @@ async function convertLeadToProject(req, res, next) {
   try {
     const sessionUser = req.session?.user || {};
 
-    if (!canManageLeads(sessionUser.roleName)) {
+    if (!hasPermission(sessionUser, "leads", "manage")) {
       return res.status(403).json({
         ok: false,
         message: "Vous n'avez pas les permissions pour convertir un lead en projet."
@@ -509,6 +514,7 @@ async function convertLeadToProject(req, res, next) {
     }
 
     await db.query(`UPDATE leads SET status = 'won' WHERE id = ?`, [id]);
+    await createActivityLog(`Lead converti en projet: ${lead.companyName}`, projectId);
 
     res.json({
       ok: true,

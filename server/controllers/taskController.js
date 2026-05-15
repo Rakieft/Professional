@@ -3,13 +3,97 @@ const {
   createNotifications,
   getActiveUserIdsByRoles
 } = require("../services/notificationService");
+const { hasPermission } = require("../middleware/authMiddleware");
 
-function isManagerRole(roleName = "") {
-  return ["admin", "operations_manager", "project_manager"].includes(roleName);
+const validStatuses = ["todo", "in_progress", "review", "done"];
+const validPriorities = ["low", "medium", "high"];
+
+function canManageTasks(sessionUser = {}) {
+  return hasPermission(sessionUser, "tasks", "manage");
+}
+
+function canViewAllTasks(sessionUser = {}) {
+  return hasPermission(sessionUser, "tasks", "view_all");
+}
+
+function canChangeAnyTaskStatus(sessionUser = {}) {
+  return hasPermission(sessionUser, "tasks", "change_status_all");
+}
+
+function formatActivityDate(date) {
+  if (!date) {
+    return null;
+  }
+
+  return new Intl.DateTimeFormat("fr-FR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(new Date(date));
+}
+
+function buildTaskActivity(task, comments = [], files = []) {
+  const events = [
+    {
+      type: "system",
+      title: "Tache creee",
+      message: `La tache "${task.title}" a ete creee.`,
+      createdAt: formatActivityDate(task.createdAt),
+      sortValue: new Date(task.createdAt).getTime()
+    }
+  ];
+
+  if (task.updatedAt && task.updatedAt !== task.createdAt) {
+    events.push({
+      type: "system",
+      title: "Derniere mise a jour",
+      message: "La tache a recu une mise a jour de contenu ou d'attribution.",
+      createdAt: formatActivityDate(task.updatedAt),
+      sortValue: new Date(task.updatedAt).getTime()
+    });
+  }
+
+  comments.forEach((comment) => {
+    events.push({
+      type: "comment",
+      title: "Commentaire ajoute",
+      message: `${comment.authorName}: ${comment.message}`,
+      createdAt: comment.createdAt,
+      sortValue: Number(comment.createdAtTs || 0) * 1000
+    });
+  });
+
+  files.forEach((file) => {
+    events.push({
+      type: "file",
+      title: "Fichier rattache",
+      message: `${file.authorName} a ajoute "${file.fileName}".`,
+      createdAt: file.createdAt,
+      sortValue: Number(file.createdAtTs || 0) * 1000
+    });
+  });
+
+  return events
+    .sort((left, right) => right.sortValue - left.sortValue)
+    .map(({ sortValue, ...event }) => event);
+}
+
+async function logProjectActivity(projectId, message) {
+  if (!projectId || !message) {
+    return;
+  }
+
+  await db.query(
+    `INSERT INTO activity_logs (project_id, message, happened_at)
+     VALUES (?, ?, NOW())`,
+    [projectId, message]
+  );
 }
 
 async function canAccessTask(taskId, sessionUser = {}) {
-  if (isManagerRole(sessionUser.roleName)) {
+  if (canViewAllTasks(sessionUser)) {
     return true;
   }
 
@@ -24,9 +108,9 @@ async function canAccessTask(taskId, sessionUser = {}) {
 async function listTasks(req, res, next) {
   try {
     const sessionUser = req.session?.user || {};
-    const isManager = isManagerRole(sessionUser.roleName);
-    const whereClause = isManager ? "" : "WHERE t.assignee_user_id = ?";
-    const params = isManager ? [] : [sessionUser.id];
+    const canViewAll = canViewAllTasks(sessionUser);
+    const whereClause = canViewAll ? "" : "WHERE t.assignee_user_id = ?";
+    const params = canViewAll ? [] : [sessionUser.id];
 
     const tasks = await db.query(
       `SELECT
@@ -38,10 +122,16 @@ async function listTasks(req, res, next) {
         t.status,
         t.priority,
         DATE_FORMAT(t.due_date, '%Y-%m-%d') AS dueDate,
+        t.created_at AS createdAt,
+        t.updated_at AS updatedAt,
         p.name AS projectName,
         COALESCE(u.full_name, 'Unassigned') AS assigneeName,
         COALESCE(r.name, 'staff') AS assigneeRole,
         u.job_title AS assigneeJobTitle,
+        CASE
+          WHEN t.due_date IS NOT NULL AND t.due_date < CURDATE() AND t.status <> 'done' THEN 1
+          ELSE 0
+        END AS isOverdue,
         (
           SELECT COUNT(*)
           FROM task_comments tc
@@ -104,6 +194,8 @@ async function getTaskDetail(req, res, next) {
           t.status,
           t.priority,
           DATE_FORMAT(t.due_date, '%Y-%m-%d') AS dueDate,
+          t.created_at AS createdAt,
+          t.updated_at AS updatedAt,
           p.name AS projectName,
           COALESCE(u.full_name, 'Unassigned') AS assigneeName,
           COALESCE(r.name, 'staff') AS assigneeRole,
@@ -121,6 +213,7 @@ async function getTaskDetail(req, res, next) {
           tc.id,
           tc.message,
           DATE_FORMAT(tc.created_at, '%Y-%m-%d %H:%i') AS createdAt,
+          UNIX_TIMESTAMP(tc.created_at) AS createdAtTs,
           COALESCE(u.full_name, 'Staff') AS authorName,
           COALESCE(r.name, 'staff') AS authorRole
         FROM task_comments tc
@@ -138,6 +231,7 @@ async function getTaskDetail(req, res, next) {
           tf.file_kind AS fileKind,
           tf.notes,
           DATE_FORMAT(tf.created_at, '%Y-%m-%d %H:%i') AS createdAt,
+          UNIX_TIMESTAMP(tf.created_at) AS createdAtTs,
           COALESCE(u.full_name, 'Staff') AS authorName
         FROM task_files tf
         LEFT JOIN users u ON u.id = tf.user_id
@@ -159,7 +253,8 @@ async function getTaskDetail(req, res, next) {
       data: {
         task: tasks[0],
         comments,
-        files
+        files,
+        activity: buildTaskActivity(tasks[0], comments, files)
       }
     });
   } catch (error) {
@@ -171,7 +266,7 @@ async function createTask(req, res, next) {
   try {
     const sessionUser = req.session?.user || {};
 
-    if (!isManagerRole(sessionUser.roleName)) {
+    if (!canManageTasks(sessionUser)) {
       return res.status(403).json({
         ok: false,
         message: "Seuls admin, operations_manager et project_manager peuvent creer des taches."
@@ -192,6 +287,20 @@ async function createTask(req, res, next) {
       return res.status(400).json({
         ok: false,
         message: "Task title is required"
+      });
+    }
+
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        ok: false,
+        message: "Statut invalide"
+      });
+    }
+
+    if (!validPriorities.includes(priority)) {
+      return res.status(400).json({
+        ok: false,
+        message: "Priorite invalide"
       });
     }
 
@@ -222,6 +331,8 @@ async function createTask(req, res, next) {
       linkUrl: "/tasks"
     });
 
+    await logProjectActivity(projectId, `Nouvelle tache creee: ${title}`);
+
     res.status(201).json({
       ok: true,
       message: "Task created",
@@ -238,17 +349,11 @@ async function updateTask(req, res, next) {
   try {
     const { id } = req.params;
     const sessionUser = req.session?.user || {};
-    const isManager = isManagerRole(sessionUser.roleName);
-
-    if (!isManager) {
-      const ownedTasks = await db.query(`SELECT id FROM tasks WHERE id = ? AND assignee_user_id = ? LIMIT 1`, [id, sessionUser.id]);
-
-      if (!ownedTasks.length) {
-        return res.status(403).json({
-          ok: false,
-          message: "Vous ne pouvez modifier que vos propres taches."
-        });
-      }
+    if (!canManageTasks(sessionUser)) {
+      return res.status(403).json({
+        ok: false,
+        message: "La modification complete d'une tache est reservee aux roles manageriaux."
+      });
     }
 
     const {
@@ -265,6 +370,34 @@ async function updateTask(req, res, next) {
       return res.status(400).json({
         ok: false,
         message: "Task title is required"
+      });
+    }
+
+    if (status && !validStatuses.includes(status)) {
+      return res.status(400).json({
+        ok: false,
+        message: "Statut invalide"
+      });
+    }
+
+    if (priority && !validPriorities.includes(priority)) {
+      return res.status(400).json({
+        ok: false,
+        message: "Priorite invalide"
+      });
+    }
+
+    const taskRows = await db.query(
+      `SELECT project_id AS projectId, title FROM tasks WHERE id = ? LIMIT 1`,
+      [id]
+    );
+
+    const task = taskRows[0];
+
+    if (!task) {
+      return res.status(404).json({
+        ok: false,
+        message: "Tache introuvable"
       });
     }
 
@@ -291,6 +424,8 @@ async function updateTask(req, res, next) {
       ]
     );
 
+    await logProjectActivity(projectId || task.projectId, `Tache mise a jour: ${title}`);
+
     res.json({
       ok: true,
       message: "Task updated"
@@ -305,7 +440,6 @@ async function updateTaskStatus(req, res, next) {
     const { id } = req.params;
     const { status } = req.body;
     const sessionUser = req.session?.user || {};
-    const isManager = isManagerRole(sessionUser.roleName);
 
     if (!status) {
       return res.status(400).json({
@@ -314,7 +448,14 @@ async function updateTaskStatus(req, res, next) {
       });
     }
 
-    if (!isManager) {
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        ok: false,
+        message: "Statut invalide"
+      });
+    }
+
+    if (!canChangeAnyTaskStatus(sessionUser)) {
       const ownedTasks = await db.query(`SELECT id FROM tasks WHERE id = ? AND assignee_user_id = ? LIMIT 1`, [id, sessionUser.id]);
 
       if (!ownedTasks.length) {
@@ -327,7 +468,7 @@ async function updateTaskStatus(req, res, next) {
 
     await db.query(`UPDATE tasks SET status = ? WHERE id = ?`, [status, id]);
 
-    const taskRows = await db.query(`SELECT title, assignee_user_id AS assigneeUserId FROM tasks WHERE id = ? LIMIT 1`, [id]);
+    const taskRows = await db.query(`SELECT title, project_id AS projectId, assignee_user_id AS assigneeUserId FROM tasks WHERE id = ? LIMIT 1`, [id]);
     const task = taskRows[0];
 
     if (task) {
@@ -343,6 +484,8 @@ async function updateTaskStatus(req, res, next) {
           linkUrl: "/tasks"
         }
       );
+
+      await logProjectActivity(task.projectId, `Statut de tache mis a jour: ${task.title} -> ${status}`);
     }
 
     res.json({
@@ -382,7 +525,7 @@ async function addTaskComment(req, res, next) {
     );
 
     const [task] = await db.query(
-      `SELECT title, assignee_user_id AS assigneeUserId FROM tasks WHERE id = ? LIMIT 1`,
+      `SELECT title, project_id AS projectId, assignee_user_id AS assigneeUserId FROM tasks WHERE id = ? LIMIT 1`,
       [id]
     );
 
@@ -396,6 +539,8 @@ async function addTaskComment(req, res, next) {
           linkUrl: "/tasks"
         }
       );
+
+      await logProjectActivity(task.projectId, `Commentaire ajoute sur la tache: ${task.title}`);
     }
 
     res.status(201).json({
@@ -435,7 +580,7 @@ async function addTaskFile(req, res, next) {
     );
 
     const [task] = await db.query(
-      `SELECT title, assignee_user_id AS assigneeUserId FROM tasks WHERE id = ? LIMIT 1`,
+      `SELECT title, project_id AS projectId, assignee_user_id AS assigneeUserId FROM tasks WHERE id = ? LIMIT 1`,
       [id]
     );
 
@@ -449,6 +594,8 @@ async function addTaskFile(req, res, next) {
           linkUrl: "/tasks"
         }
       );
+
+      await logProjectActivity(task.projectId, `Fichier ajoute sur la tache: ${task.title}`);
     }
 
     res.status(201).json({
@@ -465,14 +612,25 @@ async function deleteTask(req, res, next) {
     const { id } = req.params;
     const sessionUser = req.session?.user || {};
 
-    if (!isManagerRole(sessionUser.roleName)) {
+    if (!canManageTasks(sessionUser)) {
       return res.status(403).json({
         ok: false,
         message: "Seuls admin, operations_manager et project_manager peuvent supprimer des taches."
       });
     }
 
+    const taskRows = await db.query(
+      `SELECT project_id AS projectId, title FROM tasks WHERE id = ? LIMIT 1`,
+      [id]
+    );
+
+    const task = taskRows[0];
+
     await db.query(`DELETE FROM tasks WHERE id = ?`, [id]);
+
+    if (task) {
+      await logProjectActivity(task.projectId, `Tache supprimee: ${task.title}`);
+    }
 
     res.json({
       ok: true,

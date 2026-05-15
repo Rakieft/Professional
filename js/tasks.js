@@ -15,14 +15,17 @@ const taskDescription = document.getElementById("task-description");
 const taskFilterStatus = document.getElementById("task-filter-status");
 const taskFilterPriority = document.getElementById("task-filter-priority");
 const taskFilterAssignee = document.getElementById("task-filter-assignee");
+const taskFilterSearch = document.getElementById("task-filter-search");
 const tasksTotal = document.getElementById("tasks-total");
 const tasksInProgress = document.getElementById("tasks-in-progress");
 const tasksHighPriority = document.getElementById("tasks-high-priority");
+const tasksOverdue = document.getElementById("tasks-overdue");
 const taskDetailSummary = document.getElementById("task-detail-summary");
 const taskCommentForm = document.getElementById("task-comment-form");
 const taskCommentMessage = document.getElementById("task-comment-message");
 const taskCommentFeedback = document.getElementById("task-comment-feedback");
 const taskCommentsList = document.getElementById("task-comments-list");
+const taskActivityList = document.getElementById("task-activity-list");
 const taskFileForm = document.getElementById("task-file-form");
 const taskFileFeedback = document.getElementById("task-file-feedback");
 const taskFilesList = document.getElementById("task-files-list");
@@ -99,8 +102,11 @@ function getFilteredTasks(tasks) {
     const statusMatch = !taskFilterStatus.value || task.status === taskFilterStatus.value;
     const priorityMatch = !taskFilterPriority.value || task.priority === taskFilterPriority.value;
     const assigneeMatch = !taskFilterAssignee.value || String(task.assigneeUserId || "") === taskFilterAssignee.value;
+    const searchNeedle = (taskFilterSearch?.value || "").trim().toLowerCase();
+    const haystack = `${task.title || ""} ${task.projectName || ""} ${task.assigneeName || ""}`.toLowerCase();
+    const searchMatch = !searchNeedle || haystack.includes(searchNeedle);
 
-    return statusMatch && priorityMatch && assigneeMatch;
+    return statusMatch && priorityMatch && assigneeMatch && searchMatch;
   });
 }
 
@@ -108,6 +114,7 @@ function updateTopStats(tasks) {
   tasksTotal.textContent = `${tasks.length} taches`;
   tasksInProgress.textContent = `${tasks.filter((task) => task.status === "in_progress").length} actions`;
   tasksHighPriority.textContent = `${tasks.filter((task) => task.priority === "high" && task.status !== "done").length} urgences`;
+  tasksOverdue.textContent = `${tasks.filter((task) => Number(task.isOverdue) === 1).length} alertes`;
 }
 
 function renderTaskList(tasks) {
@@ -120,7 +127,7 @@ function renderTaskList(tasks) {
         <span class="status-chip">${statusLabel(task.status)}</span>
       </div>
       <p>${task.projectName || "Sans projet"} | ${task.assigneeName || "Sans responsable"}${task.assigneeRole ? ` | ${task.assigneeRole}` : ""}</p>
-      <small>Priorite: ${priorityLabel(task.priority)} | Echeance: ${task.dueDate || "-"} | Commentaires: ${task.commentCount || 0} | Fichiers: ${task.fileCount || 0}</small>
+      <small>Priorite: ${priorityLabel(task.priority)} | Echeance: ${task.dueDate || "-"}${Number(task.isOverdue) === 1 ? " | En retard" : ""} | Commentaires: ${task.commentCount || 0} | Fichiers: ${task.fileCount || 0}</small>
       <div class="stack-actions">
         <button class="mini-btn" data-open-task="${task.id}" type="button">Ouvrir</button>
         ${showManagementActions ? `<button class="mini-btn" data-edit-task="${task.id}" type="button">Modifier</button>` : ""}
@@ -155,7 +162,7 @@ function renderKanban(tasks) {
           <span class="status-chip">${priorityLabel(task.priority)}</span>
         </div>
         <p>${task.projectName || "Sans projet"}</p>
-        <small>${task.assigneeName || "Sans responsable"} | ${task.dueDate || "Sans echeance"}</small>
+        <small>${task.assigneeName || "Sans responsable"} | ${task.dueDate || "Sans echeance"}${Number(task.isOverdue) === 1 ? " | En retard" : ""}</small>
         <div class="kanban-meta">
           <span>${task.commentCount || 0} commentaires</span>
           <span>${task.fileCount || 0} fichiers</span>
@@ -343,7 +350,7 @@ async function openTaskDetail(id) {
     return;
   }
 
-  const { task, comments, files } = payload.data;
+  const { task, comments, files, activity } = payload.data;
 
   taskDetailSummary.innerHTML = `
     <article class="stack-card">
@@ -368,6 +375,19 @@ async function openTaskDetail(id) {
       </article>
     `).join("")
     : `<article class="stack-card"><p>Aucun commentaire sur cette tache pour le moment.</p></article>`;
+
+  taskActivityList.innerHTML = activity.length
+    ? activity.map((item) => `
+      <article class="stack-card">
+        <div class="stack-head">
+          <strong>${item.title}</strong>
+          <span class="status-chip">${item.type}</span>
+        </div>
+        <p>${item.message}</p>
+        <small>${item.createdAt || "-"}</small>
+      </article>
+    `).join("")
+    : `<article class="stack-card"><p>Aucune activite recente sur cette tache.</p></article>`;
 
   taskFilesList.innerHTML = files.length
     ? files.map((file) => `
@@ -436,6 +456,7 @@ async function removeTask(id) {
       </article>
     `;
     taskCommentsList.innerHTML = "";
+    taskActivityList.innerHTML = "";
     taskFilesList.innerHTML = "";
   }
 
@@ -543,9 +564,9 @@ if (taskFileForm) {
   });
 }
 
-[taskFilterStatus, taskFilterPriority, taskFilterAssignee].forEach((select) => {
+[taskFilterStatus, taskFilterPriority, taskFilterAssignee, taskFilterSearch].forEach((select) => {
   if (select) {
-    select.addEventListener("change", () => {
+    select.addEventListener(select.tagName === "INPUT" ? "input" : "change", () => {
       renderTasks(tasksCache);
     });
   }

@@ -7,7 +7,18 @@
   <meta name="description" content="Centre d'activite WebFy pour les alertes equipe, finance et production.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="assset/css/style.css">
-  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="image/webfy-mark.svg">
+  <link rel="icon" type="image/x-icon" href="assset/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assset/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assset/favicon/site.webmanifest">
+  <meta name="theme-color" content="#0a2238">
+  <meta name="msapplication-TileColor" content="#0a2238">
+  <meta name="msapplication-config" content="assset/favicon/browserconfig.xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WebFy">
 </head>
 <body class="staff-app">
   <div class="staff-shell">
@@ -26,6 +37,7 @@
         <a href="/projects">Projets</a>
         <a href="/tasks">Taches</a>
         <a href="/leads">Leads</a>
+        <a href="/files">Fichiers</a>
         <a href="/team">Equipe</a>
         <a href="/finance">Finance</a>
         <a href="/profile">Profil</a>
@@ -71,6 +83,11 @@
           <strong>Production + finance</strong>
           <p>Le projet commence a centraliser les signaux qui comptent vraiment.</p>
         </article>
+        <article class="stat-card">
+          <span class="label">Activite recente</span>
+          <strong id="notifications-activity-count">0 evenement</strong>
+          <p>Le flux global des projets et actions importantes de l'equipe.</p>
+        </article>
       </section>
 
       <section class="dashboard-grid">
@@ -97,11 +114,20 @@
           <div class="stack-list" id="notifications-categories"></div>
           <div class="stack-list" id="notifications-list"></div>
         </article>
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Fil global</span>
+              <h2>Activite recente</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="notifications-activity-list"></div>
+        </article>
       </section>
     </main>
   </div>
 
-  <script src="js/staff-common.js"></script>
-  <script src="js/notifications.js"></script>
+  <script src="js/staff-common.js" defer></script>
+  <script src="js/notifications.js" defer></script>
 </body>
 </html>

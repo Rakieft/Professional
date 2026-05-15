@@ -1,4 +1,5 @@
 const express = require("express");
+const { requireRole } = require("../middleware/authMiddleware");
 const {
   listUsers,
   createUser,
@@ -12,9 +13,9 @@ const router = express.Router();
 
 router.get("/me", getMyProfile);
 router.patch("/me", updateMyProfile);
-router.get("/", listUsers);
-router.post("/", createUser);
-router.put("/:id", updateUser);
-router.patch("/:id/status", toggleUserStatus);
+router.get("/", requireRole("admin", "cofounder", "secretary", "operations_manager"), listUsers);
+router.post("/", requireRole("admin", "cofounder", "secretary", "operations_manager"), createUser);
+router.put("/:id", requireRole("admin", "cofounder", "secretary", "operations_manager"), updateUser);
+router.patch("/:id/status", requireRole("admin", "cofounder", "secretary", "operations_manager"), toggleUserStatus);
 
 module.exports = router;

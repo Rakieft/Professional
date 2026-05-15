@@ -1,8 +1,6 @@
 const db = require("../config/db");
-
-function canManageProjects(roleName = "") {
-  return ["admin", "operations_manager", "project_manager"].includes(roleName);
-}
+const { hasPermission } = require("../middleware/authMiddleware");
+const { createActivityLog } = require("../services/activityService");
 
 async function listProjects(_req, res, next) {
   try {
@@ -35,7 +33,7 @@ async function createProject(req, res, next) {
   try {
     const sessionUser = req.session?.user || {};
 
-    if (!canManageProjects(sessionUser.roleName)) {
+    if (!hasPermission(sessionUser, "projects", "manage")) {
       return res.status(403).json({
         ok: false,
         message: "Vous n'avez pas les permissions pour creer un projet."
@@ -79,6 +77,8 @@ async function createProject(req, res, next) {
         dueDate || null
       ]
     );
+
+    await createActivityLog(`Nouveau projet cree: ${name}`, result.insertId);
 
     res.status(201).json({
       ok: true,

@@ -7,7 +7,18 @@
   <meta name="description" content="Vue executive WebFy pour suivre la masse salariale, les engagements staff et les indicateurs de pilotage.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="assset/css/style.css">
-  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="image/webfy-mark.svg">
+  <link rel="icon" type="image/x-icon" href="assset/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assset/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assset/favicon/site.webmanifest">
+  <meta name="theme-color" content="#0a2238">
+  <meta name="msapplication-TileColor" content="#0a2238">
+  <meta name="msapplication-config" content="assset/favicon/browserconfig.xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WebFy">
 </head>
 <body class="staff-app">
   <div class="staff-shell">
@@ -26,6 +37,7 @@
         <a href="/projects">Projets</a>
         <a href="/tasks">Taches</a>
         <a href="/leads">Leads</a>
+        <a href="/files">Fichiers</a>
         <a href="/team">Equipe</a>
         <a href="/finance">Finance</a>
         <a href="/profile">Profil</a>
@@ -101,6 +113,42 @@
           <span class="label">Base de cout</span>
           <strong id="analytics-fixed-cost-base">$0</strong>
           <p>Charge theorique actuelle pour piloter la croissance.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Focus CEO</span>
+              <h2>Lecture decisionnelle</h2>
+            </div>
+            <span class="badge" id="analytics-runway-badge">Runway: analyse</span>
+          </div>
+          <div class="activity-feed analytics-focus-grid" id="analytics-focus-grid">
+            <article class="activity-item">
+              <strong>Chargement</strong>
+              <p>Preparation de la lecture de croissance, de delivery et de structure.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Revenu du mois</span>
+              <h2>Traction immediate</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="analytics-traction-panel">
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Chargement</strong>
+                <span class="status-chip">cash</span>
+              </div>
+              <p>Analyse des encaissements et du pipe en cours.</p>
+            </article>
+          </div>
         </article>
       </section>
 
@@ -209,10 +257,48 @@
           </div>
         </article>
       </section>
+
+      <section class="dashboard-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Structure equipe</span>
+              <h2>Equilibre staff</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="analytics-team-health">
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Chargement</strong>
+                <span class="status-chip">team</span>
+              </div>
+              <p>Lecture de l'equilibre entre benevolat, roles payes et capacite active.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Plan d'action</span>
+              <h2>Decisions recommandees</h2>
+            </div>
+          </div>
+          <div class="stack-list" id="analytics-decision-cards">
+            <article class="stack-card">
+              <div class="stack-head">
+                <strong>Chargement</strong>
+                <span class="status-chip">CEO</span>
+              </div>
+              <p>Preparation des decisions prioritaires pour la direction.</p>
+            </article>
+          </div>
+        </article>
+      </section>
     </main>
   </div>
 
-  <script src="js/staff-common.js"></script>
-  <script src="js/analytics.js"></script>
+  <script src="js/staff-common.js" defer></script>
+  <script src="js/analytics.js" defer></script>
 </body>
 </html>

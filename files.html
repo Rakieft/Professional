@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fichiers | WebFy Staff</title>
+  <meta name="description" content="Bibliotheque de livrables, references et fichiers projet WebFy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assset/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="image/webfy-mark.svg">
+  <link rel="icon" type="image/x-icon" href="assset/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assset/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assset/favicon/site.webmanifest">
+  <meta name="theme-color" content="#0a2238">
+  <meta name="msapplication-TileColor" content="#0a2238">
+  <meta name="msapplication-config" content="assset/favicon/browserconfig.xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WebFy">
+</head>
+<body class="staff-app">
+  <div class="staff-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="image/webfy-mark.svg" alt="WebFy">
+        <div>
+          <strong>WebFy Staff</strong>
+          <span>Delivery library</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/staff">Vue d'ensemble</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projets</a>
+        <a href="/tasks">Taches</a>
+        <a href="/leads">Leads</a>
+        <a href="/files" class="active">Fichiers</a>
+        <a href="/team">Equipe</a>
+        <a href="/finance">Finance</a>
+        <a href="/profile">Profil</a>
+        <a href="/notifications">Notifications</a>
+        <a href="/analytics" data-admin-only hidden>CEO Analytics</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="label">Livrables</span>
+        <h3>Centraliser tout ce qui compte</h3>
+        <a href="/projects" class="btn-ghost">Retour aux projets</a>
+      </div>
+    </aside>
+
+    <main class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <p class="eyebrow">Delivery center</p>
+          <h1>Fichiers et livrables</h1>
+          <span>Maquettes, assets, references, livrables client et liens de travail dans une seule bibliotheque staff.</span>
+          <div class="role-banner">
+            <span class="role-chip" id="role-chip">staff</span>
+            <span id="session-user-label">Session staff</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="menu-button" id="menu-button" aria-label="Afficher la navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="btn-ghost dark" id="logout-button" type="button">Deconnexion</button>
+          <a href="/notifications" class="btn-ghost dark">Activite</a>
+          <a href="/tasks" class="btn-primary">Voir les taches</a>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card emphasis">
+          <span class="label">Bibliotheque</span>
+          <strong id="files-total">0 fichier</strong>
+          <p>Tout ce qui permet de produire, livrer et garder une trace propre du travail.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Internes</span>
+          <strong id="files-internal">0 element</strong>
+          <p>References, briefs, bases de travail et ressources internes.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">Clients</span>
+          <strong id="files-client">0 livrable</strong>
+          <p>Supports prets a partager ou deja destines au client.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">References</span>
+          <strong id="files-reference">0 source</strong>
+          <p>Inspiration, benchmarks et liens utiles pour l'equipe.</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid module-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">Nouveau livrable</span>
+              <h2>Ajouter un fichier projet</h2>
+            </div>
+          </div>
+
+          <form id="project-file-form" class="staff-form">
+            <input id="project-file-id" name="id" type="hidden">
+            <div class="form-row">
+              <label for="project-file-project">Projet</label>
+              <select id="project-file-project" name="projectId"></select>
+            </div>
+            <div class="form-row">
+              <label for="project-file-name">Nom</label>
+              <input id="project-file-name" name="fileName" type="text" placeholder="Logo final, maquette accueil, brief...">
+            </div>
+            <div class="form-row">
+              <label for="project-file-kind">Type</label>
+              <input id="project-file-kind" name="fileKind" type="text" placeholder="delivery, mockup, asset, brief...">
+            </div>
+            <div class="form-row">
+              <label for="project-file-visibility">Visibilite</label>
+              <select id="project-file-visibility" name="visibility">
+                <option value="internal">Interne</option>
+                <option value="client">Client</option>
+                <option value="reference">Reference</option>
+              </select>
+            </div>
+            <div class="form-row full">
+              <label for="project-file-url">Lien</label>
+              <input id="project-file-url" name="fileUrl" type="url" placeholder="https://...">
+            </div>
+            <div class="form-row full">
+              <label for="project-file-notes">Notes</label>
+              <textarea id="project-file-notes" name="notes" rows="4" placeholder="Contexte, version, usage ou detail important..."></textarea>
+            </div>
+            <p class="module-feedback" id="project-file-feedback">Ajoutez ici les livrables et ressources utiles a l'equipe et aux projets.</p>
+            <div class="action-row">
+              <button type="submit" class="btn-primary full-width" id="project-file-submit">Ajouter le fichier</button>
+              <button type="button" class="btn-ghost dark full-width" id="project-file-cancel">Annuler</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <span class="label">Bibliotheque</span>
+              <h2>Recherche et filtres</h2>
+            </div>
+          </div>
+          <div class="toolbar-row">
+            <div class="toolbar-item">
+              <label for="files-filter-search">Recherche</label>
+              <input id="files-filter-search" type="text" placeholder="Nom, projet, auteur...">
+            </div>
+            <div class="toolbar-item">
+              <label for="files-filter-project">Projet</label>
+              <select id="files-filter-project">
+                <option value="">Tous</option>
+              </select>
+            </div>
+            <div class="toolbar-item">
+              <label for="files-filter-visibility">Visibilite</label>
+              <select id="files-filter-visibility">
+                <option value="">Toutes</option>
+                <option value="internal">Interne</option>
+                <option value="client">Client</option>
+                <option value="reference">Reference</option>
+              </select>
+            </div>
+          </div>
+          <div class="stack-list" id="project-files-summary"></div>
+          <div class="stack-list" id="project-files-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/staff-common.js" defer></script>
+  <script src="js/files.js" defer></script>
+</body>
+</html>

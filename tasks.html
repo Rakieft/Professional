@@ -38,6 +38,7 @@
         <a href="/projects">Projets</a>
         <a href="/tasks" class="active">Taches</a>
         <a href="/leads">Leads</a>
+        <a href="/files">Fichiers</a>
         <a href="/team">Equipe</a>
         <a href="/finance">Finance</a>
         <a href="/profile">Profil</a>
@@ -88,6 +89,11 @@
           <span class="label">Priorite haute</span>
           <strong id="tasks-high-priority">-- urgences</strong>
           <p>Les elements qui demandent une attention plus rapide.</p>
+        </article>
+        <article class="stat-card">
+          <span class="label">En retard</span>
+          <strong id="tasks-overdue">-- alertes</strong>
+          <p>Les taches a reprendre vite pour proteger les delais.</p>
         </article>
       </section>
 
@@ -155,6 +161,10 @@
             </div>
           </div>
           <div class="toolbar-row">
+            <div class="toolbar-item">
+              <label for="task-filter-search">Recherche</label>
+              <input id="task-filter-search" type="text" placeholder="Titre, projet, responsable...">
+            </div>
             <div class="toolbar-item">
               <label for="task-filter-status">Statut</label>
               <select id="task-filter-status">
@@ -268,6 +278,19 @@
             <div class="detail-block">
               <div class="panel-head compact">
                 <div>
+                  <span class="label">Activite</span>
+                </div>
+              </div>
+              <div class="stack-list" id="task-activity-list">
+                <article class="stack-card">
+                  <p>Selectionnez une tache pour voir son historique recent.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="detail-block">
+              <div class="panel-head compact">
+                <div>
                   <span class="label">Fichiers</span>
                 </div>
               </div>
@@ -299,8 +322,8 @@
     </main>
   </div>
 
-  <script src="js/staff-common.js"></script>
-  <script src="js/tasks.js"></script>
+  <script src="js/staff-common.js" defer></script>
+  <script src="js/tasks.js" defer></script>
 </body>
 </html>
 

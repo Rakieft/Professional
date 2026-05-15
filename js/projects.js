@@ -25,8 +25,9 @@ function renderProjects(projects) {
             <strong>${project.name}</strong>
             <span class="status-chip">${project.status}</span>
           </div>
-          <p>${project.clientName || "Sans client"} · ${project.ownerName || "Sans responsable"}</p>
-          <small>Priorite: ${project.priority} · Debut: ${project.startDate || "-"} · Echeance: ${project.dueDate || "-"}</small>
+          <p>${project.clientName || "Sans client"} | ${project.ownerName || "Sans responsable"}</p>
+          <small>Priorite: ${project.priority}</small>
+          <small>Debut: ${project.startDate || "-"} | Echeance: ${project.dueDate || "-"}</small>
         </article>
       `
     )

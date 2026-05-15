@@ -5,6 +5,12 @@ const roleChip = document.getElementById("role-chip");
 const sessionUserLabel = document.getElementById("session-user-label");
 let currentStaffUser = null;
 
+const pageRoleVisibility = {
+  "/team": ["admin", "cofounder", "secretary", "operations_manager"],
+  "/finance": ["admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"],
+  "/analytics": ["admin"]
+};
+
 if (menuButton && sidebar) {
   menuButton.addEventListener("click", () => {
     sidebar.classList.toggle("open");
@@ -46,6 +52,7 @@ async function ensureStaffSession() {
 
   document.body.dataset.role = roleName;
   const adminOnlyLinks = document.querySelectorAll("[data-admin-only]");
+  const navLinks = document.querySelectorAll(".side-nav a[href]");
 
   adminOnlyLinks.forEach((link) => {
     if (roleName === "admin") {
@@ -53,6 +60,18 @@ async function ensureStaffSession() {
     } else {
       link.hidden = true;
     }
+  });
+
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("href");
+    const allowedRoles = pageRoleVisibility[href];
+
+    if (!allowedRoles) {
+      link.hidden = false;
+      return;
+    }
+
+    link.hidden = !allowedRoles.includes(roleName);
   });
 
   currentStaffUser = payload.user;

@@ -8,25 +8,26 @@
   <meta name="keywords" content="contact webfy, devis site web, branding, social media haiti">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#08131f">
   <meta property="og:title" content="Contact WebFy | Parlons de votre projet">
   <meta property="og:description" content="Un formulaire plus simple, une prise de contact plus claire et une meilleure expérience pour vos prospects.">
   <meta property="og:image" content="image/hero3.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webfy.ht/contact">
+  <link rel="canonical" href="https://webfy.ht/contact">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="assset/css/style.css">
   <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
 
 </head>
-<body class="public-app">
+<body class="public-app page-contact">
   <header class="site-header" id="site-header">
     <div class="top-bar">
-      <span>Parlons de votre besoin avec une approche simple et sérieuse</span>
-      <span>contact@webfy.ht</span>
-      <span>+509 4479-5902</span>
+      <span>contact@webfy.ht/ +509 4479-5902</span>
     </div>
     <div class="nav-main">
-      <a class="logo" href="index.html"><img src="image/webfy-mark.svg" alt="WebFy"></a>
+      <a class="logo" href="index.html"><img src="image/webfy-mark.svg" alt="WebFy" width="160" height="48"></a>
       <nav class="nav-links">
         <a href="index.html">Accueil</a>
         <a href="services.html">Services</a>
@@ -47,7 +48,7 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-header">
-      <img src="image/webfy-mark.svg" alt="WebFy">
+      <img src="image/webfy-mark.svg" alt="WebFy" width="160" height="48">
       <p>Un contact plus direct, sans surcharge inutile.</p>
     </div>
     <nav class="mobile-nav">
@@ -105,6 +106,10 @@
       <form id="quote-form" class="form-card" data-reveal>
         <span class="section-tag">Formulaire</span>
         <h2>Parlez-nous du projet</h2>
+        <div class="selected-plan-banner" id="selected-plan-banner" hidden>
+          <strong>Plan choisi:</strong>
+          <span id="selected-plan-label"></span>
+        </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="name">Nom complet</label>
@@ -140,7 +145,7 @@
           <label for="consent">Je confirme envoyer cette demande de contact à WebFy.</label>
         </div>
         <button type="submit" class="btn-submit">Envoyer la demande</button>
-        <p class="form-note">Vous recevrez une réponse dans les prochaines <strong>48 heures</strong>.</p>
+        <p class="form-note">Vous recevrez en general une réponse dans les <strong>24 à 48 heures</strong>.</p>
       </form>
     </section>
   </main>
@@ -174,11 +179,10 @@
     </div>
   </footer>
 
-  <script src="js/index.js"></script>
-  <script src="js/contact.js"></script>
+  <script src="js/index.js" defer></script>
+  <script src="js/contact.js" defer></script>
 </body>
 </html>
-
 
 
 

@@ -138,6 +138,25 @@ CREATE TABLE IF NOT EXISTS task_files (
     ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS project_files (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  project_id INT NOT NULL,
+  user_id INT NULL,
+  file_name VARCHAR(180) NOT NULL,
+  file_url VARCHAR(500) NOT NULL,
+  file_kind VARCHAR(80) NULL,
+  visibility ENUM('internal', 'client', 'reference') NOT NULL DEFAULT 'internal',
+  notes VARCHAR(255) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_project_files_project
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_project_files_user
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE SET NULL
+);
+
 CREATE TABLE IF NOT EXISTS leads (
   id INT AUTO_INCREMENT PRIMARY KEY,
   company_name VARCHAR(180) NOT NULL,

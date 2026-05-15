@@ -8,10 +8,13 @@
   <meta name="keywords" content="portfolio webfy, projets web, design web, site internet haiti">
   <meta name="author" content="WebFy">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#08131f">
   <meta property="og:title" content="Portfolio WebFy | Travaux récents">
   <meta property="og:description" content="Des projets qui montrent une direction plus claire, plus moderne et plus professionnelle.">
-  <meta property="og:image" content="image/portfolio1.png">
+  <meta property="og:image" content="image/portfolio1.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webfy.ht/portfolio">
+  <link rel="canonical" href="https://webfy.ht/portfolio">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="assset/css/style.css">
@@ -21,12 +24,10 @@
 <body class="public-app page-portfolio">
   <header class="site-header" id="site-header">
     <div class="top-bar">
-      <span>Projets web, interfaces et exécution digitale</span>
-      <span>contact@webfy.ht</span>
-      <span>+509 4479-5902</span>
+      <span>contact@webfy.ht/ +509 4479-5902</span>
     </div>
     <div class="nav-main">
-      <a class="logo" href="index.html"><img src="image/webfy-mark.svg" alt="WebFy"></a>
+      <a class="logo" href="index.html"><img src="image/webfy-mark.svg" alt="WebFy" width="160" height="48"></a>
       <nav class="nav-links">
         <a href="index.html">Accueil</a>
         <a href="services.html">Services</a>
@@ -47,7 +48,7 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-header">
-      <img src="image/webfy-mark.svg" alt="WebFy">
+      <img src="image/webfy-mark.svg" alt="WebFy" width="160" height="48">
       <p>Une sélection plus nette et plus crédible des travaux réalisés.</p>
     </div>
     <nav class="mobile-nav">
@@ -78,10 +79,31 @@
       </div>
     </section>
 
+    <section class="content-section portfolio-proof-band">
+      <div class="proof-grid" data-reveal>
+        <article class="proof-card">
+          <span class="proof-label">Approche</span>
+          <strong>Clarté visuelle</strong>
+          <p>Chaque projet cherche d'abord à rendre l'offre plus lisible et plus rassurante.</p>
+        </article>
+        <article class="proof-card">
+          <span class="proof-label">Execution</span>
+          <strong>Production concrete</strong>
+          <p>Sites, interfaces et parcours réels, pensés pour inspirer confiance et faire agir.</p>
+        </article>
+        <article class="proof-card">
+          <span class="proof-label">Positionnement</span>
+          <strong>Image plus forte</strong>
+          <p>Le but n'est pas juste d'être joli, mais d'aider la marque à mieux paraître et mieux vendre.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="content-section">
       <div class="section-intro" data-reveal>
         <span class="section-tag">Filtres</span>
         <h2>Voir rapidement le type de projet qui vous intéresse.</h2>
+        <p>Chaque fiche résume le contexte, l'intervention WebFy et le type de résultat recherché pour le client.</p>
       </div>
       <div class="filter-row" data-reveal>
         <button data-filter="all" class="active">Tous</button>
@@ -91,42 +113,122 @@
 
       <div class="project-grid" data-reveal>
         <article class="project-card" data-type="site">
-          <img src="image/portfolio1.png" alt="Projet Innonutech">
+          <img src="image/portfolio1.jpg" alt="Projet Innonutech" width="864" height="803" loading="lazy" decoding="async">
           <div class="project-copy">
             <span class="project-type">Site web</span>
             <h3>Innonutech</h3>
             <p>Présentation de produits électroniques dans une interface plus claire et plus rassurante.</p>
+            <div class="project-story">
+              <div>
+                <span class="story-label">Contexte</span>
+                <p>Mettre en valeur une offre tech sans surcharger la lecture ni perdre le visiteur.</p>
+              </div>
+              <div>
+                <span class="story-label">Intervention</span>
+                <p>Hiérarchie produit, sections plus nettes et navigation pensée pour mieux guider.</p>
+              </div>
+            </div>
             <div class="project-actions">
-              <button class="btn-secondary btn-view" data-title="Innonutech" data-desc="Site vitrine orienté présentation produit, lisibilité de l'offre et confiance visiteur." data-tech="HTML, CSS, JavaScript" data-year="2024">Détails</button>
+              <button class="btn-secondary btn-view" data-title="Innonutech" data-desc="Site vitrine orienté présentation produit, lisibilité de l'offre et confiance visiteur." data-tech="HTML, CSS, JavaScript" data-year="2024" data-result="Une présence produit plus propre, plus claire et plus rassurante pour un visiteur qui découvre l'offre.">Détails</button>
               <a href="https://rakieft.github.io/PcX/index.html" class="btn-ghost dark">Ouvrir</a>
             </div>
           </div>
         </article>
 
         <article class="project-card" data-type="site">
-          <img src="image/portfolio2.png" alt="Projet Recyclonet">
+          <img src="image/portfolio2.jpg" alt="Projet Recyclonet" width="896" height="820" loading="lazy" decoding="async">
           <div class="project-copy">
             <span class="project-type">Site web</span>
             <h3>Recyclonet</h3>
             <p>Projet orienté service avec une présentation plus simple du parcours de prise de rendez-vous.</p>
+            <div class="project-story">
+              <div>
+                <span class="story-label">Contexte</span>
+                <p>Rendre une offre de service plus accessible et plus évidente pour le prospect.</p>
+              </div>
+              <div>
+                <span class="story-label">Intervention</span>
+                <p>Flux plus pratique, message plus direct et meilleure lisibilité des actions à faire.</p>
+              </div>
+            </div>
             <div class="project-actions">
-              <button class="btn-secondary btn-view" data-title="Recyclonet" data-desc="Interface de service avec un axe plus pratique et plus accessible pour la demande utilisateur." data-tech="HTML, CSS, JavaScript" data-year="2024">Détails</button>
+              <button class="btn-secondary btn-view" data-title="Recyclonet" data-desc="Interface de service avec un axe plus pratique et plus accessible pour la demande utilisateur." data-tech="HTML, CSS, JavaScript" data-year="2024" data-result="Une prise de contact plus naturelle pour un service local qui a besoin d'être compris rapidement.">Détails</button>
               <a href="https://rakieft.github.io/recycle/" class="btn-ghost dark">Ouvrir</a>
             </div>
           </div>
         </article>
 
         <article class="project-card" data-type="app">
-          <img src="image/portfolio3.png" alt="Projet Meal Finder and Groceries">
+          <img src="image/portfolio3.jpg" alt="Projet Meal Finder and Groceries" width="992" height="873" loading="lazy" decoding="async">
           <div class="project-copy">
             <span class="project-type">Application web</span>
             <h3>Meal Finder and Groceries</h3>
             <p>Exploration produit et usage interactif dans une expérience plus dynamique côté utilisateur.</p>
+            <div class="project-story">
+              <div>
+                <span class="story-label">Contexte</span>
+                <p>Montrer une logique applicative plus vivante, plus interactive et orientée usage.</p>
+              </div>
+              <div>
+                <span class="story-label">Intervention</span>
+                <p>Recherche, données dynamiques et parcours plus expérimental pour l'utilisateur final.</p>
+              </div>
+            </div>
             <div class="project-actions">
-              <button class="btn-secondary btn-view" data-title="Meal Finder and Groceries" data-desc="Application web basée sur l'interaction, la recherche et une logique plus orientée usage." data-tech="JavaScript, API, LocalStorage, HTML, CSS" data-year="2025">Détails</button>
+              <button class="btn-secondary btn-view" data-title="Meal Finder and Groceries" data-desc="Application web basée sur l'interaction, la recherche et une logique plus orientée usage." data-tech="JavaScript, API, LocalStorage, HTML, CSS" data-year="2025" data-result="Une démonstration plus forte de la capacité WebFy à construire des expériences interactives au-delà du simple site vitrine.">Détails</button>
               <a href="https://mealfinder-grocery.netlify.app/" class="btn-ghost dark">Ouvrir</a>
             </div>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section tinted">
+      <div class="dual-grid" data-reveal>
+        <div class="list-card">
+          <span class="section-tag">Ce que montrent ces projets</span>
+          <h2>Plus qu'un style, une méthode de travail.</h2>
+          <ul class="feature-list">
+            <li>Clarifier une offre pour mieux convaincre</li>
+            <li>Renforcer la crédibilité visuelle d'une marque</li>
+            <li>Réduire la friction dans les parcours importants</li>
+            <li>Montrer une structure plus sérieuse dès les premières secondes</li>
+          </ul>
+        </div>
+        <div class="list-card">
+          <span class="section-tag">Livrables typiques</span>
+          <h2>Ce qu'un client reçoit réellement.</h2>
+          <ul class="feature-list">
+            <li>Pages plus lisibles et mieux hiérarchisées</li>
+            <li>Direction visuelle cohérente et exploitable</li>
+            <li>CTA, parcours et sections orientés conversion</li>
+            <li>Base technique propre pour évoluer ensuite</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-intro" data-reveal>
+        <span class="section-tag">Preuves</span>
+        <h2>Le type de retour que ce niveau de travail cherche à créer.</h2>
+        <p>Ces témoignages reflètent le résultat attendu: plus de clarté, plus de confiance et une image plus professionnelle.</p>
+      </div>
+      <div class="proof-grid testimonials-grid" data-reveal>
+        <article class="proof-card testimonial-card">
+          <p>"Nous avions surtout besoin d'une image plus nette. Le travail a aidé à rendre l'offre beaucoup plus compréhensible."</p>
+          <strong>Responsable de structure locale</strong>
+          <span>Projet vitrine & repositionnement</span>
+        </article>
+        <article class="proof-card testimonial-card">
+          <p>"La différence la plus visible n'était pas seulement le design, mais la façon dont le parcours guidait mieux le visiteur."</p>
+          <strong>Client orienté service</strong>
+          <span>Refonte de présentation</span>
+        </article>
+        <article class="proof-card testimonial-card">
+          <p>"On sent davantage une logique produit et une vraie organisation derrière les écrans."</p>
+          <strong>Projet applicatif</strong>
+          <span>Interface & expérience utilisateur</span>
         </article>
       </div>
     </section>
@@ -161,6 +263,7 @@
       <div class="modal-meta">
         <p><strong>Technologies:</strong> <span id="modal-tech"></span></p>
         <p><strong>Année:</strong> <span id="modal-year"></span></p>
+        <p><strong>Résultat recherché:</strong> <span id="modal-result"></span></p>
       </div>
       <a href="contact.html" class="btn-quote">Demander un projet similaire</a>
     </div>
@@ -195,8 +298,8 @@
     </div>
   </footer>
 
-  <script src="js/index.js"></script>
-  <script src="js/portfolio.js"></script>
+  <script src="js/index.js" defer></script>
+  <script src="js/portfolio.js" defer></script>
 </body>
 </html>
 

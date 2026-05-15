@@ -17,6 +17,11 @@ const analyticsAverageSalary = document.getElementById("analytics-average-salary
 const analyticsTable = document.getElementById("analytics-table");
 const analyticsAlerts = document.getElementById("analytics-alerts");
 const analyticsBusinessSnapshot = document.getElementById("analytics-business-snapshot");
+const analyticsRunwayBadge = document.getElementById("analytics-runway-badge");
+const analyticsFocusGrid = document.getElementById("analytics-focus-grid");
+const analyticsTractionPanel = document.getElementById("analytics-traction-panel");
+const analyticsTeamHealth = document.getElementById("analytics-team-health");
+const analyticsDecisionCards = document.getElementById("analytics-decision-cards");
 
 let staffCache = [];
 
@@ -44,6 +49,7 @@ function renderSummary(summary) {
   analyticsProfitability.textContent = summary.profitabilityRateLabel || "0%";
   analyticsFixedCostBase.textContent = summary.fixedCostBaseLabel || "$0";
   analyticsAverageSalary.textContent = `Salaire moyen: ${money(summary.averageSalary || 0)}`;
+  analyticsRunwayBadge.textContent = `Runway: ${summary.runwayLabel || "analyse"}`;
 
   analyticsBusinessSnapshot.innerHTML = `
     <article class="stack-card">
@@ -51,30 +57,93 @@ function renderSummary(summary) {
         <strong>${summary.activeProjects || 0} projets actifs</strong>
         <span class="status-chip">delivery</span>
       </div>
-      <p>${summary.openTasks || 0} tache(s) ouvertes, dont ${summary.overdueTasks || 0} en retard.</p>
+      <p>${summary.openTasks || 0} tache(s) ouvertes, dont ${summary.overdueTasks || 0} en retard. Taux de livraison: ${summary.deliveryRateLabel || "0%"}.</p>
     </article>
     <article class="stack-card">
       <div class="stack-head">
         <strong>${summary.pipelineLeads || 0} leads dans le pipeline</strong>
         <span class="status-chip">sales</span>
       </div>
-      <p>${summary.wonLeads || 0} lead(s) gagnes, ${summary.openQuotesLabel || "$0"} en devis ouverts et ${summary.deliveredProjects || 0} projet(s) deja livres.</p>
+      <p>${summary.wonLeads || 0} lead(s) gagnes, ${summary.openQuotesLabel || "$0"} en devis ouverts et ${summary.leadWinRateLabel || "0%"} de conversion exploitable.</p>
     </article>
     <article class="stack-card">
       <div class="stack-head">
         <strong>${summary.receivedRevenueLabel || "$0"} encaisses</strong>
         <span class="status-chip">cash</span>
       </div>
-      <p>${summary.pendingRevenueLabel || "$0"} en paiements a suivre et ${summary.acceptedRevenueLabel || "$0"} de valeur deja signee.</p>
+      <p>${summary.pendingRevenueLabel || "$0"} en paiements a suivre, ${summary.thisMonthRevenueLabel || "$0"} recu ce mois-ci et ${summary.acceptedRevenueLabel || "$0"} deja signe.</p>
     </article>
     <article class="stack-card">
       <div class="stack-head">
         <strong>${summary.paidStaffCount || 0} poste(s) remunere(s)</strong>
         <span class="status-chip">team</span>
       </div>
-      <p>${summary.activeStaffCount || 0} compte(s) actif(s) dans l'espace staff.</p>
+      <p>${summary.activeStaffCount || 0} compte(s) actif(s), ${summary.volunteerRatioLabel || "0%"} encore en benevolat.</p>
     </article>
   `;
+
+  analyticsTractionPanel.innerHTML = `
+    <article class="stack-card">
+      <div class="stack-head">
+        <strong>${summary.thisMonthRevenueLabel || "$0"} captes ce mois-ci</strong>
+        <span class="status-chip">cash</span>
+      </div>
+      <p>Couverture actuelle des couts: ${summary.costCoverageRateLabel || "0%"}. Niveau de tresorerie: ${summary.runwayLabel || "analyse"}.</p>
+    </article>
+    <article class="stack-card">
+      <div class="stack-head">
+        <strong>${summary.quoteCoverageRateLabel || "0%"} de couverture devis</strong>
+        <span class="status-chip">sales</span>
+      </div>
+      <p>${summary.acceptedRevenueLabel || "$0"} signes face a ${summary.openQuotesLabel || "$0"} encore a transformer.</p>
+    </article>
+  `;
+
+  analyticsTeamHealth.innerHTML = `
+    <article class="stack-card">
+      <div class="stack-head">
+        <strong>${summary.volunteerRatioLabel || "0%"} de benevolat</strong>
+        <span class="status-chip">team</span>
+      </div>
+      <p>${summary.volunteerCount || 0} membre(s) benevoles pour ${summary.totalStaff || 0} profil(s) au total.</p>
+    </article>
+    <article class="stack-card">
+      <div class="stack-head">
+        <strong>${summary.paidRatioLabel || "0%"} de postes remuneres</strong>
+        <span class="status-chip">ops</span>
+      </div>
+      <p>${summary.paidStaffCount || 0} poste(s) payes, ${summary.activeStaffCount || 0} compte(s) actifs dans l'espace staff.</p>
+    </article>
+    <article class="stack-card">
+      <div class="stack-head">
+        <strong>${summary.overduePressureRateLabel || "0%"} de pression delivery</strong>
+        <span class="status-chip">delivery</span>
+      </div>
+      <p>${summary.completedTasks || 0} tache(s) completees sur ${summary.totalTasks || 0}, avec ${summary.overdueTasks || 0} en retard.</p>
+    </article>
+  `;
+}
+
+function renderFocus(summary, focusCards = []) {
+  analyticsFocusGrid.innerHTML = focusCards.map((card) => `
+    <article class="activity-item analytics-focus-card">
+      <small>${card.title}</small>
+      <strong>${card.value}</strong>
+      <p>${card.caption}</p>
+    </article>
+  `).join("");
+}
+
+function renderDecisionCards(cards = []) {
+  analyticsDecisionCards.innerHTML = cards.map((card) => `
+    <article class="stack-card">
+      <div class="stack-head">
+        <strong>${card.title}</strong>
+        <span class="status-chip">${card.label}</span>
+      </div>
+      <p>${card.text}</p>
+    </article>
+  `).join("");
 }
 
 function renderAlerts(alerts) {
@@ -150,7 +219,9 @@ async function loadExecutiveAnalytics() {
   }
 
   renderSummary(payload.data.summary || {});
+  renderFocus(payload.data.summary || {}, payload.data.ceoFocus || []);
   renderAlerts(payload.data.alerts || []);
+  renderDecisionCards(payload.data.decisionCards || []);
   renderTable(payload.data.staff || []);
 }
 

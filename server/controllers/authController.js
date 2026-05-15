@@ -25,6 +25,7 @@ async function login(req, res, next) {
         u.id,
         u.full_name AS fullName,
         u.email,
+        u.is_active AS isActive,
         u.password_hash AS passwordHash,
         COALESCE(r.name, 'staff') AS roleName
       FROM users u
@@ -52,11 +53,19 @@ async function login(req, res, next) {
       });
     }
 
+    if (!user.isActive) {
+      return res.status(403).json({
+        ok: false,
+        message: "This account is inactive"
+      });
+    }
+
     req.session.user = {
       id: user.id,
       fullName: user.fullName,
       email: user.email,
-      roleName: user.roleName
+      roleName: user.roleName,
+      isActive: Boolean(user.isActive)
     };
 
     return res.json({

@@ -23,6 +23,10 @@ function formatMoney(amount, currency = "USD") {
   }).format(Number(amount || 0));
 }
 
+function formatPercent(value) {
+  return `${Number(value || 0).toFixed(0)}%`;
+}
+
 function buildExecutiveAlerts(rows = [], summary) {
   const alerts = [];
   const unpaidCriticalRoles = rows.filter((row) =>
@@ -65,6 +69,34 @@ function buildExecutiveAlerts(rows = [], summary) {
     });
   }
 
+  if ((summary.overduePressureRate || 0) >= 35) {
+    alerts.push({
+      title: "Pression operationnelle elevee",
+      text: `${summary.overdueTasks || 0} tache(s) en retard sur ${summary.openTasks || 0} ouvertes. Le delivery commence a perdre du rythme.`
+    });
+  }
+
+  if ((summary.leadWinRate || 0) < 25 && (summary.totalQualifiedLeads || 0) >= 4) {
+    alerts.push({
+      title: "Conversion commerciale fragile",
+      text: `Le taux de conversion lead vers gagne reste a ${formatPercent(summary.leadWinRate)}. Il faut revoir relances, offres ou qualification.`
+    });
+  }
+
+  if ((summary.quoteCoverageRate || 0) < 45 && (summary.openQuotes || 0) > 0) {
+    alerts.push({
+      title: "Devis encore peu transformes",
+      text: `${summary.acceptedRevenueLabel} signes pour ${summary.openQuotesLabel} encore ouverts. Le pipe devis doit mieux convertir.`
+    });
+  }
+
+  if ((summary.volunteerRatio || 0) > 50) {
+    alerts.push({
+      title: "Dependance forte au benevolat",
+      text: `${summary.volunteerCount || 0} membre(s) sur ${summary.totalStaff || 0} restent benevoles. Le risque augmente si l'activite accelere.`
+    });
+  }
+
   if (!alerts.length) {
     alerts.push({
       title: "Structure saine",
@@ -98,32 +130,43 @@ async function getExecutiveAnalytics(_req, res, next) {
       ),
       db.query(
         `SELECT
+          COUNT(*) AS totalProjects,
           SUM(CASE WHEN status IN ('planned', 'in_progress', 'review') THEN 1 ELSE 0 END) AS activeProjects,
-          SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) AS deliveredProjects
+          SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) AS deliveredProjects,
+          SUM(CASE WHEN status = 'review' THEN 1 ELSE 0 END) AS reviewProjects
         FROM projects`
       ),
       db.query(
         `SELECT
+          COUNT(*) AS totalTasks,
           SUM(CASE WHEN status <> 'done' THEN 1 ELSE 0 END) AS openTasks,
-          SUM(CASE WHEN due_date IS NOT NULL AND due_date < CURDATE() AND status <> 'done' THEN 1 ELSE 0 END) AS overdueTasks
+          SUM(CASE WHEN due_date IS NOT NULL AND due_date < CURDATE() AND status <> 'done' THEN 1 ELSE 0 END) AS overdueTasks,
+          SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END) AS completedTasks
         FROM tasks`
       ),
       db.query(
         `SELECT
+          COUNT(*) AS totalLeads,
           SUM(CASE WHEN status IN ('new', 'contacted', 'qualified') THEN 1 ELSE 0 END) AS pipelineLeads,
-          SUM(CASE WHEN status = 'won' THEN 1 ELSE 0 END) AS wonLeads
+          SUM(CASE WHEN status = 'qualified' THEN 1 ELSE 0 END) AS qualifiedLeads,
+          SUM(CASE WHEN status = 'won' THEN 1 ELSE 0 END) AS wonLeads,
+          SUM(CASE WHEN status = 'lost' THEN 1 ELSE 0 END) AS lostLeads
         FROM leads`
       ),
       db.query(
         `SELECT
+          COUNT(*) AS totalQuotes,
           SUM(CASE WHEN status = 'accepted' THEN amount ELSE 0 END) AS acceptedRevenue,
-          SUM(CASE WHEN status IN ('draft', 'sent') THEN amount ELSE 0 END) AS openQuotes
+          SUM(CASE WHEN status IN ('draft', 'sent') THEN amount ELSE 0 END) AS openQuotes,
+          SUM(CASE WHEN status = 'accepted' THEN 1 ELSE 0 END) AS acceptedQuotes,
+          SUM(CASE WHEN status IN ('draft', 'sent') THEN 1 ELSE 0 END) AS openQuoteCount
         FROM quotes`
       ),
       db.query(
         `SELECT
           SUM(CASE WHEN payment_status = 'paid' THEN amount ELSE 0 END) AS receivedRevenue,
-          SUM(CASE WHEN payment_status IN ('pending', 'partial') THEN amount ELSE 0 END) AS pendingRevenue
+          SUM(CASE WHEN payment_status IN ('pending', 'partial') THEN amount ELSE 0 END) AS pendingRevenue,
+          SUM(CASE WHEN payment_status = 'paid' AND MONTH(created_at) = MONTH(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE()) THEN amount ELSE 0 END) AS thisMonthRevenue
         FROM payment_records`
       )
     ]);
@@ -180,41 +223,162 @@ async function getExecutiveAnalytics(_req, res, next) {
     const fixedCostBase = summary.monthlyPayroll + summary.supportBudget + summary.projectCommitment;
     const receivedRevenue = Number(paymentRow.receivedRevenue || 0);
     const pendingRevenue = Number(paymentRow.pendingRevenue || 0);
+    const thisMonthRevenue = Number(paymentRow.thisMonthRevenue || 0);
     const netCashFlow = receivedRevenue - fixedCostBase;
     const grossMargin = receivedRevenue - fixedCostBase;
     const profitabilityRate = receivedRevenue > 0 ? (grossMargin / receivedRevenue) * 100 : 0;
+    const totalProjects = Number(projectRow.totalProjects || 0);
+    const totalTasks = Number(taskRow.totalTasks || 0);
+    const openTasks = Number(taskRow.openTasks || 0);
+    const overdueTasks = Number(taskRow.overdueTasks || 0);
+    const completedTasks = Number(taskRow.completedTasks || 0);
+    const totalLeads = Number(leadRow.totalLeads || 0);
+    const qualifiedLeads = Number(leadRow.qualifiedLeads || 0);
+    const wonLeads = Number(leadRow.wonLeads || 0);
+    const lostLeads = Number(leadRow.lostLeads || 0);
+    const openQuotes = Number(quoteRow.openQuotes || 0);
+    const acceptedRevenue = Number(quoteRow.acceptedRevenue || 0);
+    const totalStaff = responseRows.length;
+    const volunteerRatio = totalStaff > 0 ? (summary.volunteerCount / totalStaff) * 100 : 0;
+    const paidRatio = totalStaff > 0 ? (summary.paidStaffCount / totalStaff) * 100 : 0;
+    const deliveryRate = totalProjects > 0 ? (Number(projectRow.deliveredProjects || 0) / totalProjects) * 100 : 0;
+    const completionRate = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+    const overduePressureRate = openTasks > 0 ? (overdueTasks / openTasks) * 100 : 0;
+    const totalQualifiedLeads = qualifiedLeads + wonLeads + lostLeads;
+    const leadWinRate = totalQualifiedLeads > 0 ? (wonLeads / totalQualifiedLeads) * 100 : 0;
+    const quoteCoverageRate = openQuotes > 0 ? (acceptedRevenue / openQuotes) * 100 : acceptedRevenue > 0 ? 100 : 0;
+    const costCoverageRate = fixedCostBase > 0 ? (receivedRevenue / fixedCostBase) * 100 : 100;
+    const runwayLabel = fixedCostBase === 0
+      ? "Lean"
+      : costCoverageRate >= 120
+        ? "Confortable"
+        : costCoverageRate >= 85
+          ? "A surveiller"
+          : "Fragile";
+    const decisionCards = [
+      {
+        title: "Priorite cash",
+        label: netCashFlow >= 0 ? "stable" : "urgent",
+        text: fixedCostBase === 0
+          ? `La structure reste tres legere pour le moment. C'est le bon moment pour signer sans alourdir trop vite les couts fixes.`
+          : netCashFlow >= 0
+            ? `Le cash couvre actuellement la base de cout a ${formatPercent(costCoverageRate)}. Gardez le rythme d'encaissement.`
+            : `Le cash ne couvre pas encore la base de cout. Il manque ${formatMoney(Math.abs(netCashFlow))} pour respirer.`
+      },
+      {
+        title: "Priorite delivery",
+        label: overduePressureRate >= 35 ? "attention" : "maitrise",
+        text: overduePressureRate >= 35
+          ? `La pression delivery est haute avec ${formatPercent(overduePressureRate)} de taches ouvertes en retard.`
+          : `Le delivery reste tenable avec ${formatPercent(completionRate)} des taches deja bouclees.`
+      },
+      {
+        title: "Priorite equipe",
+        label: volunteerRatio > 50 ? "risque" : "equilibre",
+        text: volunteerRatio > 50
+          ? `${formatPercent(volunteerRatio)} du staff reste benevole. Anticipez les roles a basculer vers une remuneration.`
+          : `L'equipe est plus equilibree avec ${summary.paidStaffCount} poste(s) remunere(s) sur ${totalStaff}.`
+      }
+    ];
+    const ceoFocus = [
+      {
+        title: "Croissance commerciale",
+        value: formatPercent(leadWinRate),
+        caption: `${wonLeads} lead(s) gagnes sur ${totalQualifiedLeads || totalLeads} exploitable(s)`
+      },
+      {
+        title: "Execution projet",
+        value: formatPercent(deliveryRate),
+        caption: `${projectRow.deliveredProjects || 0} projet(s) livres sur ${totalProjects}`
+      },
+      {
+        title: "Couverture du pipe",
+        value: formatPercent(quoteCoverageRate),
+        caption: `${formatMoney(acceptedRevenue)} signes face a ${formatMoney(openQuotes)} encore en devis`
+      },
+      {
+        title: "Capacite equipe",
+        value: formatPercent(100 - overduePressureRate),
+        caption: `${summary.activeStaffCount} compte(s) actif(s), niveau ${runwayLabel.toLowerCase()}`
+      }
+    ];
 
     res.json({
       ok: true,
       data: {
+        build: "ceo-final-v2",
         summary: {
           ...summary,
           averageSalary: summary.salaryHolders ? summary.monthlyPayroll / summary.salaryHolders : 0,
+          totalStaff,
           activeProjects: Number(projectRow.activeProjects || 0),
           deliveredProjects: Number(projectRow.deliveredProjects || 0),
-          openTasks: Number(taskRow.openTasks || 0),
-          overdueTasks: Number(taskRow.overdueTasks || 0),
+          reviewProjects: Number(projectRow.reviewProjects || 0),
+          totalProjects,
+          totalTasks,
+          openTasks,
+          overdueTasks,
+          completedTasks,
           pipelineLeads: Number(leadRow.pipelineLeads || 0),
-          wonLeads: Number(leadRow.wonLeads || 0),
-          acceptedRevenue: Number(quoteRow.acceptedRevenue || 0),
-          openQuotes: Number(quoteRow.openQuotes || 0),
-          receivedRevenue: Number(paymentRow.receivedRevenue || 0),
-          pendingRevenue: Number(paymentRow.pendingRevenue || 0),
+          qualifiedLeads,
+          wonLeads,
+          lostLeads,
+          totalLeads,
+          totalQualifiedLeads,
+          acceptedRevenue,
+          openQuotes,
+          receivedRevenue,
+          pendingRevenue,
+          thisMonthRevenue,
           fixedCostBase,
           netCashFlow,
           grossMargin,
           profitabilityRate,
-          acceptedRevenueLabel: formatMoney(quoteRow.acceptedRevenue || 0),
-          openQuotesLabel: formatMoney(quoteRow.openQuotes || 0),
-          receivedRevenueLabel: formatMoney(paymentRow.receivedRevenue || 0),
-          pendingRevenueLabel: formatMoney(paymentRow.pendingRevenue || 0),
+          volunteerRatio,
+          paidRatio,
+          deliveryRate,
+          completionRate,
+          overduePressureRate,
+          leadWinRate,
+          quoteCoverageRate,
+          costCoverageRate,
+          runwayLabel,
+          acceptedRevenueLabel: formatMoney(acceptedRevenue),
+          openQuotesLabel: formatMoney(openQuotes),
+          receivedRevenueLabel: formatMoney(receivedRevenue),
+          pendingRevenueLabel: formatMoney(pendingRevenue),
+          thisMonthRevenueLabel: formatMoney(thisMonthRevenue),
           fixedCostBaseLabel: formatMoney(fixedCostBase),
           netCashFlowLabel: formatMoney(netCashFlow),
           grossMarginLabel: formatMoney(grossMargin),
-          profitabilityRateLabel: `${profitabilityRate.toFixed(0)}%`
+          profitabilityRateLabel: formatPercent(profitabilityRate),
+          volunteerRatioLabel: formatPercent(volunteerRatio),
+          paidRatioLabel: formatPercent(paidRatio),
+          deliveryRateLabel: formatPercent(deliveryRate),
+          completionRateLabel: formatPercent(completionRate),
+          overduePressureRateLabel: formatPercent(overduePressureRate),
+          leadWinRateLabel: formatPercent(leadWinRate),
+          quoteCoverageRateLabel: formatPercent(quoteCoverageRate),
+          costCoverageRateLabel: formatPercent(costCoverageRate)
         },
         staff: responseRows,
-        alerts: buildExecutiveAlerts(responseRows, { ...summary, netCashFlow, grossMargin }),
+        alerts: buildExecutiveAlerts(responseRows, {
+          ...summary,
+          totalStaff,
+          totalQualifiedLeads,
+          openTasks,
+          overdueTasks,
+          openQuotes,
+          acceptedRevenueLabel: formatMoney(acceptedRevenue),
+          openQuotesLabel: formatMoney(openQuotes),
+          netCashFlow,
+          grossMargin,
+          volunteerRatio,
+          overduePressureRate,
+          leadWinRate
+        }),
+        decisionCards,
+        ceoFocus,
         modelLabels: MODEL_LABELS
       }
     });

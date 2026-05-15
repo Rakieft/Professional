@@ -10,6 +10,7 @@ const taskRoutes = require("./taskRoutes");
 const userRoutes = require("./userRoutes");
 const analyticsRoutes = require("./analyticsRoutes");
 const financeRoutes = require("./financeRoutes");
+const fileRoutes = require("./fileRoutes");
 const notificationRoutes = require("./notificationRoutes");
 const { requireAuth } = require("../middleware/authMiddleware");
 const errorHandler = require("../middleware/errorHandler");
@@ -36,6 +37,7 @@ router.use("/leads", leadRoutes);
 router.use("/users", userRoutes);
 router.use("/analytics", analyticsRoutes);
 router.use("/finance", financeRoutes);
+router.use("/files", fileRoutes);
 router.use("/notifications", notificationRoutes);
 router.use(errorHandler);
 

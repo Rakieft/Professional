@@ -1,5 +1,6 @@
 const db = require("../config/db");
 const { hasAnyRole } = require("../middleware/authMiddleware");
+const { listRecentActivity } = require("../services/activityService");
 
 async function listNotifications(req, res, next) {
   try {
@@ -44,13 +45,15 @@ async function listNotifications(req, res, next) {
       acc[key] = (acc[key] || 0) + 1;
       return acc;
     }, {});
+    const activity = await listRecentActivity(12);
 
     res.json({
       ok: true,
       data: {
         unread,
         categories: categorySummary,
-        notifications
+        notifications,
+        activity
       }
     });
   } catch (error) {

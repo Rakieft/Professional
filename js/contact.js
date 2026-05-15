@@ -1,7 +1,36 @@
-﻿
 const contactForm = document.getElementById("quote-form");
+const selectedPlanBanner = document.getElementById("selected-plan-banner");
+const selectedPlanLabel = document.getElementById("selected-plan-label");
+
+function hydratePlanFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const plan = params.get("plan")?.trim();
+  const projectType = params.get("projectType")?.trim();
+
+  if (!contactForm) {
+    return;
+  }
+
+  const projectTypeField = contactForm.querySelector('[name="project_type"]');
+  const descriptionField = contactForm.querySelector('[name="description"]');
+
+  if (plan && selectedPlanBanner && selectedPlanLabel) {
+    selectedPlanLabel.textContent = plan;
+    selectedPlanBanner.hidden = false;
+  }
+
+  if (projectTypeField && projectType) {
+    projectTypeField.value = projectType;
+  }
+
+  if (descriptionField && plan && !descriptionField.value.trim()) {
+    descriptionField.value = `Bonjour WebFy,\n\nJe souhaite avancer avec le plan ${plan}.\n\nVoici quelques details sur mon projet:`;
+  }
+}
 
 if (contactForm) {
+  hydratePlanFromUrl();
+
   contactForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -39,6 +68,9 @@ if (contactForm) {
           : "Votre demande a bien ete enregistree. L'email automatique n'est pas encore configure."
       );
       contactForm.reset();
+      if (selectedPlanBanner) {
+        selectedPlanBanner.hidden = true;
+      }
     } catch (error) {
       alert(error.message || "Erreur lors de l'envoi. Veuillez reessayer.");
       console.error(error);
@@ -48,4 +80,3 @@ if (contactForm) {
     }
   });
 }
-

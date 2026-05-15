@@ -17,6 +17,11 @@ const app = express();
 const port = Number(process.env.PORT || 5000);
 const rootDir = __dirname;
 const isProduction = process.env.NODE_ENV === "production";
+const sessionSecret = process.env.SESSION_SECRET;
+
+if (isProduction && !sessionSecret) {
+  throw new Error("SESSION_SECRET is required in production");
+}
 
 app.disable("x-powered-by");
 
@@ -47,9 +52,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     name: "webfy.sid",
-    secret: process.env.SESSION_SECRET || "webfy_session_secret",
+    secret: sessionSecret || "webfy_dev_only_secret",
     resave: false,
     saveUninitialized: false,
+    unset: "destroy",
     cookie: {
       httpOnly: true,
       sameSite: "lax",
@@ -126,12 +132,20 @@ app.get("/leads.html", requireStaffPage, (_req, res) => {
   res.redirect("/leads");
 });
 
-app.get("/team", requireStaffPage, (_req, res) => {
+app.get("/team", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager"), (_req, res) => {
   res.sendFile(path.join(rootDir, "team.html"));
 });
 
-app.get("/team.html", requireStaffPage, (_req, res) => {
+app.get("/team.html", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager"), (_req, res) => {
   res.redirect("/team");
+});
+
+app.get("/files", requireStaffPage, (_req, res) => {
+  res.sendFile(path.join(rootDir, "files.html"));
+});
+
+app.get("/files.html", requireStaffPage, (_req, res) => {
+  res.redirect("/files");
 });
 
 app.get("/profile", requireStaffPage, (_req, res) => {
@@ -142,11 +156,11 @@ app.get("/profile.html", requireStaffPage, (_req, res) => {
   res.redirect("/profile");
 });
 
-app.get("/finance", requireStaffPage, (_req, res) => {
+app.get("/finance", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), (_req, res) => {
   res.sendFile(path.join(rootDir, "finance.html"));
 });
 
-app.get("/finance.html", requireStaffPage, (_req, res) => {
+app.get("/finance.html", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), (_req, res) => {
   res.redirect("/finance");
 });
 

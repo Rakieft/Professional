@@ -7,7 +7,18 @@
   <meta name="description" content="Gestion des comptes staff et des roles WebFy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="assset/css/style.css">
-  <link rel="icon" href="assset/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="image/webfy-mark.svg">
+  <link rel="icon" type="image/x-icon" href="assset/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assset/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assset/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assset/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assset/favicon/site.webmanifest">
+  <meta name="theme-color" content="#0a2238">
+  <meta name="msapplication-TileColor" content="#0a2238">
+  <meta name="msapplication-config" content="assset/favicon/browserconfig.xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WebFy">
 </head>
 <body class="staff-app">
   <div class="staff-shell">
@@ -26,6 +37,7 @@
         <a href="/projects">Projets</a>
         <a href="/tasks">Taches</a>
         <a href="/leads">Leads</a>
+        <a href="/files">Fichiers</a>
         <a href="/team" class="active">Equipe</a>
         <a href="/finance">Finance</a>
         <a href="/profile">Profil</a>
@@ -45,7 +57,7 @@
         <div>
           <p class="eyebrow">Team management</p>
           <h1>Equipe et roles</h1>
-          <span>Créez les comptes staff, attribuez les rôles et gardez une structure claire pour la production.</span>
+          <span>Creez les comptes staff, attribuez les roles et gardez une structure claire pour la production.</span>
           <div class="role-banner">
             <span class="role-chip" id="role-chip">staff</span>
             <span id="session-user-label">Session staff</span>
@@ -131,7 +143,7 @@
     </main>
   </div>
 
-  <script src="js/staff-common.js"></script>
-  <script src="js/team.js"></script>
+  <script src="js/staff-common.js" defer></script>
+  <script src="js/team.js" defer></script>
 </body>
 </html>
