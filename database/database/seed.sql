@@ -33,7 +33,7 @@ ON DUPLICATE KEY UPDATE full_name = VALUES(full_name), job_title = VALUES(job_ti
 
 INSERT INTO clients (name, company_type, contact_name, email, phone, status)
 VALUES
-  ('WebFy Internal', 'Startup', 'Kieft Raphter Joly', 'contact@webfy.ht', '+509 4479-5902', 'active'),
+  ('WebFy Internal', 'Startup', 'Kieft Raphter Joly', 'webfysa@gmail.com', '+509 4479-5902', 'active'),
   ('Clinique Privee', 'Healthcare', 'Responsable Clinique', 'contact@clinique.ht', '+509 3000-1000', 'lead'),
   ('Restaurant Local', 'Food', 'Owner', 'hello@restaurant.ht', '+509 3000-2000', 'active')
 ON DUPLICATE KEY UPDATE name = VALUES(name);

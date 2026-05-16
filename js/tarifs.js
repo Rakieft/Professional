@@ -65,19 +65,25 @@ if (quoteForm) {
       phone: formData.get("phone")?.trim(),
       website: formData.get("website")?.trim(),
       projectType: formData.get("project_type")?.trim(),
-      description: formData.get("description")?.trim()
+      description: formData.get("description")?.trim(),
+      selectedPlan: selectedPlanLabel?.textContent?.trim() || ""
     };
 
     submitButton.disabled = true;
     submitButton.textContent = "Envoi en cours...";
 
     try {
+      await sendQuoteEmailJs(payload);
+
       const response = await fetch("/api/contact/quote", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          ...payload,
+          skipEmail: true
+        })
       });
 
       const result = await response.json();
@@ -87,9 +93,7 @@ if (quoteForm) {
       }
 
       alert(
-        result.emailSent
-          ? "Votre demande de devis a bien ete envoyee. WebFy vous repondra sous 24 a 48 heures."
-          : "Votre demande de devis a bien ete enregistree. L'email automatique n'est pas encore configure."
+        "Votre demande de devis a bien ete envoyee. WebFy vous repondra sous 24 a 48 heures."
       );
       quoteForm.reset();
       if (selectedPlanBanner) {

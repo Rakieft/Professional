@@ -53,7 +53,8 @@ async function submitContactRequest(req, res, next) {
       email,
       phone,
       projectType,
-      description
+      description,
+      skipEmail
     } = req.body;
 
     if (!name || !email || !projectType || !description) {
@@ -72,7 +73,9 @@ async function submitContactRequest(req, res, next) {
       source: "Website contact form"
     });
 
-    const mailResult = await sendContactEmail(contact);
+    const mailResult = skipEmail
+      ? { sent: true, skipped: true }
+      : await sendContactEmail(contact);
 
     res.status(201).json({
       ok: true,
@@ -97,7 +100,8 @@ async function submitQuoteRequest(req, res, next) {
       phone,
       website,
       projectType,
-      description
+      description,
+      skipEmail
     } = req.body;
 
     if (!name || !email || !projectType || !description) {
@@ -121,10 +125,12 @@ async function submitQuoteRequest(req, res, next) {
       notesSuffix
     });
 
-    const mailResult = await sendContactEmail({
-      ...contact,
-      description: `${contact.description}${notesSuffix}`.trim()
-    });
+    const mailResult = skipEmail
+      ? { sent: true, skipped: true }
+      : await sendContactEmail({
+        ...contact,
+        description: `${contact.description}${notesSuffix}`.trim()
+      });
 
     res.status(201).json({
       ok: true,

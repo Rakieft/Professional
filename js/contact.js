@@ -48,12 +48,17 @@ if (contactForm) {
     submitButton.textContent = "Envoi en cours...";
 
     try {
+      await sendContactEmailJs(payload);
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          ...payload,
+          skipEmail: true
+        })
       });
 
       const result = await response.json();
@@ -63,9 +68,7 @@ if (contactForm) {
       }
 
       alert(
-        result.emailSent
-          ? "Votre demande a bien ete envoyee. WebFy vous repondra sous 24 a 48 heures."
-          : "Votre demande a bien ete enregistree. L'email automatique n'est pas encore configure."
+        "Votre demande a bien ete envoyee. WebFy vous repondra sous 24 a 48 heures."
       );
       contactForm.reset();
       if (selectedPlanBanner) {
