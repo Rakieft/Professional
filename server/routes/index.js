@@ -25,6 +25,20 @@ router.get("/health", (_req, res) => {
   });
 });
 
+router.get("/public-config", (_req, res) => {
+  res.json({
+    ok: true,
+    data: {
+      socialLinks: {
+        whatsapp: process.env.SOCIAL_WHATSAPP_URL || "https://wa.me/50944795902",
+        instagram: process.env.SOCIAL_INSTAGRAM_URL || "https://instagram.com/webfy",
+        facebook: process.env.SOCIAL_FACEBOOK_URL || "https://facebook.com/webfy",
+        tiktok: process.env.SOCIAL_TIKTOK_URL || "https://tiktok.com/@webfy"
+      }
+    }
+  });
+});
+
 router.use("/auth", authRoutes);
 router.use("/contact", contactRoutes);
 router.use(requireAuth);

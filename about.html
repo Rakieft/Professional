@@ -21,9 +21,13 @@
 <body class="public-app page-about">
   <header class="site-header" id="site-header">
     <div class="top-bar">
-      <!-- <span>WebFy, une vision de croissance digitale claire et humaine</span> -->
       <span>webfysa@gmail.com/ +509 4479-5902</span>
-      <!-- <span>+509 4479-5902</span> -->
+      <div class="social-links social-links-top" aria-label="Reseaux sociaux WebFy">
+        <a href="#" data-social-link="whatsapp" target="_blank" rel="noreferrer" aria-label="WhatsApp WebFy" hidden>WA</a>
+        <a href="#" data-social-link="instagram" target="_blank" rel="noreferrer" aria-label="Instagram WebFy" hidden>IG</a>
+        <a href="#" data-social-link="facebook" target="_blank" rel="noreferrer" aria-label="Facebook WebFy" hidden>FB</a>
+        <a href="#" data-social-link="tiktok" target="_blank" rel="noreferrer" aria-label="TikTok WebFy" hidden>TT</a>
+      </div>
     </div>
     <div class="nav-main">
       <a class="logo" href="index.html"><img src="image/webfy-mark.svg" alt="WebFy" width="160" height="48"></a>
@@ -72,7 +76,10 @@
         <p>WebFy est née d'une idée simple: aider les entreprises à mieux se présenter, mieux communiquer et mieux structurer leur présence digitale.</p>
       </div>
       <div class="page-hero-panel portrait" data-reveal>
-        <img src="image/me.jpg" alt="Fondateur WebFy" width="1184" height="864" decoding="async">
+        <video controls playsinline preload="metadata" poster="image/about.jpg" aria-label="Presentation video WebFy">
+          <source src="video/about-webfy.mp4" type="video/mp4">
+          Votre navigateur ne prend pas en charge la lecture video.
+        </video>
       </div>
     </section>
 
@@ -293,6 +300,12 @@
       <div class="footer-col footer-brand-col">
         <h3>WebFy</h3>
         <p>Une vision digitale plus claire, avec une meilleure exécution et une meilleure présentation.</p>
+        <div class="social-links social-links-footer" aria-label="Reseaux sociaux WebFy">
+          <a href="#" data-social-link="whatsapp" target="_blank" rel="noreferrer" aria-label="WhatsApp WebFy" hidden>WA</a>
+          <a href="#" data-social-link="instagram" target="_blank" rel="noreferrer" aria-label="Instagram WebFy" hidden>IG</a>
+          <a href="#" data-social-link="facebook" target="_blank" rel="noreferrer" aria-label="Facebook WebFy" hidden>FB</a>
+          <a href="#" data-social-link="tiktok" target="_blank" rel="noreferrer" aria-label="TikTok WebFy" hidden>TT</a>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
@@ -317,10 +330,8 @@
     </div>
   </footer>
 
+  <script src="js/public-socials.js" defer></script>
   <script src="js/index.js" defer></script>
 </body>
 </html>
-
-
-
 
