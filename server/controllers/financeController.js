@@ -5,7 +5,15 @@ const {
 } = require("../services/notificationService");
 
 function canManageFinance(roleName = "") {
-  return ["admin", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
+  return [
+    "admin",
+    "marketing_lead",
+    "business_sales",
+    "administrative_assistant",
+    "operations_manager",
+    "project_manager",
+    "sales_manager"
+  ].includes(roleName);
 }
 
 function formatMoney(amount, currency = "USD") {
@@ -157,7 +165,7 @@ async function createQuote(req, res, next) {
     );
 
     await createNotifications(
-      await getActiveUserIdsByRoles(["admin", "operations_manager", "project_manager", "sales_manager"]),
+      await getActiveUserIdsByRoles(["admin", "marketing_lead", "business_sales", "administrative_assistant", "operations_manager", "project_manager", "sales_manager"]),
       {
         title: "Nouveau devis cree",
         message: `Un devis "${projectType}" de ${formatMoney(amount)} vient d'etre enregistre.`,
@@ -245,7 +253,7 @@ async function createPayment(req, res, next) {
     }
 
     await createNotifications(
-      await getActiveUserIdsByRoles(["admin", "operations_manager", "project_manager", "sales_manager"]),
+      await getActiveUserIdsByRoles(["admin", "marketing_lead", "business_sales", "administrative_assistant", "operations_manager", "project_manager", "sales_manager"]),
       {
         title: "Paiement enregistre",
         message: `Le paiement "${title}" de ${formatMoney(amount, currency || "USD")} a ete enregistre.`,
@@ -336,7 +344,7 @@ async function createInvoiceFromQuote(req, res, next) {
     );
 
     await createNotifications(
-      await getActiveUserIdsByRoles(["admin", "operations_manager", "project_manager", "sales_manager"]),
+      await getActiveUserIdsByRoles(["admin", "marketing_lead", "business_sales", "administrative_assistant", "operations_manager", "project_manager", "sales_manager"]),
       {
         title: "Facture creee",
         message: `La facture ${invoiceNumber} a ete generee pour ${quote.clientName || "un client"}.`,

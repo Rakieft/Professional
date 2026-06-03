@@ -30,7 +30,16 @@ function formatPercent(value) {
 function buildExecutiveAlerts(rows = [], summary) {
   const alerts = [];
   const unpaidCriticalRoles = rows.filter((row) =>
-    ["developer", "designer", "project_manager"].includes(row.roleName) &&
+    [
+      "frontend_developer",
+      "backend_developer",
+      "visual_designer",
+      "marketing_lead",
+      "business_sales",
+      "developer",
+      "designer",
+      "project_manager"
+    ].includes(row.roleName) &&
     row.isActive === 1 &&
     row.compensationModel === "volunteer"
   );

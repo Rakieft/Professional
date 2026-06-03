@@ -3,7 +3,7 @@ const { hasPermission } = require("../middleware/authMiddleware");
 const { createActivityLog } = require("../services/activityService");
 
 function canManageLeads(roleName = "") {
-  return ["admin", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
+  return ["admin", "marketing_lead", "business_sales", "administrative_assistant", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
 }
 
 async function listLeads(_req, res, next) {
@@ -222,31 +222,31 @@ function getTaskTemplates(templateKey) {
         title: "Cadrage du besoin",
         description: "Clarifier les objectifs, le contenu attendu, la structure et le niveau de finition du site.",
         priority: "high",
-        roleName: "project_manager"
+        roleName: "marketing_lead"
       },
       {
         title: "Arborescence et sections",
         description: "Definir les pages, la hierarchie du contenu et les appels a l'action principaux.",
         priority: "high",
-        roleName: "project_manager"
+        roleName: "marketing_lead"
       },
       {
         title: "Direction visuelle",
         description: "Poser la direction graphique, les references et la logique visuelle du projet.",
         priority: "medium",
-        roleName: "designer"
+        roleName: "visual_designer"
       },
       {
         title: "Integration et developpement",
         description: "Construire les pages et l'experience utilisateur prevue pour la version publique.",
         priority: "high",
-        roleName: "developer"
+        roleName: "frontend_developer"
       },
       {
         title: "Tests et livraison",
         description: "Verifier le responsive, les liens, les formulaires et preparer la mise en ligne.",
         priority: "medium",
-        roleName: "operations_manager"
+        roleName: "administrative_assistant"
       }
     ],
     branding: [
@@ -254,31 +254,31 @@ function getTaskTemplates(templateKey) {
         title: "Brief de marque",
         description: "Comprendre le positionnement, la cible, le ton et les references visuelles.",
         priority: "high",
-        roleName: "project_manager"
+        roleName: "marketing_lead"
       },
       {
         title: "Recherche creative",
         description: "Explorer les pistes graphiques, univers visuels et symboliques utiles.",
         priority: "medium",
-        roleName: "designer"
+        roleName: "visual_designer"
       },
       {
         title: "Propositions logo",
         description: "Produire les pistes de logo et les variantes principales pour presentation.",
         priority: "high",
-        roleName: "designer"
+        roleName: "visual_designer"
       },
       {
         title: "Retours et ajustements",
         description: "Integrer les commentaires, finaliser la piste retenue et preparer les declinaisons.",
         priority: "medium",
-        roleName: "designer"
+        roleName: "visual_designer"
       },
       {
         title: "Livraison des assets",
         description: "Exporter les formats, organiser les livrables et remettre les fichiers finaux.",
         priority: "medium",
-        roleName: "operations_manager"
+        roleName: "administrative_assistant"
       }
     ],
     social_media: [
@@ -286,19 +286,19 @@ function getTaskTemplates(templateKey) {
         title: "Audit express des comptes",
         description: "Analyser la presence existante, les manques et les opportunites de contenu.",
         priority: "high",
-        roleName: "social_media_manager"
+        roleName: "community_manager"
       },
       {
         title: "Calendrier editorial",
         description: "Definir le rythme, les themes et les formats prioritaires.",
         priority: "high",
-        roleName: "social_media_manager"
+        roleName: "marketing_lead"
       },
       {
         title: "Production des visuels",
         description: "Creer les supports graphiques necessaires pour la premiere vague de posts.",
         priority: "medium",
-        roleName: "designer"
+        roleName: "visual_designer"
       },
       {
         title: "Redaction des captions",
@@ -310,7 +310,7 @@ function getTaskTemplates(templateKey) {
         title: "Programmation et validation",
         description: "Planifier les publications et verifier les elements avant diffusion.",
         priority: "medium",
-        roleName: "social_media_manager"
+        roleName: "community_manager"
       }
     ],
     application: [
@@ -318,31 +318,31 @@ function getTaskTemplates(templateKey) {
         title: "Cadrage fonctionnel",
         description: "Lister les besoins metier, les roles, les ecrans et les flux du systeme.",
         priority: "high",
-        roleName: "project_manager"
+        roleName: "marketing_lead"
       },
       {
         title: "Structure technique",
         description: "Poser la base de donnees, les entites principales et la logique generale.",
         priority: "high",
-        roleName: "developer"
+        roleName: "backend_developer"
       },
       {
         title: "Interface produit",
         description: "Designer le dashboard, les vues clefs et l'experience utilisateur interne.",
         priority: "medium",
-        roleName: "designer"
+        roleName: "frontend_developer"
       },
       {
         title: "Developpement du module coeur",
         description: "Implementer le module prioritaire et le flux principal de travail.",
         priority: "high",
-        roleName: "developer"
+        roleName: "backend_developer"
       },
       {
         title: "Recette et mise en service",
         description: "Tester les parcours, corriger les points bloquants et preparer la mise en ligne.",
         priority: "medium",
-        roleName: "operations_manager"
+        roleName: "administrative_assistant"
       }
     ]
   };
@@ -352,10 +352,10 @@ function getTaskTemplates(templateKey) {
 
 function getPreferredOwnerRoles(templateKey) {
   const ownerRoles = {
-    website: ["project_manager", "operations_manager", "admin"],
-    branding: ["project_manager", "designer", "admin"],
-    social_media: ["social_media_manager", "project_manager", "admin"],
-    application: ["project_manager", "developer", "operations_manager", "admin"]
+    website: ["marketing_lead", "frontend_developer", "administrative_assistant", "admin"],
+    branding: ["marketing_lead", "visual_designer", "admin"],
+    social_media: ["marketing_lead", "community_manager", "admin"],
+    application: ["marketing_lead", "backend_developer", "frontend_developer", "admin"]
   };
 
   return ownerRoles[templateKey] || ["project_manager", "operations_manager", "admin"];
@@ -497,7 +497,7 @@ async function convertLeadToProject(req, res, next) {
       const taskTemplates = getTaskTemplates(templateKey);
 
       for (const task of taskTemplates) {
-        const assigneeUserId = getFirstMatchingUserId(usersByRole, [task.roleName, "operations_manager", "admin"]);
+        const assigneeUserId = getFirstMatchingUserId(usersByRole, [task.roleName, "marketing_lead", "administrative_assistant", "admin"]);
         await db.query(
           `INSERT INTO tasks
             (project_id, assignee_user_id, title, description, status, priority, due_date)

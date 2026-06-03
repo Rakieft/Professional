@@ -5,7 +5,16 @@ let currentUser = null;
 
 function canManageClients() {
   const roleName = currentUser?.roleName || "";
-  return ["admin", "operations_manager", "project_manager", "sales_manager", "support_manager"].includes(roleName);
+  return [
+    "admin",
+    "marketing_lead",
+    "business_sales",
+    "administrative_assistant",
+    "operations_manager",
+    "project_manager",
+    "sales_manager",
+    "support_manager"
+  ].includes(roleName);
 }
 
 function renderClients(clients) {

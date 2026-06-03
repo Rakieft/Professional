@@ -132,11 +132,11 @@ app.get("/leads.html", requireStaffPage, (_req, res) => {
   res.redirect("/leads");
 });
 
-app.get("/team", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager"), (_req, res) => {
+app.get("/team", requireStaffRolePage("admin", "administrative_assistant", "cofounder", "secretary", "operations_manager"), (_req, res) => {
   res.sendFile(path.join(rootDir, "team.html"));
 });
 
-app.get("/team.html", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager"), (_req, res) => {
+app.get("/team.html", requireStaffRolePage("admin", "administrative_assistant", "cofounder", "secretary", "operations_manager"), (_req, res) => {
   res.redirect("/team");
 });
 
@@ -156,11 +156,11 @@ app.get("/profile.html", requireStaffPage, (_req, res) => {
   res.redirect("/profile");
 });
 
-app.get("/finance", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), (_req, res) => {
+app.get("/finance", requireStaffRolePage("admin", "marketing_lead", "business_sales", "administrative_assistant", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), (_req, res) => {
   res.sendFile(path.join(rootDir, "finance.html"));
 });
 
-app.get("/finance.html", requireStaffRolePage("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), (_req, res) => {
+app.get("/finance.html", requireStaffRolePage("admin", "marketing_lead", "business_sales", "administrative_assistant", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), (_req, res) => {
   res.redirect("/finance");
 });
 

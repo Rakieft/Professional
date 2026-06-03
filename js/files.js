@@ -23,6 +23,13 @@ function canManageFiles() {
   const roleName = currentUser?.roleName || "";
   return [
     "admin",
+    "marketing_lead",
+    "visual_designer",
+    "community_manager",
+    "frontend_developer",
+    "backend_developer",
+    "business_sales",
+    "administrative_assistant",
     "operations_manager",
     "project_manager",
     "designer",
@@ -239,7 +246,7 @@ if (projectFileCancel) {
       }
     });
 
-    projectFileFeedback.textContent = "Vous pouvez consulter la bibliotheque, mais l'ajout de livrables est limite aux roles de production, support et management.";
+    projectFileFeedback.textContent = "Vous pouvez consulter la bibliotheque, mais l'ajout de livrables est limite aux roles de production, marketing, sales et coordination autorises.";
   }
 
   await loadFiles();

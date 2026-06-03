@@ -149,13 +149,16 @@ function redirectIfAuthenticated(req, res, next) {
 
 const staffPermissions = {
   tasks: {
-    manage: ["admin", "operations_manager", "project_manager"],
-    view_all: ["admin", "operations_manager", "project_manager"],
-    change_status_all: ["admin", "operations_manager", "project_manager"]
+    manage: ["admin", "marketing_lead", "administrative_assistant", "operations_manager", "project_manager"],
+    view_all: ["admin", "marketing_lead", "administrative_assistant", "operations_manager", "project_manager"],
+    change_status_all: ["admin", "marketing_lead", "administrative_assistant", "operations_manager", "project_manager"]
   },
   clients: {
     manage: [
       "admin",
+      "marketing_lead",
+      "business_sales",
+      "administrative_assistant",
       "cofounder",
       "secretary",
       "operations_manager",
@@ -166,14 +169,32 @@ const staffPermissions = {
     ]
   },
   projects: {
-    manage: ["admin", "cofounder", "operations_manager", "project_manager"]
+    manage: ["admin", "marketing_lead", "administrative_assistant", "cofounder", "operations_manager", "project_manager"]
   },
   leads: {
-    manage: ["admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager", "administrative_assistant"]
+    manage: [
+      "admin",
+      "marketing_lead",
+      "business_sales",
+      "administrative_assistant",
+      "cofounder",
+      "secretary",
+      "operations_manager",
+      "project_manager",
+      "sales_manager"
+    ]
   },
   files: {
     manage: [
       "admin",
+      "marketing_lead",
+      "content_creator",
+      "visual_designer",
+      "community_manager",
+      "frontend_developer",
+      "backend_developer",
+      "business_sales",
+      "administrative_assistant",
       "cofounder",
       "secretary",
       "operations_manager",
@@ -188,6 +209,14 @@ const staffPermissions = {
     ],
     view_all: [
       "admin",
+      "marketing_lead",
+      "content_creator",
+      "visual_designer",
+      "community_manager",
+      "frontend_developer",
+      "backend_developer",
+      "business_sales",
+      "administrative_assistant",
       "cofounder",
       "secretary",
       "operations_manager",

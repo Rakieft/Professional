@@ -16,29 +16,50 @@ const teamRoles = document.getElementById("team-roles");
 
 let usersCache = [];
 let rolesCache = [];
+const preferredRoleNames = [
+  "admin",
+  "marketing_lead",
+  "content_creator",
+  "visual_designer",
+  "community_manager",
+  "frontend_developer",
+  "backend_developer",
+  "administrative_assistant",
+  "business_sales"
+];
 
 function formatRoleName(roleName = "") {
   const labels = {
     admin: "Admin",
+    marketing_lead: "Marketing lead",
+    content_creator: "Content creator",
+    visual_designer: "Designer visuel",
+    community_manager: "Community manager",
+    frontend_developer: "Developpeur frontend",
+    backend_developer: "Developpeur backend",
+    business_sales: "Business sales",
+    administrative_assistant: "Assistante administrative",
     cofounder: "Co-Fondateur",
     secretary: "Secretaire",
     operations_manager: "Operations manager",
     project_manager: "Project manager",
     designer: "Designer",
     developer: "Developer",
-    content_creator: "Content creator",
     social_media_manager: "Social media manager",
     sales_manager: "Sales manager",
-    support_manager: "Support manager",
-    administrative_assistant: "Assistante administrative"
+    support_manager: "Support manager"
   };
 
   return labels[roleName] || roleName.replaceAll("_", " ");
 }
 
 function fillRoleSelect() {
+  const orderedRoles = rolesCache
+    .filter((role) => preferredRoleNames.includes(role.name))
+    .sort((a, b) => preferredRoleNames.indexOf(a.name) - preferredRoleNames.indexOf(b.name));
+
   teamRole.innerHTML = '<option value="">Choisir un role</option>' +
-    rolesCache.map((role) => `<option value="${role.id}">${formatRoleName(role.name)}</option>`).join("");
+    orderedRoles.map((role) => `<option value="${role.id}">${formatRoleName(role.name)}</option>`).join("");
 }
 
 function resetTeamForm() {
@@ -54,7 +75,7 @@ function setTeamStats(users) {
   const activeCount = users.filter((user) => Number(user.isActive) === 1).length;
   teamTotal.textContent = `${users.length} membres`;
   teamActive.textContent = `${activeCount} comptes`;
-  teamRoles.textContent = `${rolesCache.length} roles`;
+  teamRoles.textContent = `${rolesCache.filter((role) => preferredRoleNames.includes(role.name)).length} roles`;
 }
 
 function startEditUser(id) {

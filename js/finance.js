@@ -18,7 +18,7 @@ let financeUser = null;
 
 function canManageFinance() {
   const roleName = financeUser?.roleName || "";
-  return ["admin", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
+  return ["admin", "marketing_lead", "business_sales", "administrative_assistant", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
 }
 
 function fillSelect(select, rows, labelKey = "name") {

@@ -6,8 +6,8 @@ const sessionUserLabel = document.getElementById("session-user-label");
 let currentStaffUser = null;
 
 const pageRoleVisibility = {
-  "/team": ["admin", "cofounder", "secretary", "operations_manager"],
-  "/finance": ["admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"],
+  "/team": ["admin", "administrative_assistant", "cofounder", "secretary", "operations_manager"],
+  "/finance": ["admin", "marketing_lead", "business_sales", "administrative_assistant", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"],
   "/analytics": ["admin"]
 };
 

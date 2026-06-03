@@ -15,7 +15,7 @@ const fallbackData = {
   content: [
     { dayLabel: "Lundi", title: "Reel branding - Instagram" },
     { dayLabel: "Mardi", title: "Post portfolio - Facebook" },
-    { dayLabel: "Jeudi", title: "Carrousel services - LinkedIn" }
+    { dayLabel: "Jeudi", title: "Carrousel services - TikTok" }
   ],
   leads: [
     { companyName: "Startup e-commerce", needSummary: "Site + branding" },
@@ -24,8 +24,8 @@ const fallbackData = {
   ],
   activities: [
     { happenedAt: "09:15", message: "Validation du hero redesign pour la vitrine WebFy." },
-    { happenedAt: "10:30", message: "Trois posts ont ete ajoutes au calendrier social media." },
-    { happenedAt: "13:00", message: "Le pole design prepare une proposition de logo client." }
+    { happenedAt: "10:30", message: "Trois contenus ont ete ajoutes au calendrier marketing." },
+    { happenedAt: "13:00", message: "Le pole design prepare un nouveau support visuel client." }
   ],
   source: "fallback"
 };
@@ -43,94 +43,37 @@ function buildRoleConfig(roleName = "staff") {
       focusItems: [
         { title: "Vision globale", text: "Suivre en meme temps les leads, les comptes actifs, les projets et la charge staff." },
         { title: "Croissance", text: "Identifier ce qui bloque les ventes, la livraison ou la qualite d'execution." },
-        { title: "Structure", text: "Verifier que les roles, les responsables et les echeances sont bien distribues." }
+        { title: "Structure", text: "Verifier que les nouveaux postes sont bien repartis entre marketing, dev, admin et sales." }
       ],
       quickActions: [
-        { title: "Equipe", status: "priorite", text: "Structurer les comptes et les roles pour chaque membre du staff." },
+        { title: "Equipe", status: "priorite", text: "Verifier que les 8 postes actifs gardent une charge claire." },
         { title: "Projets", status: "actif", text: "Voir les projets qui consomment le plus d'energie ou de budget." },
         { title: "Leads", status: "suivi", text: "Traiter les opportunites commerciales encore ouvertes." }
       ]
     },
-    operations_manager: {
-      summary: "Vue operations sur la charge, les blocages, les echeances et la coordination equipe.",
-      focusLabel: "Operations",
-      focusTitle: "Ce que l'operations manager doit garder sous controle",
-      focusBadge: "Operations",
-      quickActionsTitle: "Coordination rapide",
-      activityTitle: "Points de coordination du jour",
-      myWorkTitle: "File operations",
+    marketing_lead: {
+      summary: "Vue marketing sur les campagnes, les priorites de contenu et la coordination de l'equipe marketing.",
+      focusLabel: "Marketing",
+      focusTitle: "Ce que le marketing lead doit piloter maintenant",
+      focusBadge: "Marketing lead",
+      quickActionsTitle: "Priorites de coordination",
+      activityTitle: "Signal marketing du jour",
+      myWorkTitle: "Ma file marketing",
       focusItems: [
-        { title: "Charge equipe", text: "Equilibrer les capacites entre design, dev, contenu et support." },
-        { title: "Rythme", text: "Maintenir l'avance sur les taches en retard et les validations." },
-        { title: "Execution", text: "Faire circuler les projets entre production, review et livraison." }
+        { title: "Calendrier", text: "Verifier la cadence editoriale, les campagnes et les priorites de diffusion." },
+        { title: "Coordination", text: "Relier contenu, design, community et sales autour des memes objectifs." },
+        { title: "Execution", text: "S'assurer que les demandes urgentes passent vite vers dev ou production." }
       ],
       quickActions: [
-        { title: "Taches", status: "central", text: "Revoir les actions ouvertes et redistribuer si besoin." },
-        { title: "Projets", status: "actif", text: "Verifier statuts, budgets et echeances des missions." },
-        { title: "Equipe", status: "pilotage", text: "Ajuster les roles et responsables selon la charge." }
-      ]
-    },
-    project_manager: {
-      summary: "Vue projet sur les clients, les briefs, les validations et les livrables.",
-      focusLabel: "Gestion projet",
-      focusTitle: "Ce que le project manager doit voir en premier",
-      focusBadge: "Project",
-      quickActionsTitle: "Suivi client rapide",
-      activityTitle: "Mouvements projet du jour",
-      myWorkTitle: "File projet",
-      focusItems: [
-        { title: "Clients actifs", text: "Suivre les demandes en cours, les attentes et les deadlines." },
-        { title: "Validations", text: "Faire avancer les briefs, retours et livraisons vers la prochaine etape." },
-        { title: "Coordination", text: "Connecter design, dev et contenu autour de la meme priorite." }
-      ],
-      quickActions: [
-        { title: "Clients", status: "actif", text: "Centraliser les contacts et les statuts relationnels." },
-        { title: "Projets", status: "priorite", text: "Suivre les missions en cours et leurs proprietaires." },
-        { title: "Leads", status: "commercial", text: "Basculer les prospects qualifies vers de vrais comptes." }
-      ]
-    },
-    designer: {
-      summary: "Vue design sur les livrables visuels, logos, identites et validations client.",
-      focusLabel: "Design",
-      focusTitle: "Ce que le pole design doit produire maintenant",
-      focusBadge: "Design",
-      quickActionsTitle: "Production visuelle",
-      activityTitle: "Flux design du jour",
-      myWorkTitle: "Ma file design",
-      focusItems: [
-        { title: "Livrables visuels", text: "Prioriser les logos, maquettes, assets et retours clients." },
-        { title: "Validation", text: "Isoler ce qui attend une approbation avant livraison." },
-        { title: "Cohérence", text: "Maintenir un niveau premium sur chaque support graphique." }
-      ],
-      quickActions: [
-        { title: "Taches", status: "central", text: "Voir les demandes creees pour design et branding." },
-        { title: "Projets", status: "actif", text: "Identifier le contexte client et le niveau d'urgence." },
-        { title: "Equipe", status: "support", text: "Savoir qui coordonne ou valide les productions." }
-      ]
-    },
-    developer: {
-      summary: "Vue technique sur les taches, corrections, livraisons et echeances de production.",
-      focusLabel: "Developpement",
-      focusTitle: "Ce que le pole technique doit executer maintenant",
-      focusBadge: "Dev",
-      quickActionsTitle: "Execution technique",
-      activityTitle: "Mouvements techniques du jour",
-      myWorkTitle: "Ma file technique",
-      focusItems: [
-        { title: "Taches assignees", text: "Se concentrer sur les actions liees aux projets actifs." },
-        { title: "Livraison", text: "Prioriser les correctifs, la review et les echeances proches." },
-        { title: "Structure", text: "Garder une execution propre entre front, back et dashboard." }
-      ],
-      quickActions: [
-        { title: "Taches", status: "priorite", text: "Filtrer les items ouverts et les urgences techniques." },
-        { title: "Projets", status: "actif", text: "Comprendre le projet auquel chaque tache appartient." },
-        { title: "Clients", status: "contexte", text: "Acceder au contexte si un besoin change ou s'etend." }
+        { title: "Leads", status: "priorite", text: "Suivre les demandes entrantes et aider leur conversion." },
+        { title: "Projets", status: "pilotage", text: "Verifier les missions client qui demandent du contenu ou du suivi." },
+        { title: "Taches", status: "central", text: "Repartir clairement le travail entre les 4 profils marketing." }
       ]
     },
     content_creator: {
-      summary: "Vue contenu sur la production editoriale, scripts, textes et assets a livrer.",
+      summary: "Vue contenu sur la production editoriale, scripts, textes et captions a livrer.",
       focusLabel: "Contenu",
-      focusTitle: "Ce que le pole contenu doit sortir maintenant",
+      focusTitle: "Ce que le content creator doit sortir maintenant",
       focusBadge: "Content",
       quickActionsTitle: "Production editoriale",
       activityTitle: "Flux contenu du jour",
@@ -138,7 +81,7 @@ function buildRoleConfig(roleName = "staff") {
       focusItems: [
         { title: "Calendrier", text: "Voir ce qui doit etre ecrit, tourne, prepare ou programme." },
         { title: "Production", text: "Prioriser les contenus utiles pour les campagnes et la vitrine." },
-        { title: "Validation", text: "Coordonner les retours entre strategie, design et social media." }
+        { title: "Validation", text: "Coordonner les retours entre strategie, design et community." }
       ],
       quickActions: [
         { title: "Contenu", status: "actif", text: "Revoir le planning editorial et la cadence." },
@@ -146,29 +89,105 @@ function buildRoleConfig(roleName = "staff") {
         { title: "Projets", status: "support", text: "Verifier quel client ou campagne pilote la demande." }
       ]
     },
-    social_media_manager: {
-      summary: "Vue social media sur le calendrier, les publications et les campagnes actives.",
-      focusLabel: "Social media",
-      focusTitle: "Ce que le social media manager doit piloter aujourd'hui",
-      focusBadge: "Social",
-      quickActionsTitle: "Actions de campagne",
-      activityTitle: "Mouvements social media du jour",
-      myWorkTitle: "Ma file social media",
+    visual_designer: {
+      summary: "Vue design sur les visuels, carrousels, assets et coherence de marque.",
+      focusLabel: "Design visuel",
+      focusTitle: "Ce que le designer visuel doit produire maintenant",
+      focusBadge: "Designer",
+      quickActionsTitle: "Production visuelle",
+      activityTitle: "Flux design du jour",
+      myWorkTitle: "Ma file design",
       focusItems: [
-        { title: "Cadence", text: "Maintenir les publications, stories et campagnes dans le bon tempo." },
-        { title: "Visibilite", text: "Relier contenu, visuel et calendrier a des objectifs concrets." },
-        { title: "Coordination", text: "Faire remonter ce qui bloque la programmation ou la diffusion." }
+        { title: "Visuels a livrer", text: "Prioriser les supports graphiques attendus par marketing et ventes." },
+        { title: "Image de marque", text: "Maintenir un rendu propre et coherent sur tous les canaux." },
+        { title: "Support equipe", text: "Fournir vite les assets utiles au contenu, au social et au site." }
       ],
       quickActions: [
-        { title: "Contenu", status: "priorite", text: "Verifier ce qui est publie, planifie ou en attente." },
-        { title: "Taches", status: "central", text: "Prendre les actions liees aux campagnes et revisions." },
-        { title: "Leads", status: "signal", text: "Observer les nouveaux besoins venant du marketing." }
+        { title: "Taches", status: "priorite", text: "Ouvrir les demandes de visuels et les delais clients." },
+        { title: "Fichiers", status: "support", text: "Ranger les assets, references et exports utiles a l'equipe." },
+        { title: "Projets", status: "actif", text: "Revoir les missions qui demandent une presentation premium." }
       ]
     },
-    sales_manager: {
+    community_manager: {
+      summary: "Vue community sur les publications, l'animation des comptes et les retours du public.",
+      focusLabel: "Community",
+      focusTitle: "Ce que le community manager doit faire avancer",
+      focusBadge: "Community",
+      quickActionsTitle: "Animation & diffusion",
+      activityTitle: "Mouvements social media du jour",
+      myWorkTitle: "Ma file community",
+      focusItems: [
+        { title: "Publication", text: "Garder les contenus publies, programmes et suivis sans rupture." },
+        { title: "Interaction", text: "Suivre les messages, commentaires et signaux utiles a remonter." },
+        { title: "Campagnes", text: "Verifier que les actions marketing gardent un bon rythme de diffusion." }
+      ],
+      quickActions: [
+        { title: "Contenu", status: "actif", text: "Savoir quoi publier, quand et sur quel canal." },
+        { title: "Taches", status: "priorite", text: "Traiter les actions liees aux posts, revisions et validations." },
+        { title: "Leads", status: "signal", text: "Faire remonter les besoins ou questions observes en ligne." }
+      ]
+    },
+    frontend_developer: {
+      summary: "Vue frontend sur les interfaces, integrations UI et finitions visibles du produit.",
+      focusLabel: "Frontend",
+      focusTitle: "Ce que le developpeur frontend doit executer",
+      focusBadge: "Front-end",
+      quickActionsTitle: "Execution interface",
+      activityTitle: "Mouvements produit du jour",
+      myWorkTitle: "Ma file frontend",
+      focusItems: [
+        { title: "Interfaces", text: "Faire avancer les vues publiques, le dashboard et les parcours utilisateur." },
+        { title: "Responsive", text: "Prioriser les points de finition qui impactent la lecture et la navigation." },
+        { title: "Livraison", text: "Rester aligne avec backend, design et besoins marketing." }
+      ],
+      quickActions: [
+        { title: "Taches", status: "priorite", text: "Filtrer les demandes d'integration, de correction et d'UX." },
+        { title: "Projets", status: "actif", text: "Comprendre le contexte client ou produit de chaque tache." },
+        { title: "Fichiers", status: "support", text: "Recuperer maquettes, references et assets avant integration." }
+      ]
+    },
+    backend_developer: {
+      summary: "Vue backend sur l'API, la base de donnees et la logique metier du systeme.",
+      focusLabel: "Backend",
+      focusTitle: "Ce que le developpeur backend doit verrouiller",
+      focusBadge: "Back-end",
+      quickActionsTitle: "Execution technique",
+      activityTitle: "Flux systeme du jour",
+      myWorkTitle: "Ma file backend",
+      focusItems: [
+        { title: "Structure", text: "Maintenir les routes, la base et les permissions dans un etat stable." },
+        { title: "Fiabilite", text: "Prioriser les correctifs qui bloquent l'equipe ou les formulaires publics." },
+        { title: "Evolution", text: "Faire avancer les modules internes sans casser le reste du produit." }
+      ],
+      quickActions: [
+        { title: "Taches", status: "priorite", text: "Ouvrir les urgences liees a la logique, aux donnees ou aux flux." },
+        { title: "Projets", status: "actif", text: "Voir quelles missions demandent du backend ou des integrations." },
+        { title: "Fichiers", status: "support", text: "Centraliser references et documents utiles au build." }
+      ]
+    },
+    administrative_assistant: {
+      summary: "Vue administrative sur l'organisation interne, le suivi des dossiers et la coordination utile.",
+      focusLabel: "Administration",
+      focusTitle: "Ce que l'assistante administrative doit garder clair",
+      focusBadge: "Admin support",
+      quickActionsTitle: "Organisation quotidienne",
+      activityTitle: "Flux administratif du jour",
+      myWorkTitle: "Ma file administrative",
+      focusItems: [
+        { title: "Suivi interne", text: "Maintenir les informations, relances et dossiers bien organises." },
+        { title: "Appui equipe", text: "Aider marketing, sales et direction sur les points administratifs utiles." },
+        { title: "Clarte", text: "Faire circuler les bonnes informations au bon moment." }
+      ],
+      quickActions: [
+        { title: "Equipe", status: "pilotage", text: "Aider a tenir les comptes staff, roles et informations a jour." },
+        { title: "Clients", status: "suivi", text: "Centraliser les contacts et les besoins administratifs." },
+        { title: "Finance", status: "support", text: "Suivre devis, paiements ou pieces utiles a l'entreprise." }
+      ]
+    },
+    business_sales: {
       summary: "Vue commerciale sur les leads, les relances, les devis et les opportunites a convertir.",
-      focusLabel: "Sales",
-      focusTitle: "Ce que le sales manager doit faire avancer",
+      focusLabel: "Business",
+      focusTitle: "Ce que le business sales doit faire avancer",
       focusBadge: "Sales",
       quickActionsTitle: "Pipeline commercial",
       activityTitle: "Mouvements commerciaux du jour",
@@ -176,34 +195,23 @@ function buildRoleConfig(roleName = "staff") {
       focusItems: [
         { title: "Leads ouverts", text: "Identifier les prospects a contacter ou a relancer en premier." },
         { title: "Qualification", text: "Isoler les besoins les plus prometteurs pour les transformer en clients." },
-        { title: "Transmission", text: "Passer les bons dossiers vers projets et production au bon moment." }
+        { title: "Transmission", text: "Passer les bons dossiers vers production au bon moment." }
       ],
       quickActions: [
         { title: "Leads", status: "priorite", text: "Voir les opportunites commerciales encore ouvertes." },
         { title: "Clients", status: "conversion", text: "Basculer les leads qualifies en comptes actifs." },
-        { title: "Projets", status: "handoff", text: "Verifier que la promesse vendue sera bien livree." }
-      ]
-    },
-    support_manager: {
-      summary: "Vue support sur les demandes client, corrections et suivi apres livraison.",
-      focusLabel: "Support",
-      focusTitle: "Ce que le support doit resoudre rapidement",
-      focusBadge: "Support",
-      quickActionsTitle: "Suivi client",
-      activityTitle: "Demandes support du jour",
-      myWorkTitle: "Ma file support",
-      focusItems: [
-        { title: "Demandes en attente", text: "Repérer les clients qui attendent une reponse ou une correction." },
-        { title: "Suivi", text: "Maintenir un niveau de service rassurant apres livraison." },
-        { title: "Remontee", text: "Envoyer a design ou dev ce qui doit etre corrige rapidement." }
-      ],
-      quickActions: [
-        { title: "Clients", status: "actif", text: "Voir les comptes qui demandent un suivi immediat." },
-        { title: "Taches", status: "escalade", text: "Creer les actions correctives et les assigner." },
-        { title: "Projets", status: "contexte", text: "Comprendre ce qui a ete livre avant d'intervenir." }
+        { title: "Finance", status: "handoff", text: "Verifier devis, paiements et attentes avant lancement." }
       ]
     }
   };
+
+  configs.operations_manager = configs.marketing_lead;
+  configs.project_manager = configs.marketing_lead;
+  configs.designer = configs.visual_designer;
+  configs.developer = configs.backend_developer;
+  configs.social_media_manager = configs.community_manager;
+  configs.sales_manager = configs.business_sales;
+  configs.support_manager = configs.administrative_assistant;
 
   return configs[roleName] || {
     summary: "Vue staff sur les projets, les actions et la coordination de l'equipe.",
@@ -215,8 +223,8 @@ function buildRoleConfig(roleName = "staff") {
     myWorkTitle: "Travail prioritaire pour cette session",
     focusItems: [
       { title: "Priorites du jour", text: "Clients actifs, projets ouverts, contenu a produire et leads a traiter depuis une seule surface." },
-      { title: "Coordination", text: "Les modules deviennent des postes de travail concrets pour Operations, Design, Dev, Sales et Support." },
-      { title: "Productivite", text: "Le dashboard relie les roles a de vraies actions quotidiennes." }
+      { title: "Coordination", text: "Le staff tourne maintenant autour du marketing, du dev, de l'administratif et du sales." },
+      { title: "Productivite", text: "Le dashboard relie les postes reels a de vraies actions quotidiennes." }
     ],
     quickActions: [
       { title: "Clients", status: "actif", text: "Centraliser les comptes, contacts et statuts commerciaux." },

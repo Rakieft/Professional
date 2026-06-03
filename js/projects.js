@@ -8,7 +8,7 @@ let currentUser = null;
 
 function canManageProjects() {
   const roleName = currentUser?.roleName || "";
-  return ["admin", "operations_manager", "project_manager"].includes(roleName);
+  return ["admin", "marketing_lead", "administrative_assistant", "operations_manager", "project_manager"].includes(roleName);
 }
 
 function fillSelect(select, items, labelKey, valueKey, emptyLabel) {
@@ -89,13 +89,13 @@ if (projectForm) {
     Array.from(projectForm.elements).forEach((field) => {
       if (field.tagName === "BUTTON") {
         field.disabled = true;
-        field.textContent = "Creation reservee aux managers";
+        field.textContent = "Creation reservee aux roles de coordination";
       } else {
         field.disabled = true;
       }
     });
 
-    projectFeedback.textContent = "Vous pouvez consulter les projets, mais la creation est reservee aux roles manageriaux.";
+    projectFeedback.textContent = "Vous pouvez consulter les projets, mais la creation est reservee aux roles de coordination.";
   }
 
   await loadProjects();

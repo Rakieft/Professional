@@ -82,7 +82,7 @@ function statusLabel(status) {
 
 function canManageTasks() {
   const roleName = currentUser?.roleName || "";
-  return ["admin", "operations_manager", "project_manager"].includes(roleName);
+  return ["admin", "marketing_lead", "administrative_assistant", "operations_manager", "project_manager"].includes(roleName);
 }
 
 function resetTaskForm() {
@@ -325,8 +325,8 @@ async function loadTaskMeta() {
     taskDescription.disabled = true;
     taskTitle.disabled = true;
     taskSubmitButton.disabled = true;
-    taskSubmitButton.textContent = "Gestion reservee aux managers";
-    taskFeedback.textContent = "Vous voyez principalement vos propres taches. Le pilotage complet est reserve aux roles manageriaux.";
+    taskSubmitButton.textContent = "Gestion reservee aux roles de coordination";
+    taskFeedback.textContent = "Vous voyez principalement vos propres taches. Le pilotage complet est reserve aux roles de coordination.";
     taskFormTitle.textContent = "Vue personnelle des taches";
   }
 }

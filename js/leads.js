@@ -13,7 +13,7 @@ const leadStatusLabels = {
 
 function canManageLeads() {
   const roleName = currentUser?.roleName || "";
-  return ["admin", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
+  return ["admin", "marketing_lead", "business_sales", "administrative_assistant", "operations_manager", "project_manager", "sales_manager"].includes(roleName);
 }
 
 function renderLeads(leads) {
@@ -145,13 +145,13 @@ if (leadForm) {
     Array.from(leadForm.elements).forEach((field) => {
       if (field.tagName === "BUTTON") {
         field.disabled = true;
-        field.textContent = "Gestion reservee aux roles commerciaux";
+        field.textContent = "Gestion reservee aux roles marketing, business et admin";
       } else {
         field.disabled = true;
       }
     });
 
-    leadFeedback.textContent = "Vous pouvez consulter les leads, mais la creation et la conversion sont reservees aux roles commerciaux et management.";
+    leadFeedback.textContent = "Vous pouvez consulter les leads, mais la creation et la conversion sont reservees aux roles marketing, business et administratifs autorises.";
   }
 
   await loadLeads();

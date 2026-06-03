@@ -9,9 +9,9 @@ const {
 
 const router = express.Router();
 
-router.get("/", requireRole("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), getFinanceOverview);
-router.post("/quotes", requireRole("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), createQuote);
-router.post("/quotes/:id/invoice", requireRole("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), createInvoiceFromQuote);
-router.post("/payments", requireRole("admin", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), createPayment);
+router.get("/", requireRole("admin", "marketing_lead", "business_sales", "administrative_assistant", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), getFinanceOverview);
+router.post("/quotes", requireRole("admin", "marketing_lead", "business_sales", "administrative_assistant", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), createQuote);
+router.post("/quotes/:id/invoice", requireRole("admin", "marketing_lead", "business_sales", "administrative_assistant", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), createInvoiceFromQuote);
+router.post("/payments", requireRole("admin", "marketing_lead", "business_sales", "administrative_assistant", "cofounder", "secretary", "operations_manager", "project_manager", "sales_manager"), createPayment);
 
 module.exports = router;
