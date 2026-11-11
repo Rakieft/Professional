@@ -31,13 +31,13 @@ async function sendContactEmail(contact) {
 
   const transporter = createTransporter();
   const recipient = process.env.CONTACT_TO_EMAIL || process.env.SMTP_USER;
-  const fromName = process.env.SMTP_FROM_NAME || "WebFy Contact";
+  const fromName = process.env.SMTP_FROM_NAME || "QR Codev Contact";
   const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER;
   const replyTo = contact.email || fromEmail;
 
-  const subject = `Nouveau lead WebFy - ${contact.projectType || "Demande de contact"}`;
+  const subject = `Nouveau lead QR Codev - ${contact.projectType || "Demande de contact"}`;
   const text = [
-    "Nouvelle demande de contact WebFy",
+    "Nouvelle demande de contact QR Codev",
     "",
     `Nom: ${contact.name}`,
     `Email: ${contact.email}`,
@@ -50,7 +50,7 @@ async function sendContactEmail(contact) {
 
   const html = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0b1724;">
-      <h2 style="margin-bottom: 12px;">Nouvelle demande de contact WebFy</h2>
+      <h2 style="margin-bottom: 12px;">Nouvelle demande de contact QR Codev</h2>
       <p><strong>Nom:</strong> ${contact.name}</p>
       <p><strong>Email:</strong> ${contact.email}</p>
       <p><strong>Telephone:</strong> ${contact.phone || "Non renseigne"}</p>

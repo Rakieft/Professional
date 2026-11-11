@@ -1,6 +1,6 @@
-# WebFy
+# QR Codev
 
-WebFy est maintenant organise comme une base de projet plus reelle:
+QR Codev est maintenant organise comme une base de projet plus reelle:
 
 - une vitrine marketing publique
 - un dashboard staff
@@ -158,7 +158,7 @@ La meilleure suite immediate est:
 
 ## Roles d'entreprise deja prevus
 
-Le seed initialise une base de roles plus realiste pour WebFy:
+Le seed initialise une base de roles plus realiste pour QR Codev:
 
 - `admin`
 - `ceo`

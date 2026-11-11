@@ -105,7 +105,7 @@ function launch() {
   });
 
   child.on("error", (error) => {
-    console.error(`Impossible de lancer WebFy: ${error.message}`);
+    console.error(`Impossible de lancer QR Codev: ${error.message}`);
     process.exit(1);
   });
 }

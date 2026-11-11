@@ -51,8 +51,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    name: "webfy.sid",
-    secret: sessionSecret || "webfy_dev_only_secret",
+    name: "qrcodev.sid",
+    secret: sessionSecret || "qrcodev_dev_only_secret",
     resave: false,
     saveUninitialized: false,
     unset: "destroy",
@@ -73,7 +73,7 @@ app.use("/js", express.static(path.join(rootDir, "js")));
 app.get("/health", (_req, res) => {
   res.json({
     ok: true,
-    service: "webfy-platform",
+    service: "qrcodev-platform",
     timestamp: new Date().toISOString()
   });
 });
@@ -188,5 +188,5 @@ app.use((req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`WebFy platform running on http://localhost:${port}`);
+  console.log(`QR Codev platform running on http://localhost:${port}`);
 });

@@ -2,9 +2,9 @@ const socialLinkElements = document.querySelectorAll("[data-social-link]");
 
 const fallbackSocialLinks = {
   whatsapp: "https://wa.me/50944795902",
-  instagram: "https://instagram.com/webfy",
-  facebook: "https://facebook.com/webfy",
-  tiktok: "https://tiktok.com/@webfy"
+  instagram: "https://instagram.com/qrcodev",
+  facebook: "https://facebook.com/qrcodev",
+  tiktok: "https://tiktok.com/@qrcodev"
 };
 
 function applySocialLinks(sourceLinks = {}) {

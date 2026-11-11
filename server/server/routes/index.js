@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/health", (_req, res) => {
   res.json({
     ok: true,
-    service: "webfy-api",
+    service: "qrcodev-api",
     timestamp: new Date().toISOString()
   });
 });

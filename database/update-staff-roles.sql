@@ -1,4 +1,4 @@
-USE webfy;
+USE qrcodev;
 
 INSERT INTO roles (name)
 VALUES

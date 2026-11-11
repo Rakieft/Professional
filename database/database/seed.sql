@@ -1,4 +1,4 @@
-USE webfy;
+USE qrcodev;
 
 INSERT INTO roles (name)
 VALUES
@@ -26,14 +26,14 @@ VALUES
 ON DUPLICATE KEY UPDATE description = VALUES(description);
 
 INSERT INTO users (role_id, full_name, email, job_title)
-SELECT r.id, 'WebFy Admin', 'admin@webfy.ht', 'Founder'
+SELECT r.id, 'QR Codev Admin', 'admin@qrcodev.ht', 'Founder'
 FROM roles r
 WHERE r.name = 'admin'
 ON DUPLICATE KEY UPDATE full_name = VALUES(full_name), job_title = VALUES(job_title);
 
 INSERT INTO clients (name, company_type, contact_name, email, phone, status)
 VALUES
-  ('WebFy Internal', 'Startup', 'Kieft Raphter Joly', 'webfysa@gmail.com', '+509 4479-5902', 'active'),
+  ('QR Codev Internal', 'Startup', 'Kieft Raphter Joly', 'qrcodevsa@gmail.com', '+509 4479-5902', 'active'),
   ('Clinique Privee', 'Healthcare', 'Responsable Clinique', 'contact@clinique.ht', '+509 3000-1000', 'lead'),
   ('Restaurant Local', 'Food', 'Owner', 'hello@restaurant.ht', '+509 3000-2000', 'active')
 ON DUPLICATE KEY UPDATE name = VALUES(name);
@@ -50,7 +50,7 @@ SELECT
   c.id,
   s.id,
   u.id,
-  'Refonte WebFy',
+  'Refonte QR Codev',
   'Refonte de la vitrine et preparation du dashboard staff.',
   'in_progress',
   'high',
@@ -58,8 +58,8 @@ SELECT
   DATE_ADD(CURDATE(), INTERVAL 21 DAY)
 FROM clients c
 JOIN services s ON s.name = 'Web design'
-JOIN users u ON u.email = 'admin@webfy.ht'
-WHERE c.name = 'WebFy Internal'
+JOIN users u ON u.email = 'admin@qrcodev.ht'
+WHERE c.name = 'QR Codev Internal'
 ON DUPLICATE KEY UPDATE name = VALUES(name);
 
 INSERT INTO content_calendar (project_id, title, channel, day_label, publish_date, status)
@@ -71,25 +71,25 @@ SELECT
   CURDATE(),
   'scheduled'
 FROM projects p
-WHERE p.name = 'Refonte WebFy';
+WHERE p.name = 'Refonte QR Codev';
 
 INSERT INTO tasks (project_id, assignee_user_id, title, description, status, priority, due_date)
 SELECT
   p.id,
   u.id,
   'Construire le backend staff',
-  'Poser l API et la base MySQL pour WebFy.',
+  'Poser l API et la base MySQL pour QR Codev.',
   'in_progress',
   'high',
   DATE_ADD(CURDATE(), INTERVAL 5 DAY)
 FROM projects p
-JOIN users u ON u.email = 'admin@webfy.ht'
-WHERE p.name = 'Refonte WebFy';
+JOIN users u ON u.email = 'admin@qrcodev.ht'
+WHERE p.name = 'Refonte QR Codev';
 
 INSERT INTO activity_logs (project_id, message, happened_at)
 SELECT
   p.id,
-  'Initialisation du backend WebFy et du schema MySQL.',
+  'Initialisation du backend QR Codev et du schema MySQL.',
   NOW()
 FROM projects p
-WHERE p.name = 'Refonte WebFy';
+WHERE p.name = 'Refonte QR Codev';

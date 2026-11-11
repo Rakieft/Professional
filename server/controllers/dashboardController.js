@@ -8,7 +8,7 @@ const fallbackData = {
     openLeads: 3
   },
   projects: [
-    { name: "Refonte WebFy", service: "Web design", owner: "Design team", status: "in_progress" },
+    { name: "Refonte QR Codev", service: "Web design", owner: "Design team", status: "in_progress" },
     { name: "Campagne lancement", service: "Social media", owner: "Content lead", status: "review" },
     { name: "Pack logo client", service: "Branding", owner: "Creative team", status: "done" }
   ],
@@ -23,7 +23,7 @@ const fallbackData = {
     { companyName: "Clinique privee", needSummary: "Refonte digitale" }
   ],
   activities: [
-    { happenedAt: "09:15", message: "Validation du hero redesign pour la vitrine WebFy." },
+    { happenedAt: "09:15", message: "Validation du hero redesign pour la vitrine QR Codev." },
     { happenedAt: "10:30", message: "Trois contenus ont ete ajoutes au calendrier marketing." },
     { happenedAt: "13:00", message: "Le pole design prepare un nouveau support visuel client." }
   ],

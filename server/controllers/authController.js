@@ -84,7 +84,7 @@ function logout(req, res, next) {
       return next(error);
     }
 
-    res.clearCookie("webfy.sid");
+    res.clearCookie("qrcodev.sid");
     return res.json({
       ok: true,
       message: "Logged out"

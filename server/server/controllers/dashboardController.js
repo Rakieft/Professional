@@ -9,7 +9,7 @@ const fallbackData = {
   },
   projects: [
     {
-      name: "Refonte WebFy",
+      name: "Refonte QR Codev",
       service: "Web design",
       owner: "Design team",
       status: "in_progress"
@@ -38,7 +38,7 @@ const fallbackData = {
     { companyName: "Clinique privee", needSummary: "Refonte digitale" }
   ],
   activities: [
-    { happenedAt: "09:15", message: "Validation du hero redesign pour la vitrine WebFy." },
+    { happenedAt: "09:15", message: "Validation du hero redesign pour la vitrine QR Codev." },
     { happenedAt: "10:30", message: "Trois posts ont ete ajoutes au calendrier social media." },
     { happenedAt: "13:00", message: "Le pole design prepare une proposition de logo client." }
   ],

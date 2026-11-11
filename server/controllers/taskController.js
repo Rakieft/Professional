@@ -326,7 +326,7 @@ async function createTask(req, res, next) {
 
     await createNotifications(recipients, {
       title: "Nouvelle tache staff",
-      message: `La tache "${title}" vient d'etre creee dans WebFy.`,
+      message: `La tache "${title}" vient d'etre creee dans QR Codev.`,
       category: "tasks",
       linkUrl: "/tasks"
     });

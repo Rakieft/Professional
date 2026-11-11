@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>QR Codev</title>
+  <defs>
+    <linearGradient id="bg" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#17132E"/>
+      <stop offset="1" stop-color="#0B0A18"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="112" y1="112" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9B8CFF"/>
+      <stop offset="1" stop-color="#6B57FF"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="280" y1="280" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5EEBFF"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="40" y="40" width="432" height="432" rx="112" fill="url(#bg)"/>
+  <rect x="41" y="41" width="430" height="430" rx="111" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="2"/>
+
+  <!-- QR finder patterns -->
+  <g fill="none" stroke="url(#violet)" stroke-width="22">
+    <rect x="115" y="115" width="104" height="104" rx="30"/>
+    <rect x="293" y="115" width="104" height="104" rx="30"/>
+    <rect x="115" y="293" width="104" height="104" rx="30"/>
+  </g>
+  <g fill="url(#violet)">
+    <rect x="148" y="148" width="38" height="38" rx="11"/>
+    <rect x="326" y="148" width="38" height="38" rx="11"/>
+    <rect x="148" y="326" width="38" height="38" rx="11"/>
+  </g>
+
+  <!-- code brackets </> in the fourth quadrant -->
+  <g stroke="url(#cyan)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M300 316L276 345L300 374"/>
+    <path d="M392 316L416 345L392 374"/>
+    <path d="M358 300L334 390"/>
+  </g>
+</svg>

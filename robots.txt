@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://webfy.netlify.app/sitemap.xml
+Sitemap: https://qrcodev.netlify.app/sitemap.xml

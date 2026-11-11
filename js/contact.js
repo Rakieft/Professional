@@ -24,7 +24,7 @@ function hydratePlanFromUrl() {
   }
 
   if (descriptionField && plan && !descriptionField.value.trim()) {
-    descriptionField.value = `Bonjour WebFy,\n\nJe souhaite avancer avec le plan ${plan}.\n\nVoici quelques details sur mon projet:`;
+    descriptionField.value = `Bonjour QR Codev,\n\nJe souhaite avancer avec le plan ${plan}.\n\nVoici quelques details sur mon projet:`;
   }
 }
 
@@ -68,7 +68,7 @@ if (contactForm) {
       }
 
       alert(
-        "Votre demande a bien ete envoyee. WebFy vous repondra sous 24 a 48 heures."
+        "Votre demande a bien ete envoyee. QR Codev vous repondra sous 24 a 48 heures."
       );
       contactForm.reset();
       if (selectedPlanBanner) {

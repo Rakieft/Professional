@@ -21,7 +21,7 @@ function applySelectedPlan(plan, projectType) {
   }
 
   if (descriptionField && !descriptionField.value.trim()) {
-    descriptionField.value = `Bonjour WebFy,\n\nJe souhaite recevoir une proposition pour le plan ${plan}.\n\nVoici quelques details sur mon projet:`;
+    descriptionField.value = `Bonjour QR Codev,\n\nJe souhaite recevoir une proposition pour le plan ${plan}.\n\nVoici quelques details sur mon projet:`;
   }
 }
 
@@ -93,7 +93,7 @@ if (quoteForm) {
       }
 
       alert(
-        "Votre demande de devis a bien ete envoyee. WebFy vous repondra sous 24 a 48 heures."
+        "Votre demande de devis a bien ete envoyee. QR Codev vous repondra sous 24 a 48 heures."
       );
       quoteForm.reset();
       if (selectedPlanBanner) {
