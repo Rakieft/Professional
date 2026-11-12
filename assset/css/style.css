@@ -3158,6 +3158,11 @@ h3,
   border-color: rgba(124, 108, 255, 0.3);
 }
 
+/* Hero d'accueil sans panneau lateral */
+.page-home .hero-content {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 /* Cartes */
 .service-card,
 .portfolio-card,
